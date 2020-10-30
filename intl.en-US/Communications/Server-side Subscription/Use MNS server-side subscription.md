@@ -38,7 +38,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
         -   **Device Topological Relation Changes**: the notifications that gateways send when topological relationships between sub-devices and the gateways are created or deleted. This message type is specific to gateways.
         -   **Device Changes Throughout Lifecycle**: the notifications that devices send when the devices are created, deleted, enabled, or disabled.
         -   **TSL Historical Data Reporting**: The historical properties and events that are submitted by devices.
-        -   **OTA Update Status Notification**: the notifications that devices send during firmware verification and batch update. When a device update succeeds or fails, a notification is pushed. |
+        -   **OTA Update Status Notification**: the notifications that devices send during update package verification and batch update. When a device update succeeds or fails, a notification is pushed. |
 
     5.  In the dialog box that appears, click **OK**.
 
@@ -116,7 +116,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
     -   topo\_lifecycle: device topology changes
     -   device\_lifecycle: device lifecycle changes
     -   thing\_history: historical TSL data
-    -   ota\_event: firmware update status |
+    -   ota\_event: OTA update status |
     |topic|The IoT Platform topic from which the message is forwarded.|
     |payload|The base64-encoded message payload. For more information about data formats, see [Data formats](/intl.en-US/Communications/Data formats.md). |
     |timestamp|The timestamp. It is the number of seconds that have elapsed since the epoch time January 1, 1970, 00:00:00 UTC.|
