@@ -71,7 +71,7 @@ Default value: **false** |
 -   **false**: no
 
 Default value: **false** |
-|OtaEventFlag|Boolean|No|true|Specifies whether to push notifications about firmware updates. Valid values:
+|OtaEventFlag|Boolean|No|true|Specifies whether to push notifications about OTA updates. Valid values:
 
 -   **true**: yes
 -   **false**: no
