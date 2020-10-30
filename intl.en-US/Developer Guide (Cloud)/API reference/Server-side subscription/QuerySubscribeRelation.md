@@ -56,7 +56,7 @@ In addition to the preceding operation-specific request parameters, you must spe
 
 -   **true**: yes
 -   **false**: no |
-|OtaEventFlag|Boolean|true|Indicates whether notifications about firmware updates are pushed. Valid values:
+|OtaEventFlag|Boolean|true|Indicates whether notifications about OTA updates are pushed. Valid values:
 
 -   **true**: yes
 -   **false**: no |
