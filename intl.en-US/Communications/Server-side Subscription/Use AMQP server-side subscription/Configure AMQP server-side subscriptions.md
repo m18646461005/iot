@@ -39,7 +39,7 @@ IoT Platform pushes messages in the following topics: `/${YourProductKey}/${Your
     -   **Device Topological Relation Changes**: the notifications that gateways send when topological relationships between sub-devices and the gateways are created or deleted. This message type is specific to gateways.
     -   **Device Changes Throughout Lifecycle**: the notifications that devices send when the devices are created, deleted, enabled, or disabled.
     -   **TSL Historical Data Reporting**: The historical properties and events that are submitted by devices.
-    -   **OTA Update Status Notification**: the notifications that devices send during firmware verification and batch update. When a device update succeeds or fails, a notification is pushed.
+    -   **OTA Update Status Notification**: the notifications that devices send during update package verification and batch update. When a device update succeeds or fails, a notification is pushed.
     -   **Device tag change**: the messages that devices send when device tags change.
     -   **Submit a module version number**: the message that devices send when OTA module versions change.
     -   **Batch status notification**: the notifications that devices send when the status of OTA update batches change. |
