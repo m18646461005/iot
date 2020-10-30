@@ -20,75 +20,75 @@ Each Alibaba Cloud account can run a maximum of 5 queries per second \(QPS\).
 |ProductKey|String|Yes|a1fyXVF\*\*\*\*|The ProductKey of the product that is specified for the subscription. |
 |Type|String|Yes|AMQP|The type of the subscription. Valid values:
 
- -   **MNS**
+-   **MNS**
 -   **AMQP** |
 |IotInstanceId|String|No|iot-cn-0pp1n8t\*\*\*\*|The ID of the instance. This parameter is not required for public instances. However, the parameter is required for the instances that you have purchased. |
 |DeviceDataFlag|Boolean|No|true|Specifies whether to push upstream device messages. Valid values:
 
- -   **true**: yes
+-   **true**: yes
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |DeviceStatusChangeFlag|Boolean|No|true|Specifies whether to push messages about device status changes. Valid values:
 
- -   **true**: yes
+-   **true**: yes
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |FoundDeviceListFlag|Boolean|No|true|Specifies whether to push messages if a gateway detects new sub-devices. Valid values:
 
- -   **true**: yes. This parameter is valid only for gateway products.
+-   **true**: yes. This parameter is valid only for gateway products.
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |DeviceTopoLifeCycleFlag|Boolean|No|true|Specifies whether to push messages about topological relationship changes of devices. Valid values:
 
- -   **true**: yes. This parameter is valid only for gateway products.
+-   **true**: yes. This parameter is valid only for gateway products.
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |DeviceLifeCycleFlag|Boolean|No|true|Specifies whether to push messages about device lifecycle changes. Valid values:
 
- -   **true**: yes
+-   **true**: yes
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |ThingHistoryFlag|Boolean|No|true|Specifies whether to push upstream historical Thing Specification Language \(TSL\) data. Valid values:
 
- -   **true**: yes
+-   **true**: yes
 -   **false**: no
 
- Default value: **false** |
-|OtaEventFlag|Boolean|No|true|Specifies whether to push notifications about firmware updates. Valid values:
+Default value: **false** |
+|OtaEventFlag|Boolean|No|true|Specifies whether to push notifications about OTA updates. Valid values:
 
- -   **true**: yes
+-   **true**: yes
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |DeviceTagFlag|Boolean|No|true|Specifies whether to push messages about device tag changes. Valid values:
 
- -   **true**: yes. This parameter is valid only if the **Type** parameter is set to **AMQP**.
+-   **true**: yes. This parameter is valid only if the **Type** parameter is set to **AMQP**.
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |OtaVersionFlag|Boolean|No|true|Specifies whether to push messages about OTA module version numbers. Valid values:
 
- -   **true**: yes This parameter is valid only if the **Type** parameter is set to **AMQP**.
+-   **true**: yes This parameter is valid only if the **Type** parameter is set to **AMQP**.
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |OtaJobFlag|Boolean|No|true|Specifies whether to push notifications about the status of OTA update batches. Valid values:
 
- -   **true**: yes. This parameter is valid only if the **Type** parameter is set to **AMQP**.
+-   **true**: yes. This parameter is valid only if the **Type** parameter is set to **AMQP**.
 -   **false**: no
 
- Default value: **false** |
+Default value: **false** |
 |MnsConfiguration|String|No|\{ "themeName": "mns-test-topic1", "regionName": "cn-shanghai", "role": \{ "roleArn": "acs:ram::5645\*\*\*:role/aliyuniotaccessingmnsrole", "roleName": "AliyunIOTAccessingMNSRole" \} \}|The configurations of the MNS queue. This parameter is required if the **Type** parameter is set to **AMQP**.
 
- For more information about specific requirements and examples of MNS queues, see the following table. |
+For more information about specific requirements and examples of MNS queues, see the following table. |
 |ConsumerGroupIds.N|RepeatList|No|nJRaJPn5U1JITGfjBO9l00\*\*\*\*|The IDs of the consumer groups that are created in the AMQP subscription. This parameter is required if the **Type** parameter is set to **AMQP**.
 
- After you call the [CreateConsumerGroup](~~170388~~) operation to create a consumer group, the consumer group ID is returned. You can call the [QueryConsumerGroupList](~~170419~~) operation to query the consumer group ID based on the group name. You can also log on to the IoT Platform console and choose **Rules**\>**Server-side Subscription**\>**Consumer Groups** to view the consumer group ID. |
+After you call the [CreateConsumerGroup](~~170388~~) operation to create a consumer group, the consumer group ID is returned. You can call the [QueryConsumerGroupList](~~170419~~) operation to query the consumer group ID based on the group name. You can also log on to the IoT Platform console and choose **Rules**\>**Server-side Subscription**\>**Consumer Groups** to view the consumer group ID. |
 
 **Note:** You must set at least one Flag-related parameter to **true**.****
 
@@ -108,11 +108,11 @@ Each Alibaba Cloud account can run a maximum of 5 queries per second \(QPS\).
 
 |The information of the RAM role. To grant IoT Platform the access to MNS, you can assign a RAM role to IoT Platform. The following script shows the syntax of a RAM role:
 
- `{"roleArn":"acs:ram::5645***:role/aliyuniotaccessingmnsrole","roleName": "AliyunIOTAccessingMNSRole"}`
+`{"roleArn":"acs:ram::5645***:role/aliyuniotaccessingmnsrole","roleName": "AliyunIOTAccessingMNSRole"}`
 
- Replace `5645***` with your Alibaba Cloud account ID. You can log on to the Alibaba Cloud Management Console and view the account ID on the Security Settings page.
+Replace`5645***`with your Alibaba Cloud account ID. You can log on to the Alibaba Cloud Management Console and view the account ID on the Security Settings page.
 
- `AliyunIOTAccessingMNSRole` indicates a service role that is defined in RAM. This role is used to grant IoT Platform the access to MNS. You can go to the RAM Roles page of the RAM console to manage RAM roles. |
+`AliyunIOTAccessingMNSRole`indicates a service role that is defined in RAM. This role is used to grant IoT Platform the access to MNS. You can go to the RAM Roles page of the RAM console to manage RAM roles. |
 
 **Example of the MnsConfiguration parameter**
 
@@ -126,7 +126,7 @@ Each Alibaba Cloud account can run a maximum of 5 queries per second \(QPS\).
         "roleName": "AliyunIOTAccessingMNSRole"
     }
 }
-
+            
 ```
 
 In addition to the preceding operation-specific request parameters, you must specify common request parameters when you call this API operation. For more information about common request parameters, see [Common parameters](~~30561~~).
@@ -135,12 +135,12 @@ In addition to the preceding operation-specific request parameters, you must spe
 
 |Parameter|Type|Example|Description|
 |---------|----|-------|-----------|
-|Code|String|iot.system.SystemException|The error code returned if the call fails. For more information about error codes, see [Error codes](~~87387~~). |
+|Code|String|iot.system.SystemException|The error code returned if the call fails. For more information about error codes, see[Error codes](~~87387~~). |
 |ErrorMessage|String|A system exception occurred.|The error message returned if the call fails. |
 |RequestId|String|21D327AF-A7DE-4E59-B5D1-ACAC8C024555|The ID of the request. |
 |Success|Boolean|true|Indicates whether the call was successful.
 
- -   **true**: The call was successful.
+-   **true**: The call was successful.
 -   **false**: The call failed. |
 
 ## Examples
