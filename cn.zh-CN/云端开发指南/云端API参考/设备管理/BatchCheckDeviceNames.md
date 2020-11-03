@@ -23,7 +23,7 @@
 -   单次调用，最多能定义1,000 个设备名称。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享该阿里云账号配额。
 
 
 ## 调试
@@ -37,12 +37,12 @@
 |Action|String|是|BatchCheckDeviceNames|系统规定参数。取值：BatchCheckDeviceNames。 |
 |ProductKey|String|是|a1BwAGV\*\*\*\*|要注册的设备所属的产品ProductKey。 |
 |IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
-|DeviceName.N|RepeatList|否|light|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at符号（@）、点号（.）和英文冒号（:），长度限制为4~32个字符。
+|DeviceName.N|RepeatList|否|light|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at（@）、英文句点（.）和英文冒号（:），长度限制为4~32个字符。
 
  该参数与**DeviceNameList.N.DeviceName**必须传入一种。若您同时传入该参数与**DeviceNameList.N.DeviceName**，则以**DeviceNameList.N.DeviceName**为准。
 
  **说明：** 单次调用，最多能传入1,000个设备名称。 |
-|DeviceNameList.N.DeviceName|String|否|light1|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at符号（@）、点号（.）和英文冒号（:），长度限制为4~32个字符。
+|DeviceNameList.N.DeviceName|String|否|light1|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at（@）、英文句点（.）和英文冒号（:），长度限制为4~32个字符。
 
  该参数与**DeviceName.N**必须传入一种。若您同时传入该参数与**DeviceName.N**，则以该参数为准。
 
@@ -51,18 +51,18 @@
 
  若传入该参数，则必须同时传入**DeviceNameList.N.DeviceName**。 |
 
-调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见 [公共参数文档](~~30561~~)。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。更多信息，请参见 [公共参数文档](~~30561~~)。
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |Data|Struct| |返回的数据。 |
 |ApplyId|Long|1295006|调用成功时，系统返回的申请批次ID。使用该ApplyId，调用[BatchRegisterDeviceWithApplyId](~~69514~~)接口来批量创建设备。 |
 |InvalidDeviceNameList|List|\{ "InvalidDeviceName": \[ "APT$", "aw" \] \}|调用失败时，返回的不合法设备名称列表。 |
 |InvalidDeviceNicknameList|List|\{ "InvalidDeviceNickname": \[ "APT$", "aw" \] \}|调用失败时，返回的不合法设备备注名称列表。 |
-|ErrorMessage|String|系统异常|调用失败时返回的出错信息。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
 |Success|Boolean|true|表示是否调用成功。
 
@@ -89,12 +89,12 @@ https://iot.cn-shanghai.aliyuncs.com/?Action=BatchCheckDeviceNames
 
 ```
 <BatchCheckDeviceNamesResponse>
-<Data>
-    <ApplyId>1234567</ApplyId>
-</Data>
-<RequestId>E976E36B-6874-4FA4-8BC0-55F9BEC5E2EF</RequestId>
-<Success>true</Success>
-<BatchCheckDeviceNamesResponse>
+  <Data>
+        <ApplyId>1234567</ApplyId>
+  </Data>
+  <RequestId>E976E36B-6874-4FA4-8BC0-55F9BEC5E2EF</RequestId>
+  <Success>true</Success>
+</BatchCheckDeviceNamesResponse>
 ```
 
 `JSON` 格式
