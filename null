@@ -1,30 +1,29 @@
-# 消息通信计费
+# Messaging fees
 
-物联网平台收取消息通信费用，按消息数计费。
+IoT Platform charges messaging fees. The messaging fee is calculated based on the number of messages and has no minimum charge.
 
-## 计费项目
+## Billing items
 
-具体计费项目请参见下表。具体的收费接口请参见[附录：收费接口](#section_vn4_phh_ffb)。
+For more information about billing items, see the following table. For billable operations, see the appendix in this documentation.
 
-|项目|描述|
-|:-|:-|
-|消息传输费用 （设备端）
+|Item|Description|
+|:---|:----------|
+|Messaging fee \(Device\)
 
-|设备调用Pub接口发的消息|
-|设备调用RPC接口的Request消息|
-|设备响应服务端RRPC的Response消息|
-|设备调用Sub接口接收的消息|
-|设备物模型接口发送、接收的消息|
-|消息传输费用 （服务端）
+|Messages sent from devices by calling the Pub operation|
+|Requests sent from devices by calling the RPC operation|
+|RRPC responses sent from devices to the server|
+|Messages received by devices by calling the Sub operation|
+|Messages sent and received by devices by calling TSL model related operations|
+|Messaging fee \(Server\)
 
-|服务端调用Pub、PubBroadcast接口发的消息|
-|使用AMQP服务端订阅，物联网平台向服务端推送的消息|
-|服务端响应设备RPC的Response消息|
-|服务端调用RRPC接口发的消息|
-|服务端调用子设备相关接口产生的消息|
-|服务端调用设备影子相关接口产生的消息|
-|服务端调用物模型相关接口产生的消息|
-|免费消息|-   Connect
+|Messages sent from the server by calling the Pub and PubBroadcast operations|
+|RPC responses sent from the server to devices|
+|Messages sent from the server by calling the RRPC operation|
+|Messages sent from the server by calling sub-device related operations|
+|Messages sent from the server by calling device shadow related operations|
+|Messages sent from the server by calling TSL model related operations|
+|Free messages|-   Connect
 -   Connect Ack
 -   Disconnect
 -   PingReq
@@ -34,47 +33,45 @@
 -   Subscribe ACK
 -   Unsubscribe
 -   Unsubscribe Ack
--   规则引擎数据流转转发消息
+-   Messages forwarded by the rules engine
 
-**说明：** 您可以免费使用数据流转功能转发消息，但是将数据转发至其他云产品中时，其他云产品正常计费。 |
+**Note:** You can use the rules engine to forward messages for free. However, fees are charged when you transfer data to other cloud services. |
 
-## 计费方法
+## Billing method
 
-阶梯定价。
+Tiered pricing
 
-|消息数量N（条/月）|单价（元/百万条消息）|
-|:---------|:----------|
-|N ≤ 1亿|1.8|
-|1亿 < N ≤ 10亿|1.4|
-|10亿 < N|1|
+|Messages N \(per Month\)|Unit price \(Yuan/1,000,000 Messages\)|
+|:-----------------------|:-------------------------------------|
+|N ≤ 100,000,000|1.8|
+|100,000,000 < N ≤ 1,000,000,000|1.4|
+|1,000,000,000 < N|1|
 
-|消息数量N（条/月）|单价（美元/百万条消息）|
-|:---------|:-----------|
-|N ≤ 1亿|0.5|
-|1亿 < N ≤ 10亿|0.4|
-|10亿 < N|0.3|
+|Messages N \(per Month\)|Unit price \(USD/1,000,000 Messages\)|
+|:-----------------------|:------------------------------------|
+|N ≤ 100,000,000|0.5|
+|100,000,000 < N ≤ 1,000,000,000|0.4|
+|1,000,000,000 < N|0.3|
 
-**说明：** 初次开通物联网平台的前两个月有100万条消息的免费额度，即前两个月消息费用计算时，会将实际产生的收费消息数量减去100万后，再进行费用计算。
+Billing details
 
-计费单位：
+-   Fees are calculated based on the number of messages. For more information about billing items, see the preceding table.
+-   The first 1 million messages are free of charge for each month. The free quota takes effect at 00:00:00 on the first day of each month. Unused quota cannot be carried over to the next month. The fees are calculated when the number of messages exceeds 1 million for each month.
 
--   按消息数收费。收费消息项目见上面计费表。
--   消息数量不到下一个100万，按实际数量计费。
+How to count messages
 
-消息数计算：
+-   If a message is less than or equal to 512 bytes in size, the message is counted as one billable message.
+-   If a message is more than 512 bytes in size, the message is counted as two or more billable messages.
+-   To calculate the number of billable messages, divide the message size into bytes by 512, and round the resulting value up to the nearest integer.
 
--   消息长度在512 Bytes以内的，视为一条消息。
--   一条消息超出512 Bytes的部分计算为新的一条或多条消息。
--   可以理解为：按“实际消息长度/512 Bytes”的计算结果向上取整计算消息数。
+Billing dates
 
-费用结算：
+-   The messaging fee is calculated and charged on a daily basis.
+-   Fees are rounded up to the nearest cent.
 
--   每天统计一次消息数，费用日结。
--   计费详单精度统一保留2位小数，第3位及以后省去，即收费精确到分，向下取整。
+**Note:** This document is for reference only. Refer to your bill for accurate information.
 
-**说明：** 以上内容仅供参考，实际收费请以账单为准。
-
-## 附录：收费接口
+## Appendix: Billable operations
 
 |MQTT Publish|IOT\_CMP\_OTA\_Start|
 |IOT\_CMP\_OTA\_Get\_Config|
@@ -107,23 +104,23 @@
 |linkkit\_invoke\_cota\_service|
 |CoAP Send|IOT\_CoAP\_SendMessage|
 |HTTP Send|IOT\_HTTP\_SendMessage|
-|调用这些免费接口后，接收的消息可能会收费。|IOT\_CMP\_Register|
+|You can call these operations for free. However, you may be charged for receiving messages.|IOT\_CMP\_Register|
 |IOT\_MQTT\_Subscribe|
 |IOT\_Gateway\_Subscribe|
 |IOT\_Gateway\_RRPC\_Register|
 
-|接口|说明|
-|:-|:-|
-|Pub|向指定Topic发布消息。|
-|PubBroadcast|发布广播消息。|
-|RRpc|RRPC调用的消息。|
-|DeleteDevice|删除子设备时，触发下发消息到`/sys/${productKey}/${deviceName}/thing/delete` 。|
-|DisableThing|禁用子设备时，触发下发消息到 `/sys/${productKey}/${deviceName}/thing/disable` 。|
-|EnableThing|恢复子设备时，触发下发消息到 `/sys/${productKey}/${deviceName}/thing/enable` 。|
-|NotifyAddThingTopo|通知添加拓扑关系时，触发下发消息到 `/sys/${productKey}/${deviceName}/thing/topo/add/notify`。|
-|UpdateDeviceShadow|更新设备影子。|
-|InvokeThingService|调用设备提供的服务时，触发下发消息到 `/sys/${productKey}/${deviceName}/thing/service/${tsl.service.identitier}` 。|
-|InvokeThingsService|批量调用设备提供的服务时，触发下发消息到`/sys/{productKey}/{deviceName}/thing/service/{tsl.service.identitier}`。|
-|SetDeviceProperty|设置设备的属性时，触发下发消息到 `/sys/${productKey}/${deviceName}/thing/service/property/set` 。|
-|SetDevicesProperty|批量设置设备的属性时，触发下发消息到 `/sys/{productKey}/{deviceName}/thing/service/property/set` 。|
+|API|Description|
+|:--|:----------|
+|Pub|Publish messages.|
+|PubBroadcast|Publish broadcast messages.|
+|RRpc|Use RRPC method to send requests to devices.|
+|DeleteDevice|When you delete a sub-device, a message of `/sys/{productKey}/{deviceName}/thing/delete`is triggered.|
+|DisableThing|When you disable a sub-device, a message of `/sys/${productKey}/${deviceName}/thing/disable` is triggered.|
+|EnableThing|When you enable a sub-device, a message of `/sys/${productKey}/${deviceName}/thing/enable` is triggered.|
+|NotifyAddThingTopo|When you add a topological relationship, a message of `/sys/${productKey}/${deviceName}/thing/topo/add/notify` is triggered.|
+|UpdateDeviceShadow|Update the shadow information of a device.|
+|InvokeThingService|When you invoke a service provided by a device, a message of `/sys/${productKey}/${deviceName}/thing/service/${tsl.service.identitier}` is triggered.|
+|InvokeThingsService|When you invoke multiple services provided by multiple devices, multiple messages of `/sys/{productKey}/{deviceName}/thing/service/{tsl.service.identitier}` are triggered.|
+|SetDeviceProperty|When you set properties for a device, a message of `/sys/${productKey}/${deviceName}/thing/service/property/set` is triggered.|
+|SetDevicesProperty|When you set properties for multiple devices, multiple messages of `/sys/{productKey}/{deviceName}/thing/service/property/set` are triggered.|
 
