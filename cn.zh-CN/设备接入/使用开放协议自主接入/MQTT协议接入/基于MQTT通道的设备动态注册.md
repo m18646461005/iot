@@ -23,6 +23,9 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
 
     -   MQTT连接域名：
         -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+
+            具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
+
         -   公共实例的连接域名为`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com:1883`。 其中：
             -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例的设备详情页获取。
             -   $\{YourRegionId\}：请参见[地域和可用区](https://help.aliyun.com/document_detail/40654.html)替换为您的Region ID。
