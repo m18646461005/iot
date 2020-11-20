@@ -37,6 +37,8 @@ ThingModelJson中所有字段按照key的字符排序。
 
 以下表格展示属性定义中需包含的参数和说明。
 
+**说明：** 参数std和customFlag已过期，不影响API接口调用，此处不再说明。
+
 |参数|类型|是否必需|说明|
 |--|--|----|--|
 |productKey|String|是|物模型所属产品的ProductKey。|
@@ -187,11 +189,13 @@ ThingModelJson中所有字段按照key的字符排序。
 
 当功能或参数的数据类型为STRUCT时，数据结构中包含的参数如下。
 
+**说明：** 参数childSpecsDTO、childEnumSpecsDTO已过期，不影响API接口调用，此处不再说明。
+
 |参数|类型|是否必需|说明|
 |--|--|----|--|
 |dataType|String|是|取值为STRUCT。|
 |identifier|String|是|结构体中的子参数的标识符。可包含大小写英文字母、数字、下划线（\_），长度不超过50个字符。 **说明：** 不能用以下词汇作为标识符：set、get、post、property、event、time、value。 |
-|name|String|是|结构体中的子参数名称。可包含中文汉字、大小写英文字母、数字、短划线（-）、下划线（\_）和英文句号（.），且必须以中文汉字、英文字母或数字开头，长度不超过30个字符，一个中文汉字计为一个字符。|
+|name|String|是|结构体中的子参数名称。可包含中文汉字、大小写英文字母、数字、短划线（-）、下划线（\_）和英文句号（.），且必须以中文汉字、英文字母或数字开头，长度不超过30个字符，一个中文汉字计为一个字符。**说明：** 该参数与childName定义相同，目前不使用。 |
 |childDataType|String|否|结构体中的子参数数据类型。 可选值：INT、FLOAT、DOUBLE、TEXT、DATE、ENUM、BOOL。 |
 |childName|String|是|结构体中的子参数名称。可包含中文汉字、大小写英文字母、数字、短划线（-）、下划线（\_）和英文句号（.），且必须以中文汉字、英文字母或数字开头，长度不超过30个字符，一个中文汉字计为一个字符。|
 |dataSpecs|Object|否|数据类型（dataType）为非列表型（INT、FLOAT、DOUBLE、TEXT、DATE、ARRAY）的数据规范存储在dataSpecs中。
