@@ -1,34 +1,31 @@
-# 连接时长计费
+# Device access fees
 
-物联网平台会根据连接时长，收取与物联网平台保持长连接的设备连接时长费用。采用CoAP和HTTP协议连接平台的设备以及拓扑关系中的子设备不会产生该费用。
+The device access fee is calculated based on the duration that devices are connected to IoT Platform. These fees are not charged if a device is connected to IoT Platform over CoAP or HTTP, or if the device is a sub-device within a topological relationship. The device access fee supports the Pay-As-You-Go billing method and has no minimum charge fee.
 
-## 计费方法
+## Billing method
 
-计费单位
+Billing details
 
--   按设备连接时长分钟数计费。
+-   Fees are calculated based on the duration of the connection in minutes.
 
-    连接时长定义：从设备成功连接物联网平台时开始计时，设备与物联网平台断开连接时结束计时。这段时间就是设备的一段连接时长。
+    The duration starts when a device successfully connects to IoT Platform and ends when the device disconnects from IoT Platform. This time period is the duration of the connection.
 
--   按自然时间计算，不足1分钟按1分钟计。
+-   The duration is calculated by minutes. If the duration of the connection is less than one minute, the duration is calculated as one minute.
 
-    如：设备2019年1月21日18时23分15秒接入物联网平台，当日18时25分10秒断开，计为3分钟。
+    For example, if a device gets connected to IoT Platform at 18:23:35 2019-01-21 and disconnects from IoT Platform at 18:24:10 on the same day, the duration is calculated as two minutes.
 
--   单位分钟内设备重连多次，只计为1分钟。
+-   If a device connects to and disconnects from IoT Platform multiple times within one minute, the duration is calculated as one minute.
 
-    如：设备在2019年1月21日18时23分15秒接入物联网平台，当日18时23分35秒断开；当日18时23分40秒重新连接上，然后18时23分59秒又断开。设备在1分钟内，多次连接，只计为1分钟。
+    For example, if a device gets connected to IoT Platform at 18:23:15 2019-01-21, disconnects at 18:23:35, reconnects to IoT Platform at 18:23:40, and disconnects at 18:23:59 again on the same day, the duration is one minute. The device connects to and disconnects from IoT Platform multiple times within one minute. The duration is calculated as one minute.
 
+-   The first 1 million minutes for each month are free of charge. The free quota takes effect at 00:00:00 on the first day of each month. Unused quota cannot be carried over to the next month. The fees are calculated when the duration exceeds 1 million minutes for the month.
 
-计费单价：1元/每百万分钟
+Price: USD 0.3/1,000,000 Minutes
 
-计费单价：0.3美元/每百万分钟
+Billing dates
 
-**说明：** 初次开通物联网平台的前两个月均有100万分钟的免费额度，即前两个月的费用计算时，会将实际连接分钟数减去100万后，再进行费用计算。
+-   The device access fee is calculated and charged on a daily basis.
+-   Fees are rounded up to the nearest cent.
 
-费用结算
-
--   每天统计一次，费用日结。
--   计费详单精度统一保留2位小数，第3位及以后省去，即收费精确到分，向下取整。
-
-**说明：** 以上内容仅供参考，实际收费请以账单为准。
+**Note:** This document is for reference only. Refer to your bill for accurate information.
 
