@@ -14,7 +14,7 @@ keyword: [IoT, 物联网平台, AMQP, 服务端订阅设备消息]
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**规则引擎** \> **服务端订阅**。
 
