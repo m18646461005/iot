@@ -8,7 +8,7 @@ keyword: [IoT, 物联网平台, CA证书]
 
 使用私有CA证书进行设备认证，需在创建产品时，选择**认证方式**为**X.509证书**，并在**使用私有CA证书**下选择**是**。
 
-![创建产品](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0888649951/p162333.png)
+![创建产品](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0888649951/p162333.png)
 
 ## 限制说明
 
@@ -24,7 +24,7 @@ keyword: [IoT, 物联网平台, CA证书]
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **CA证书**。
 
@@ -32,7 +32,7 @@ keyword: [IoT, 物联网平台, CA证书]
 
 5.  在注册CA证书对话框中，输入证书名称，上传您的CA证书和验证证书，单击**确认**。
 
-    ![CA证书](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0888649951/p162326.png)
+    ![CA证书](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0888649951/p162326.png)
 
     |字段|说明|
     |--|--|
@@ -76,7 +76,7 @@ openssl x509 -req -in verificationCert.csr -CA yourCA.cer -CAkey yourPrivateKey.
 
     证书注册成功后，显示在CA证书管理页的CA证书列表中。
 
-    ![CA证书列表](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2888649951/p70650.png)
+    ![CA证书列表](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2888649951/p70650.png)
 
     单击证书对应的**查看**，进入CA证书详情页，可查看证书信息和绑定设备证书。
 
@@ -123,7 +123,7 @@ CA证书注册成功后，需在该CA证书下，将您已获得的设备证书S
 
 2.  在CA证书详情页，单击**证书绑定** \> **添加绑定关系**。
 
-    ![添加绑定关系](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2888649951/p140113.png)
+    ![添加绑定关系](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2888649951/p140113.png)
 
 3.  单击**下载.CSV模板**，下载设备证书信息填写模板。
 
