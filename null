@@ -1,126 +1,34 @@
-# Messaging fees
+# 连接时长计费
 
-IoT Platform charges messaging fees. The messaging fee is calculated based on the number of messages and has no minimum charge.
+物联网平台会根据连接时长，收取与物联网平台保持长连接的设备连接时长费用。采用CoAP和HTTP协议连接平台的设备以及拓扑关系中的子设备不会产生该费用。
 
-## Billing items
+## 计费方法
 
-For more information about billing items, see the following table. For billable operations, see the appendix in this documentation.
+计费单位
 
-|Item|Description|
-|:---|:----------|
-|Messaging fee \(Device\)
+-   按设备连接时长分钟数计费。
 
-|Messages sent from devices by calling the Pub operation|
-|Requests sent from devices by calling the RPC operation|
-|RRPC responses sent from devices to the server|
-|Messages received by devices by calling the Sub operation|
-|Messages sent and received by devices by calling TSL model related operations|
-|Messaging fee \(Server\)
+    连接时长定义：从设备成功连接物联网平台时开始计时，设备与物联网平台断开连接时结束计时。这段时间就是设备的一段连接时长。
 
-|Messages sent from the server by calling the Pub and PubBroadcast operations|
-|RPC responses sent from the server to devices|
-|Messages sent from the server by calling the RRPC operation|
-|Messages sent from the server by calling sub-device related operations|
-|Messages sent from the server by calling device shadow related operations|
-|Messages sent from the server by calling TSL model related operations|
-|Free messages|-   Connect
--   Connect Ack
--   Disconnect
--   PingReq
--   PingResp
--   Publish ACK
--   Subscribe
--   Subscribe ACK
--   Unsubscribe
--   Unsubscribe Ack
--   Messages forwarded by the rules engine
+-   按自然时间计算，不足1分钟按1分钟计。
 
-**Note:** You can use the rules engine to forward messages for free. However, fees are charged when you transfer data to other cloud services. |
+    如：设备2019年1月21日18时23分15秒接入物联网平台，当日18时25分10秒断开，计为3分钟。
 
-## Billing method
+-   单位分钟内设备重连多次，只计为1分钟。
 
-Tiered pricing
+    如：设备在2019年1月21日18时23分15秒接入物联网平台，当日18时23分35秒断开；当日18时23分40秒重新连接上，然后18时23分59秒又断开。设备在1分钟内，多次连接，只计为1分钟。
 
-|Messages N \(per Month\)|Unit price \(Yuan/1,000,000 Messages\)|
-|:-----------------------|:-------------------------------------|
-|N ≤ 100,000,000|1.8|
-|100,000,000 < N ≤ 1,000,000,000|1.4|
-|1,000,000,000 < N|1|
 
-|Messages N \(per Month\)|Unit price \(USD/1,000,000 Messages\)|
-|:-----------------------|:------------------------------------|
-|N ≤ 100,000,000|0.5|
-|100,000,000 < N ≤ 1,000,000,000|0.4|
-|1,000,000,000 < N|0.3|
+计费单价：1元/每百万分钟
 
-Billing details
+计费单价：0.3美元/每百万分钟
 
--   Fees are calculated based on the number of messages. For more information about billing items, see the preceding table.
--   The first 1 million messages are free of charge for each month. The free quota takes effect at 00:00:00 on the first day of each month. Unused quota cannot be carried over to the next month. The fees are calculated when the number of messages exceeds 1 million for each month.
+**说明：** 初次开通物联网平台的前两个月均有100万分钟的免费额度，即前两个月的费用计算时，会将实际连接分钟数减去100万后，再进行费用计算。
 
-How to count messages
+费用结算
 
--   If a message is less than or equal to 512 bytes in size, the message is counted as one billable message.
--   If a message is more than 512 bytes in size, the message is counted as two or more billable messages.
--   To calculate the number of billable messages, divide the message size into bytes by 512, and round the resulting value up to the nearest integer.
+-   每天统计一次，费用日结。
+-   计费详单精度统一保留2位小数，第3位及以后省去，即收费精确到分，向下取整。
 
-Billing dates
-
--   The messaging fee is calculated and charged on a daily basis.
--   Fees are rounded up to the nearest cent.
-
-**Note:** This document is for reference only. Refer to your bill for accurate information.
-
-## Appendix: Billable operations
-
-|MQTT Publish|IOT\_CMP\_OTA\_Start|
-|IOT\_CMP\_OTA\_Get\_Config|
-|IOT\_CMP\_OTA\_Request\_Image|
-|IOT\_CMP\_Send|
-|IOT\_MQTT\_Publish|
-|IOT\_OTA\_ReportVersion|
-|IOT\_OTA\_RequestImage|
-|IOT\_OTA\_ReportProgress|
-|IOT\_OTA\_GetConfig|
-|IOT\_Shadow\_Construct|
-|IOT\_Shadow\_RegisterAttribute|
-|IOT\_Shadow\_Push|
-|IOT\_Shadow\_Push\_Async|
-|IOT\_Shadow\_Pull|
-|IOT\_Subdevice\_Register|
-|IOT\_Subdevice\_Unregister|
-|IOT\_Subdevice\_Login|
-|IOT\_Subdevice\_Logout|
-|IOT\_Gateway\_Get\_TOPO|
-|IOT\_Gateway\_Get\_Config|
-|IOT\_Gateway\_Publish\_Found\_List|
-|IOT\_Gateway\_Publish|
-|IOT\_Gateway\_RRPC\_Response|
-|linkkit\_answer\_service|
-|linkkit\_invoke\_raw\_service|
-|linkkit\_trigger\_event|
-|linkkit\_invoke\_fota\_service|
-|linkkit\_invoke\_cota\_get\_config|
-|linkkit\_invoke\_cota\_service|
-|CoAP Send|IOT\_CoAP\_SendMessage|
-|HTTP Send|IOT\_HTTP\_SendMessage|
-|You can call these operations for free. However, you may be charged for receiving messages.|IOT\_CMP\_Register|
-|IOT\_MQTT\_Subscribe|
-|IOT\_Gateway\_Subscribe|
-|IOT\_Gateway\_RRPC\_Register|
-
-|API|Description|
-|:--|:----------|
-|Pub|Publish messages.|
-|PubBroadcast|Publish broadcast messages.|
-|RRpc|Use RRPC method to send requests to devices.|
-|DeleteDevice|When you delete a sub-device, a message of `/sys/{productKey}/{deviceName}/thing/delete`is triggered.|
-|DisableThing|When you disable a sub-device, a message of `/sys/${productKey}/${deviceName}/thing/disable` is triggered.|
-|EnableThing|When you enable a sub-device, a message of `/sys/${productKey}/${deviceName}/thing/enable` is triggered.|
-|NotifyAddThingTopo|When you add a topological relationship, a message of `/sys/${productKey}/${deviceName}/thing/topo/add/notify` is triggered.|
-|UpdateDeviceShadow|Update the shadow information of a device.|
-|InvokeThingService|When you invoke a service provided by a device, a message of `/sys/${productKey}/${deviceName}/thing/service/${tsl.service.identitier}` is triggered.|
-|InvokeThingsService|When you invoke multiple services provided by multiple devices, multiple messages of `/sys/{productKey}/{deviceName}/thing/service/{tsl.service.identitier}` are triggered.|
-|SetDeviceProperty|When you set properties for a device, a message of `/sys/${productKey}/${deviceName}/thing/service/property/set` is triggered.|
-|SetDevicesProperty|When you set properties for multiple devices, multiple messages of `/sys/{productKey}/{deviceName}/thing/service/property/set` are triggered.|
+**说明：** 以上内容仅供参考，实际收费请以账单为准。
 
