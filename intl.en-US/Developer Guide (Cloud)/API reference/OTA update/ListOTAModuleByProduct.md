@@ -18,7 +18,7 @@ Each Alibaba Cloud account can run a maximum of 10 queries per second \(QPS\).
 |ProductKey|String|Yes|a1uctKe\*\*\*\*|The ProductKey of the product. |
 |IotInstanceId|String|No|iot-cn-0pp1n8t\*\*\*\*|The instance ID. This parameter is not required for the public instance but required for your purchased instances. |
 
-In addition to the preceding operation-specific request parameters, you must specify common request parameters when you call this API operation. For more information, see [Common request parameters](~~30561~~).
+In addition to the preceding operation-specific request parameters, you must specify common request parameters when you call this API operation. For more information about common request parameters, see [Common request parameters](~~30561~~).
 
 ## Response parameters
 
