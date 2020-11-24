@@ -13,7 +13,7 @@ keyword: [物联网, IoT, 物联网平台, 服务端订阅, 消息服务（MNS�
 
 数据流转流程如下图所示。
 
-![设备消息订阅](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6634749951/p48746.png)
+![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6634749951/p48746.png)
 
 ## 配置服务端订阅
 
@@ -23,7 +23,7 @@ keyword: [物联网, IoT, 物联网平台, 服务端订阅, 消息服务（MNS�
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **产品**，再单击**创建产品**，创建一个气体监测仪产品。
 
@@ -41,7 +41,7 @@ keyword: [物联网, IoT, 物联网平台, 服务端订阅, 消息服务（MNS�
 
     在订阅列表中，单击MNS右侧的图标，可查看MNS队列名称。
 
-    ![设备消息订阅](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6634749951/p48775.png)
+    ![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6634749951/p48775.png)
 
 
 ## 配置服务端MNS SDK接收消息
@@ -110,11 +110,11 @@ keyword: [物联网, IoT, 物联网平台, 服务端订阅, 消息服务（MNS�
 
 4.  在device\_id文件中，填入设备证书信息。
 
-    ![设备消息订阅](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6634749951/p48847.png)
+    ![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6634749951/p48847.png)
 
 5.  在src\\devicesdk\\demo目录下的MqttSample文件中，填入设备信息，将publish对应的Topic配置为您的设备Topic。
 
-    ![设备消息订阅](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6634749951/p48855.png)
+    ![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6634749951/p48855.png)
 
 6.  运行设备连接Demo：MqttSample。
 
@@ -125,5 +125,5 @@ keyword: [物联网, IoT, 物联网平台, 服务端订阅, 消息服务（MNS�
 
 下图展示消息服务SDK接收并删除消息。
 
-![设备消息订阅](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6634749951/p50785.png)
+![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6634749951/p50785.png)
 
