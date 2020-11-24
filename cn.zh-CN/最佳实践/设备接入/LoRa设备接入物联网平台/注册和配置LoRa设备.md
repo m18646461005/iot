@@ -14,7 +14,7 @@ keyword: [IoT, 物联网平台, LoRa]
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **产品**。
 
@@ -48,7 +48,7 @@ keyword: [IoT, 物联网平台, LoRa]
 
 4.  逐个添加下图中的属性。添加完成后，单击**发布上线**，发布物模型。
 
-    ![物模型属性](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1431649951/p93006.png)
+    ![物模型属性](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1431649951/p93006.png)
 
 
 ## 编写数据解析脚本
