@@ -18,7 +18,7 @@ keyword: [物联网, IoT, 物联网平台, Android Things, NXP Pico i.MX7D]
 
 开发板
 
-|![Android Things](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7231649951/p7864.png)
+|![Android Things](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7231649951/p7864.png)
 
 |基于Android things系统1.0。
 
@@ -29,20 +29,20 @@ keyword: [物联网, IoT, 物联网平台, Android Things, NXP Pico i.MX7D]
 
 温湿度传感器
 
-|![Android Things](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7231649951/p7865.png)
+|![Android Things](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7231649951/p7865.png)
 
 |采用I2C数据通信方式。|
     |ZE08-CH2O
 
 甲醛检测传感器
 
-|![Android Things](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7231649951/p7866.png)
+|![Android Things](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7231649951/p7866.png)
 
 |采用UART数据通信方式。|
 
 -   设备接线示意图
 
-    ![Android Things](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7231649951/p7908.png)
+    ![Android Things](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7231649951/p7908.png)
 
     -   将温湿度传感器（DHT12）的时钟信号线引脚SCL和数据线引脚SDA分别与开发板的I2C总线的SCL和SDA引脚相接。
     -   将甲醛检测传感器（ZE08-CH2O）的发送数据引脚TXD与开发板的接收数据引脚RXD相接；将ZE08-CH2O的接收数据引脚RXD与开发板的发送数据引脚TXD相接。
@@ -57,7 +57,7 @@ keyword: [物联网, IoT, 物联网平台, Android Things, NXP Pico i.MX7D]
 
     1.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-        ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+        ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
     2.  在左侧导航栏，单击**设备管理**，选择**产品**
 
@@ -185,5 +185,5 @@ keyword: [物联网, IoT, 物联网平台, Android Things, NXP Pico i.MX7D]
 
 设备启动后，登录[物联网平台控制台](http://iot.console.aliyun.com/)，在对应实例下，找到设备详情页，在运行状态页签下，查看设备当前的实时属性数据。
 
-![Android Things](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7231649951/p8025.png)
+![Android Things](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7231649951/p8025.png)
 
