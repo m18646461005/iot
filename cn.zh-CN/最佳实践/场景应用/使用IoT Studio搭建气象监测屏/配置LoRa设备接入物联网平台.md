@@ -8,7 +8,7 @@
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **产品**。
 
@@ -32,7 +32,7 @@
 
     按照设备上的标识，为设备连接天线、GPS天线、电池或电源。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8831649951/p68732.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8831649951/p68732.png)
 
     设备上电约2分钟后，在物联网平台控制台对应的实例下的设备页的设备列表中，该设备的状态会显示为**在线**。
 
@@ -167,7 +167,7 @@
 
     解析结果显示在运行结果栏中。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8831649951/p68735.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8831649951/p68735.png)
 
 4.  确认脚本能正确解析数据后，单击**提交**，将脚本提交到物联网平台系统。
 
