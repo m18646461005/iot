@@ -23,7 +23,10 @@ keyword: [HTTPS, HTTP, 物联网, IoT, 物联网平台, 设备连接, 通信]
 
     Endpoint地址：
 
-    -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+    -   企业版实例的接入域名，请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例，进入实例详情页查看。
+
+        具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
+
     -   华东2（上海）地域，公共实例的Endpoint地址为`https://iot-as-http.cn-shanghai.aliyuncs.com`。
     认证设备请求：
 
