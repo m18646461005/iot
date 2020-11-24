@@ -10,7 +10,7 @@
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **产品**，再单击**创建产品**，创建一个产品。
 
@@ -38,11 +38,11 @@
 
     2.  解压Demo包后，打开src/dev\_model/examples目录下的model\_for\_examples.json文件。
 
-        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7431649951/p71412.png)
+        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7431649951/p71412.png)
 
     3.  将物模型JSON文件中的productKey的值替换为您在物联网平台上创建的产品ProductKey，然后保存文件。
 
-        ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7431649951/p71413.png)
+        ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7431649951/p71413.png)
 
 2.  在物联网平台控制台对应实例的产品页，找到之前创建的产品，单击对应的**查看**。
 
@@ -50,7 +50,7 @@
 
 4.  在弹出的对话框中，选择**导入物模型**，上传上一步编辑好的物模型JSON文件，单击**确定**。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7431649951/p71414.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7431649951/p71414.png)
 
     导入成功后，该文件定义的所有功能将显示在自定义功能列表中。
 
@@ -63,17 +63,17 @@
 
 1.  在SDK Demo中wrappers/os/ubuntu目录下HAL\_OS\_linux.c文件中，修改设备证书信息为您的设备证书信息。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7431649951/p71419.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7431649951/p71419.png)
 
 2.  编译SDK。在SDK根目录中，执行make reconfig，并选择3，然后make。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7431649951/p71422.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7431649951/p71422.png)
 
 3.  测试运行SDK。
 
     在SDK根目录中，执行./src/dev\_model/examples/linkkit\_example\_solo。执行结果如下图。
 
-    ![运行SDK](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7431649951/p140146.png)
+    ![运行SDK](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7431649951/p140146.png)
 
     SDK运行成功后，可在物联网平台控制台对应实例下，设备对应的设备详情页，查看设备状态和设备上报的物模型数据。
 
