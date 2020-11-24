@@ -8,7 +8,7 @@
 -   在调用此接口创建升级包前，已调用[GenerateOTAUploadURL](~~147310~~)生成了升级包上传信息，并已调用OSS [PostObject](~~31988~~)接口上传了升级包文件。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 
 ## 调试
@@ -20,8 +20,8 @@
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
 |Action|String|是|CreateOTAFirmware|系统规定参数。取值：CreateOTAFirmware。 |
-|DestVersion|String|是|2.0.0|当前升级包的版本号，仅支持英文字母、数字、点号（.）、短划线（-）和下划线（\_）。长度限制为1~64个字符。 |
-|FirmwareName|String|是|Firmware2|升级包名称。支持中文、英文字母、日文、数字、短划线（-）、下划线（\_）和圆括号\(\)，必须以中文、英文、日文或数字开头，长度限制为1~40个字符。 |
+|DestVersion|String|是|2.0.0|当前升级包的版本号，仅支持英文字母、数字、英文句号（.）、短划线（-）和下划线（\_）。长度限制为1~64个字符。 |
+|FirmwareName|String|是|Firmware2|升级包名称，需在阿里云账号下唯一，创建后不可修改。支持中文、英文字母、日文、数字、短划线（-）、下划线（\_）和圆括号（\(\)），必须以中文、英文、日文或数字开头，长度限制为1~40个字符。 |
 |FirmwareUrl|String|是|https://iotx-ota.oss-cn-shanghai.aliyuncs.com/ota/bcd6142594d0183a16d825ad8225\*\*\*\*/A6B3400B70CA4D6D872160D1A91A\*\*\*\*.bin|升级包的URL，即升级包文件在对象存储（OSS）上的存储地址。调用[GenerateOTAUploadURL](~~147310~~)生成升级包上传信息，返回的参数。 |
 |IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
 |FirmwareSign|String|否|93230c3bde425a9d7984a594ac55\*\*\*\*|升级包签名值。使用**SignMethod**对升级包文件内容加签计算得出的值。
@@ -33,7 +33,7 @@
 |FirmwareSize|Integer|否|900|升级包大小，单位：字节。
 
  不传入此参数，则采用对象存储（OSS）中升级包文件的大小作为升级包大小。 |
-|ProductKey|String|否|a1uctKe\*\*\*\*|升级包所属产品的ProductKey。 |
+|ProductKey|String|否|a1uctKe\*\*\*\*|升级包所属产品的**ProductKey**。 |
 |FirmwareDesc|String|否|OTA function updated|升级包描述。长度不可超过100个字符。一个中文汉字算一个字符。 |
 |Type|Integer|否|0|升级包类型。可选：
 
@@ -68,13 +68,16 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
-|Data|Struct| |调用成功时，返回的升级包信息。详情见以下Data。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|Data|Struct| |调用成功时，返回的升级包信息。更多信息，请参见**Data**下参数描述。 |
 |FirmwareId|String|s8SSHiKjpBfrM3BSN0z803\*\*\*\*|升级包ID，物联网平台为升级包颁发的唯一标识符。 |
 |UtcCreate|String|2019-11-04T06:21:54.607Z|升级包的创建时间，UTC格式。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|291438BA-6E10-4C4C-B761-243B9A0D324F|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
 ## 示例
 
