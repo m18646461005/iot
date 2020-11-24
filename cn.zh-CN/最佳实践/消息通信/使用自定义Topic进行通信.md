@@ -8,7 +8,7 @@ keyword: [物联网, IoT, 物联网平台, 自定义 Topic 通信, Pub, 发布�
 
 本示例中，电子温度计定期与服务器进行数据的交互，传递温度和指令等信息。温度计向服务器上行发送当前的温度；服务器向温度计下行发送精度设置指令。
 
-![自定义Topic通信](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7447749951/p48433.png)
+![自定义Topic通信](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7447749951/p48433.png)
 
 ## 准备开发环境
 
@@ -48,7 +48,7 @@ keyword: [物联网, IoT, 物联网平台, 自定义 Topic 通信, Pub, 发布�
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，单击**设备管理** \> **产品**。
 
@@ -79,7 +79,7 @@ keyword: [物联网, IoT, 物联网平台, 自定义 Topic 通信, Pub, 发布�
 
 流程图：
 
-![自定义Topic通信](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7447749951/p48448.png)
+![自定义Topic通信](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7447749951/p48448.png)
 
 在整个流程中：
 
@@ -381,7 +381,7 @@ keyword: [物联网, IoT, 物联网平台, 自定义 Topic 通信, Pub, 发布�
 
 流程图：
 
-![自定义Topic通信](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7447749951/p48453.png)
+![自定义Topic通信](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7447749951/p48453.png)
 
 -   配置设备端SDK订阅Topic。
 
