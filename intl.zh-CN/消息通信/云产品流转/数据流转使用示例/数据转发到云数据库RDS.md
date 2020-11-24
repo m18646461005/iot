@@ -55,6 +55,6 @@ keyword: [物联网, 物联网平台, IoT, 规则引擎, 流转数据, 发送数
     -   美国（弗吉尼亚）：100.104.133.64/26
     -   德国（法兰克福）：100.104.160.192/26
     -   日本（东京）：100.104.160.192/26
-    ![RDS数据库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1186549951/p3010.png)
+    ![RDS数据库](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1186549951/p3010.png)
 
 
