@@ -4,7 +4,7 @@
 
 本实践案例以温湿度采集器为例，介绍设备通过HTTPS协议连接物联网平台并上报数据的配置和开发方法。
 
-![iot](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6431649951/p71251.png)
+![iot](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6431649951/p71251.png)
 
 ## 创建产品和设备
 
@@ -14,7 +14,7 @@
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **产品**，再单击**创建产品**，创建一个产品。
 
@@ -137,7 +137,7 @@ password = signHmacSha1(params, deviceConfig.deviceSecret)
 
     配置完成后，可运行以上程序代码，进行设备认证测试。认证成功，则获得token。
 
-    ![iot](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6431649951/p71260.png)
+    ![iot](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6431649951/p71260.png)
 
     **说明：** 设备认证返回的token会在一定周期后失效（目前token有效期是7天），请务必考虑token失效逻辑的处理。
 
@@ -207,7 +207,7 @@ password = signHmacSha1(params, deviceConfig.deviceSecret)
 
     配置完成后，可运行以上代码程序，进行设备上报数据测试。运行程序后，可在本地日志中查看运行结果。
 
-    ![iot](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6431649951/p71261.png)
+    ![iot](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6431649951/p71261.png)
 
     在物联网平台控制台上，在对应实例下，该设备的设备详情页运行状态页签下，可查看设备上报的温湿度属性数据。说明设备端已通过HTTPS协议成功接入物联网平台，并上报了数据。
 
