@@ -7,7 +7,7 @@
 -   仅支持搜索华东2（上海）、华北2（北京）、华南1（深圳）地域您购买的实例中的设备。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 
 ## 调试
@@ -18,7 +18,8 @@
 
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
-|IotInstanceId|String|是|iot-cn-0pp1n8t\*\*\*\*|实例ID。 |
+|Action|String|是|QueryDeviceBySQL|系统规定参数。取值：QueryDeviceBySQL。 |
+|IotInstanceId|String|是|iot-cn-0pp1n8t\*\*\*\*|您购买的实例ID。 |
 |SQL|String|是|SELECT \* FROM device where product\_key = "a1\*\*\*\*\*\*\*\*\*" limit 100, 20|查询设备的类SQL语句。具体要求和示例见下文请求参数补充说明。 |
 
 使用QueryDeviceBySQL进行设备高级搜索时，类SQL语句由SELECT子句、WHERE子句、ORDER BY子句（可选）、LIMIT子句（可选）组成。长度限制400个字符。
@@ -135,6 +136,20 @@ LIMIT子句用于控制查询的偏移量，有两种用法：
 |text
 
 |设备标签值。 |
+|ota\_module.module\_name
+
+|text
+
+|OTA模块名称。
+
+ 与ota\_module.firmware\_version配合使用，用于指定设备当前OTA版本号对应的OTA模块。
+
+ ota\_module.firmware\_version可不传入，不传入时，将不能根据模块名称检索设备。 |
+|ota\_module.firmware\_version
+
+|text
+
+|OTA固件版本。 |
 
 **运算符说明**
 
@@ -165,7 +180,7 @@ LIMIT子句用于控制查询的偏移量，有两种用法：
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |Data|Array of SimpleDeviceSearchInfo| |调用成功时，返回的设备信息。 |
 |ActiveTime|String|Wed, 20-Feb-2019 02:16:09 GMT|设备激活时间，GMT格式。 |
 |DeviceName|String|light|设备名称。 |
@@ -175,8 +190,11 @@ LIMIT子句用于控制查询的偏移量，有两种用法：
 |GroupId|String|a1d21d2fas|分组ID。 |
 |IotId|String|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|设备ID。物联网平台为该设备颁发的ID，设备的唯一标识符。 |
 |Nickname|String|智能灯设备|设备的备注名称。 |
-|ProductKey|String|a1BwAGV\*\*\*\*|设备所属产品ProductKey。 |
-|Status|String|ONLINE|设备状态。取值：
+|OTAModules|Array of OTAModuleInfo| |设备的模块固件信息列表。 |
+|FirmwareVersion|String|a1-dads2-dad2|OTA模块版本号。 |
+|ModuleName|String|SomeSampleModule|OTA模块名称。 |
+|ProductKey|String|a1BwAGV\*\*\*\*|设备所属产品**ProductKey**。 |
+|Status|String|ONLINE|设备状态。返回值：
 
  -   **ONLINE**：在线
 -   **OFFLINE**：离线
@@ -185,7 +203,7 @@ LIMIT子句用于控制查询的偏移量，有两种用法：
 |Tags|Array of TagInfo| |设备标签信息。 |
 |TagName|String|Color|标签名。 |
 |TagValue|String|Red|标签值。 |
-|ErrorMessage|String|系统异常|调用失败时返回的出错信息。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
 |TotalCount|Long|100|当SELECT子句为`SELECT count(*) FROM device`时，返回的count计数。 |
 |Success|Boolean|true|表示是否调用成功。
@@ -210,34 +228,42 @@ https://iot.cn-shanghai.aliyuncs.com/?Action=QueryDeviceBySQL
 
 ```
 <QueryDeviceBySQLResponse>
-      <Data>
-            <Status>OFFLINE</Status>
-            <IotId>ii1*******</IotId>
-            <GmtCreate>2020-04-04 16:38:17.000</GmtCreate>
-            <ActiveTime>2020-04-04 16:38:18.607</ActiveTime>
-            <GmtModified>2020-04-04 16:38:19.000</GmtModified>
-            <ProductKey>a1*********</ProductKey>
-            <DeviceName>testDevcieae7f3a</DeviceName>
-      </Data>
-      <Data>
-            <Status>UNACTIVE</Status>
-            <IotId>5wt*******</IotId>
-            <GmtCreate>2020-04-04 16:37:32.000</GmtCreate>
-            <Groups>
-                  <GroupId>Ix4*******</GroupId>
-            </Groups>
-            <Groups>
-                  <GroupId>Xrn*******</GroupId>
-            </Groups>
-            <Groups>
-                  <GroupId>J9l*******</GroupId>
-            </Groups>
-            <GmtModified>2020-04-04 16:37:32.000</GmtModified>
-            <ProductKey>a1*********</ProductKey>
-            <DeviceName>testDevcie676a22</DeviceName>
-      </Data>
-      <RequestId>501CFABA-2C48-468D-B88C-3AA8E3B3A8F3</RequestId>
-      <Success>true</Success>
+  <RequestId>501CFABA-2C48-468D-B88C-3AA8E3B3A8F3</RequestId>
+  <Data>
+        <Status>OFFLINE</Status>
+        <IotId>ii1*******</IotId>
+        <GmtCreate>2020-04-04 16:38:17.000</GmtCreate>
+        <ActiveTime>2020-04-04 16:38:18.607</ActiveTime>
+        <GmtModified>2020-04-04 16:38:19.000</GmtModified>
+        <ProductKey>a1*********</ProductKey>
+        <DeviceName>testDevcieae7f3a</DeviceName>
+  </Data>
+  <Data>
+        <Status>UNACTIVE</Status>
+        <IotId>5wt*******</IotId>
+        <GmtCreate>2020-04-04 16:37:32.000</GmtCreate>
+        <Groups>
+              <GroupId>Ix4*******</GroupId>
+        </Groups>
+        <Groups>
+              <GroupId>Xrn*******</GroupId>
+        </Groups>
+        <Groups>
+              <GroupId>J9l*******</GroupId>
+        </Groups>
+        <OTAModules>
+              <ModuleName>SomeSampleModule</ModuleName>
+              <FirmwareVersion>a1-dads2-dad2</FirmwareVersion>
+        </OTAModules>
+        <OTAModules>
+              <ModuleName>SampleModule</ModuleName>
+              <FirmwareVersion>a1-dads2-dad1</FirmwareVersion>
+        </OTAModules>
+        <GmtModified>2020-04-04 16:37:32.000</GmtModified>
+        <ProductKey>a1*********</ProductKey>
+        <DeviceName>testDevcie676a22</DeviceName>
+  </Data>
+  <Success>true</Success>
 </QueryDeviceBySQLResponse>
 ```
 
@@ -245,38 +271,48 @@ https://iot.cn-shanghai.aliyuncs.com/?Action=QueryDeviceBySQL
 
 ```
 {
-  "RequestId": "501CFABA-2C48-468D-B88C-3AA8E3B3A8F3",
-  "Data": [
-    {
-      "Status": "OFFLINE",
-      "IotId": "ii1*******",
-      "GmtCreate": "2020-04-04 16:38:17.000",
-      "ActiveTime": "2020-04-04 16:38:18.607",
-      "GmtModified": "2020-04-04 16:38:19.000",
-      "ProductKey": "a1*********",
-      "DeviceName": "testDevcieae7f3a"
-    },
-    {
-      "Status": "UNACTIVE",
-      "IotId": "5wt*******",
-      "GmtCreate": "2020-04-04 16:37:32.000",
-      "Groups": [
+    "RequestId": "501CFABA-2C48-468D-B88C-3AA8E3B3A8F3",
+    "Data": [
         {
-          "GroupId": "Ix4*******"
+            "Status": "OFFLINE",
+            "IotId": "ii1*******",
+            "GmtCreate": "2020-04-04 16:38:17.000",
+            "ActiveTime": "2020-04-04 16:38:18.607",
+            "GmtModified": "2020-04-04 16:38:19.000",
+            "ProductKey": "a1*********",
+            "DeviceName": "testDevcieae7f3a"
         },
         {
-          "GroupId": "Xrn*******"
-        },
-        {
-          "GroupId": "J9l*******"
+            "Status": "UNACTIVE",
+            "IotId": "5wt*******",
+            "GmtCreate": "2020-04-04 16:37:32.000",
+            "Groups": [
+                {
+                    "GroupId": "Ix4*******"
+                },
+                {
+                    "GroupId": "Xrn*******"
+                },
+                {
+                    "GroupId": "J9l*******"
+                }
+            ],
+            "OTAModules": [
+                {
+                    "ModuleName": "SomeSampleModule",
+                    "FirmwareVersion": "a1-dads2-dad2"
+                },
+                {
+                    "ModuleName": "SampleModule",
+                    "FirmwareVersion": "a1-dads2-dad1"
+                }
+            ],
+            "GmtModified": "2020-04-04 16:37:32.000",
+            "ProductKey": "a1*********",
+            "DeviceName": "testDevcie676a22"
         }
-      ],
-      "GmtModified": "2020-04-04 16:37:32.000",
-      "ProductKey": "a1*********",
-      "DeviceName": "testDevcie676a22"
-    }
-  ],
-  "Success": true
+    ],
+    "Success": true
 }
 ```
 
