@@ -13,7 +13,7 @@ keyword: [物联网, 物联网平台, IoT, 规则引擎, 流转数据, 发送数
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**规则引擎** \> **云产品流转**。
 
@@ -23,7 +23,7 @@ keyword: [物联网, 物联网平台, IoT, 规则引擎, 流转数据, 发送数
 
 6.  在添加操作对话框中，选择操作为**发送数据到DataHub中**。按照界面提示，设置其他信息，单击**确认**。
 
-    ![数据流转到DataHub](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7438320061/p166667.png)
+    ![数据流转到DataHub](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7438320061/p166667.png)
 
     |参数|说明|
     |:-|:-|
