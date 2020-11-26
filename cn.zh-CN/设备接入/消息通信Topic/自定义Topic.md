@@ -12,7 +12,7 @@ keyword: [物联网, 物联网平台, IoT, 设备, 消息, 通信, Topic, Topic�
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在左侧导航栏，选择**设备管理** \> **产品**。
 
@@ -22,7 +22,7 @@ keyword: [物联网, 物联网平台, IoT, 设备, 消息, 通信, Topic, Topic�
 
 6.  配置参数，单击**确认**。
 
-    ![自定义Topic](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0645559951/p134081.png)
+    ![自定义Topic](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0645559951/p134081.png)
 
     |参数|描述|
     |--|--|
