@@ -18,17 +18,17 @@ keyword: [IoT, 物联网, CA证书, X.509证书]
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  参见[创建产品](/cn.zh-CN/设备接入/创建产品.md)，创建**认证方式**为**X.509证书**的产品。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3231649951/p75856.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3231649951/p75856.png)
 
 4.  产品创建成功后，单击**添加设备**下的**前往添加**，创建设备。
 
     设备创建成功后，可在**设备详情**页，查看该设备的X.509证书。
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3231649951/p75859.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3231649951/p75859.png)
 
 5.  单击**X.509**对应的**下载**，下载证书。
 
