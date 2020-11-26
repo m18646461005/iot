@@ -21,11 +21,11 @@ X.509证书是一种用于通信实体鉴别的数字证书。物联网平台支
 
 2.  在实例概览页，找到对应的实例，单击实例进入实例详情页。
 
-    ![实例概览](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9275903061/p174584.png)
+    ![实例概览](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8727475061/p174584.png)
 
 3.  在**设备管理** \> **产品**，创建认证方式为**X.509证书**的产品，详细操作请参见[创建产品](/cn.zh-CN/设备接入/创建产品.md)。
 
-    ![iot x509](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4545559951/p112906.png)
+    ![iot x509](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4545559951/p112906.png)
 
 4.  在**设备管理** \> **设备**，在新建的产品下创建设备，详细操作请参见[单个创建设备](/cn.zh-CN/设备接入/创建设备/单个创建设备.md)、[批量创建设备](/cn.zh-CN/设备接入/创建设备/批量创建设备.md)。
 
