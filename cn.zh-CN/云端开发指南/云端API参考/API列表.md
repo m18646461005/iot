@@ -64,6 +64,7 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 |[QueryCertUrlByApplyId](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryCertUrlByApplyId.md)|查询批量注册设备的X.509证书下载链接。|
 |[QueryDeviceByStatus](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryDeviceByStatus.md)|根据设备状态查询设备列表。|
 |[QueryDeviceBySQL](/cn.zh-CN/云端开发指南/云端API参考/设备管理/QueryDeviceBySQL.md)|通过SQL语句快速搜索满足指定条件的设备。|
+|[ListOTAModuleVersionsByDevice](/cn.zh-CN/云端开发指南/云端API参考/设备管理/ListOTAModuleVersionsByDevice.md)|查询设备上报过的OTA模块版本列表。|
 
 ## 分组管理相关API
 
@@ -101,6 +102,10 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 |[QueryThingModelPublished](/cn.zh-CN/云端开发指南/云端API参考/物模型管理/QueryThingModelPublished.md)|查看指定产品的已发布物模型中的功能定义详情。|
 |[GetThingModelTslPublished](/cn.zh-CN/云端开发指南/云端API参考/物模型管理/GetThingModelTslPublished.md)|查询指定产品的已发布物模型TSL。|
 |[QueryThingModelExtendConfig](/cn.zh-CN/云端开发指南/云端API参考/物模型管理/QueryThingModelExtendConfig.md)|导出指定产品的物模型扩展描述配置。|
+|[QueryThingModelExtendConfigPublished]()|导出已发布物模型的扩展描述配置。|
+|[CreateThingScript](/cn.zh-CN/云端开发指南/云端API参考/物模型管理/CreateThingScript.md)|为指定产品提交数据解析脚本。|
+|[UpdateThingScript](/cn.zh-CN/云端开发指南/云端API参考/物模型管理/UpdateThingScript.md)|修改指定产品的数据解析脚本。|
+|[GetThingScript](/cn.zh-CN/云端开发指南/云端API参考/物模型管理/GetThingScript.md)|查询指定产品的数据解析脚本。|
 
 ## 物模型使用相关API
 
@@ -139,10 +144,10 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 
 |API|描述|
 |:--|:-|
-|[QueryProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/QueryProductTopic.md)|查询产品Topic类。|
-|[CreateProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/CreateProductTopic.md)|创建产品Topic类。|
-|[UpdateProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/UpdateProductTopic.md)|修改产品Topic类。|
-|[DeleteProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/DeleteProductTopic.md)|删除产品Topic类。|
+|[CreateProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/CreateProductTopic.md)|创建产品自定义Topic类。|
+|[UpdateProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/UpdateProductTopic.md)|修改产品自定义Topic类。|
+|[QueryProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/QueryProductTopic.md)|查询产品自定义Topic类。|
+|[DeleteProductTopic](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/DeleteProductTopic.md)|删除产品自定义Topic类。|
 |[CreateTopicRouteTable](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/CreateTopicRouteTable.md)|添加Topic路由表。|
 |[QueryTopicRouteTable](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/QueryTopicRouteTable.md)|查询Topic路由表。|
 |[QueryTopicReverseRouteTable](/cn.zh-CN/云端开发指南/云端API参考/Topic管理/QueryTopicReverseRouteTable.md)|查询Topic反向路由表。|
@@ -170,9 +175,10 @@ keyword: [物联网, IoT, 物联网平台, 云端, API]
 
 |API|描述|
 |:--|:-|
-|[Pub](/cn.zh-CN/云端开发指南/云端API参考/消息通信/Pub.md)|发布消息到Topic。|
-|[RRpc](/cn.zh-CN/云端开发指南/云端API参考/消息通信/RRpc.md)|发消息给设备，并同步返回响应。|
-|[PubBroadcast](/cn.zh-CN/云端开发指南/云端API参考/消息通信/PubBroadcast.md)|发布广播消息。|
+|[RRpc](/cn.zh-CN/云端开发指南/云端API参考/消息通信/RRpc.md)|向指定设备发送请求消息，并同步返回响应。|
+|[PubBroadcast](/cn.zh-CN/云端开发指南/云端API参考/消息通信/PubBroadcast.md)|向指定产品所有设备，或向订阅了指定Topic的所有设备发布广播消息。|
+|[Pub](/cn.zh-CN/云端开发指南/云端API参考/消息通信/Pub.md)|通过自定义Topic向指定设备发布消息。|
+|[BatchPub](/cn.zh-CN/云端开发指南/云端API参考/消息通信/BatchPub.md)|通过自定义Topic向指定产品下的多个设备批量发送消息。**说明：** 该接口目前仅支持白名单用户使用，如需使用请先提交工单反馈。 |
 
 ## 设备影子相关 API
 
