@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -24,7 +24,7 @@
  升级包ID是调用[CreateOTAFirmware](~~147311~~)创建升级包时，返回的参数之一。可以调用[ListOTAFirmware](~~147450~~)，从返回参数中查看。 |
 |PageSize|Integer|是|10|指定返回结果中每页显示的升级包数量。最大限制为100。 |
 |ProductKey|String|是|a19mzPZ\*\*\*\*|设备所属产品的ProductKey。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
@@ -32,7 +32,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|MissingFirmwareId|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|MissingFirmwareId|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |CurrentPage|Integer|1|当前页码。 |
 |Data|Array of SimpleOTAJobInfo| |调用成功时，返回的升级批次信息。详情请参见以下**SimpleOTAJobInfo**。 |
 |SimpleOTAJobInfo| | | |
@@ -73,7 +73,10 @@
 |PageCount|Integer|1|总页数。 |
 |PageSize|Integer|10|每页显示的升级包数量。 |
 |RequestId|String|A01829CE-75A1-4920-B775-921146A1AB79|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 |Total|Integer|1|升级包数量总计。 |
 
 ## 示例
