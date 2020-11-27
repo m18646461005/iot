@@ -1,59 +1,75 @@
-# DeleteProductTags {#reference_yrb_ftk_3gb .reference}
+# DeleteProductTags
 
 调用该接口删除产品标签。
 
-## 限制说明 {#section_slm_p5k_3gb .section}
+## 限制说明
 
-单次调用该接口最多可删除10个标签。
+-   单次调用该接口最多可删除10个标签。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为500。
 
-## 请求参数 {#section_crl_ptk_3gb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作。取值DeleteProductTags。|
-|ProductKey|String|是|产品Key，物联网平台为产品颁发的唯一标识。|
-|ProductTagKeys|List<String\>|是|产品标签键列表。|
-|IotInstanceId|String|否|公共实例不传此参数；仅独享实例需传入实例ID。|
-|公共参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
 
-## 返回参数 {#section_hwv_5kk_3gb .section}
+## 调试
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=DeleteProductTags&type=RPC&version=2018-01-20)
 
-## 示例 {#section_htz_35k_3gb .section}
+## 请求参数
+
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|DeleteProductTags|系统规定参数。取值：DeleteProductTags。 |
+|ProductKey|String|是|a1BwAGV\*\*\*\*|产品的ProductKey。ProductKey是物联网平台为新建产品颁发的产品Key，作为其全局唯一标识符。您可以在物联网平台控制台查看或调用[QueryProductList](~~69271~~)查看当前账号下所有产品的信息。 |
+|ProductTagKey.N|RepeatList|是|room|要删除的标签键列表。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
 
 请求示例
 
-``` {#codeblock_5vk_5ps_28t}
+```
 https://iot.cn-shanghai.aliyuncs.com/?Action=DeleteProductTags
 &ProductKey=a1h7knJdld1
 &ProductTagKey.1=first
 &ProductTagKey.2=second
-&公共请求参数
+&<公共请求参数>
 ```
 
-返回示例
+正常返回示例
 
-JSON格式
+`XML` 格式
 
-``` {#codeblock_oda_tt9_7dw}
+```
+<DeleteProductTagsResponse>
+  <RequestId>E7E8456E-EDD7-41D3-83B1-62FF4F5ED6BD</RequestId>
+  <Success>true</Success>
+</DeleteProductTagsResponse>
+```
+
+`JSON` 格式
+
+```
 {
   "RequestId": "E7E8456E-EDD7-41D3-83B1-62FF4F5ED6BD",
   "Success": true
 }
 ```
 
-XML格式
+## 错误码
 
-``` {#codeblock_w5l_h9c_i80}
-<DeleteProductTagsResponse>
-    <RequestId>57b144cf-09fc-4916-a272-a62902d5b207</RequestId>
-    <Success>true</Success>
-</DeleteProductTagsResponse>
-```
+访问[错误中心](https://error-center.alibabacloud.com/status/product/Iot)查看更多错误码。
 
