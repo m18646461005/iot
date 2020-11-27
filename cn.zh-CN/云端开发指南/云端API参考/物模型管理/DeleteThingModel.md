@@ -7,7 +7,7 @@
 -   请求参数中，**PropertyIdentifier.N**、**ServiceIdentifier.N**和**EventIdentifier.N**不能同时为空，且最多各传入10个标识符。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-**说明：** RAM账号共享该阿里云账号配额。
+**说明：** RAM用户共享该阿里云账号配额。
 
 
 ## 调试
@@ -20,7 +20,7 @@
 |--|--|----|---|--|
 |Action|String|是|DeleteThingModel|系统规定参数。取值：DeleteThingModel。 |
 |ProductKey|String|是|a1BwAGV\*\*\*\*|产品的ProductKey。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |ResourceGroupId|String|否|rg-acfm4l5tcwd\*\*\*\*|资源组ID。
 
  **说明：** 目前不传入此参数。 |
@@ -28,7 +28,7 @@
 |ServiceIdentifier.N|RepeatList|否|Set|需要删除的服务标识符列表。最多传入10个服务标识符。 |
 |EventIdentifier.N|RepeatList|否|OfflineAlert|需要删除的事件标识符列表。最多传入10个事件标识符。 |
 
-调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。更多信息，请参见 [公共参数文档](~~30561~~)。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
 ## 返回数据
 
