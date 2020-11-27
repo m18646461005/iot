@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为30。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -18,7 +18,7 @@
 |--|--|----|---|--|
 |Action|String|是|QueryProductCertInfo|系统规定参数。取值：QueryProductCertInfo。 |
 |ProductKey|String|是|a2YwD23\*\*\*\*|产品的ProductKey。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|公共实例不传此参数；您购买的实例需传入实例ID。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
@@ -26,7 +26,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|MissingProductKey|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|MissingProductKey|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|ProductKey is mandatory for this action.|调用失败时，返回的出错信息。 |
 |Success|Boolean|true|是否调用成功。
 
