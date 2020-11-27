@@ -23,7 +23,7 @@
 |DestVersion|String|是|2.0.0|当前升级包的版本号，仅支持英文字母、数字、英文句号（.）、短划线（-）和下划线（\_）。长度限制为1~64个字符。 |
 |FirmwareName|String|是|Firmware2|升级包名称，需在阿里云账号下唯一，创建后不可修改。支持中文、英文字母、日文、数字、短划线（-）、下划线（\_）和圆括号（\(\)），必须以中文、英文、日文或数字开头，长度限制为1~40个字符。 |
 |FirmwareUrl|String|是|https://iotx-ota.oss-cn-shanghai.aliyuncs.com/ota/bcd6142594d0183a16d825ad8225\*\*\*\*/A6B3400B70CA4D6D872160D1A91A\*\*\*\*.bin|升级包的URL，即升级包文件在对象存储（OSS）上的存储地址。调用[GenerateOTAUploadURL](~~147310~~)生成升级包上传信息，返回的参数。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |FirmwareSign|String|否|93230c3bde425a9d7984a594ac55\*\*\*\*|升级包签名值。使用**SignMethod**对升级包文件内容加签计算得出的值。
 
  不传入此参数，则采用对象存储（OSS）中升级包文件的MD5值作为升级包签名值。 |
