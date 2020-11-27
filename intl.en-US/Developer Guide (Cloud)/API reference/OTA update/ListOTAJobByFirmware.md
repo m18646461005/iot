@@ -20,9 +20,9 @@ Each Alibaba Cloud account can run a maximum of 10 queries per second \(QPS\).
 |CurrentPage|Integer|Yes|1|The number of the page to return. Pages start from page 1. |
 |FirmwareId|String|Yes|FJFx8JzpnhpIsKftRjjm03\*\*\*\*|The ID of the update package. The ID is the unique identifier for the update package.
 
- An update package ID is returned when you call the [CreateOTAFirmware](~~147311~~) operation to create the update pacakge.
+An update package ID is returned when you call the [CreateOTAFirmware](~~147311~~) API operation to create the update pacakge.
 
- You can call the [ListOTAFirmware](~~147450~~) API operation to view the update package ID in the response. |
+You can call the [ListOTAFirmware](~~147450~~) API operation to view the update package ID in the response. |
 |PageSize|Integer|Yes|10|The number of entries to return on each page. Maximum value: 200. |
 |IotInstanceId|String|No|iot-cn-0pp1n8t\*\*\*\*|The instance ID. This parameter is not required for public instances. However, the parameter is required for the instances that you have purchased. |
 
@@ -40,18 +40,18 @@ In addition to the preceding operation-specific request parameters, you must spe
 |JobId|String|HvKuBpuk3rdk6E92CP\*\*\*\*0200|The ID of the update batch. The ID is the unique identifier of the update batch. |
 |JobStatus|String|IN\_PROGRESS|The status of the update batch.
 
- -   **PLANNED**: The update batch is being planned. The update batch is created, but the scheduled time has not been reached. This parameter is returned only when you perform a static update.
+-   **PLANNED**: The update batch is being planned. The update batch is created, but the scheduled time has not been reached. This parameter is returned only when you perform a static update.
 -   **IN\_PROGRESS**: The update batch is in progress.
 -   **COMPLETE**: The update batch is completed.
 -   **CANCELED**: The update batch is canceled. |
 |JobType|String|UPGRADE\_FIRMWARE|The type of the update batch. Valid values:
 
- -   **VERFIY\_FIRMWARE**: firmware verification.
+-   **VERFIY\_FIRMWARE**: firmware verification.
 -   **UPGRADE\_FIRMWARE**: batch update. |
 |ProductKey|String|a19mzPZ\*\*\*\*|The key of the product to which the update package belongs. |
 |SelectionType|String|STATIC|The update policy of the update batch. Valid value:
 
- -   **DYNAMIC**: dynamic update. This value is returned if you call the [CreateOTADynamicUpgradeJob](~~147887~~) API operation to create the update batch.
+-   **DYNAMIC**: dynamic update. This value is returned if you call the [CreateOTADynamicUpgradeJob](~~147887~~) API operation to create the update batch.
 -   **STATIC**: static update. This value is returned if you call the [CreateOTAStaticUpgradeJob](~~147496~~) operation to create the update batch. |
 |Tags|Array of OtaTagDTO| |The tags of the update batch. |
 |OtaTagDTO| | | |
@@ -59,22 +59,22 @@ In addition to the preceding operation-specific request parameters, you must spe
 |Value|String|value1|The value of the tag. |
 |TargetSelection|String|SPECIFIC|The scope of the update. Valid values:
 
- -   **ALL**: full update
+-   **ALL**: full update
 -   **SPECIFIC**: specific update
 -   **GRAY**: canary update
 
- **Note:** The value ALL is returned when you call the [CreateOTADynamicUpgradeJob](~~147887~~) API operation to create the update batch. |
+**Note:** The value ALL is returned when you call the [CreateOTADynamicUpgradeJob](~~147887~~) API operation to create the update batch. |
 |UtcCreate|String|2019-12-28T02:43:10.000Z|The time when the update batch was created. The time is in the UTC format. |
 |UtcEndTime|String|2019-12-29T02:43:10.000Z|The end time of the update batch. The time is in the UTC format.
 
- This parameter is returned only if the update batch is completed. |
+This parameter is returned only if the update batch is completed. |
 |UtcModified|String|2019-12-28T02:43:10.000Z|The last modification time of the update batch. The time is in the UTC format. |
 |UtcStartTime|String|2019-12-28T02:43:10.000Z|The start time of the update batch. The time is in the UTC format. |
 |ErrorMessage|String|A system exception occurred.|The error message returned if the call fails. |
 |PageCount|Integer|1|The total number of pages returned. |
 |PageSize|Integer|10|The number of entries returned per page. |
 |RequestId|String|5D58AC86-D5BF-4B39-834E-913E7F2C985D|The globally unique ID that Alibaba Cloud generates for the request. |
-|Success|Boolean|true|Indicates whether the call succeeded. **true** indicates that the call succeeded. **false** indicates that the call failed. |
+|Success|Boolean|true|Indicates whether the call succeeded.**true**indicates that the call succeeded. **false**indicates that the call failed. |
 |Total|Integer|1|The total number of update jobs returned. |
 
 ## Examples
