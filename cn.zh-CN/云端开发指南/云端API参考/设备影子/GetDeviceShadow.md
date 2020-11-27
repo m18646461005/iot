@@ -1,62 +1,73 @@
-# GetDeviceShadow {#reference_s4y_zrz_wdb .reference}
+# GetDeviceShadow
 
 调用该接口查询指定设备的影子信息。
 
-## 请求参数 {#section_nwb_hjb_ydb .section}
+## 限制说明
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：GetDeviceShadow。|
-|ProductKey|String|是|要查询的设备所隶属的产品Key。|
-|DeviceName|String|是|要查询的设备名称。|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为500。
 
-## 返回参数 {#section_sg4_mjb_ydb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|ShadowMessage|String| 调用成功时，返回的设备影子信息。
+## 调试
 
- **说明：** 根据影子设备的不同状态，查询到的影子信息结构有所差别，详情请参考[设备影子开发](../../../../../intl.zh-CN/设备端开发指南/设备影子/设备影子介绍.md#)。
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=GetDeviceShadow&type=RPC&version=2018-01-20)
 
- |
+## 请求参数
 
-## 示例 {#section_zrq_kkb_ydb .section}
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|GetDeviceShadow|系统规定参数。取值：GetDeviceShadow。 |
+|DeviceName|String|是|device1|要查询的设备名称。 |
+|ProductKey|String|是|a1T27vz\*\*\*\*|要查询的设备所隶属的产品ProductKey。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
-**请求示例**
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|A56E345A-0978-4993-ACBA-3EF444ED187F|阿里云为该请求生成的唯一标识符。 |
+|ShadowMessage|String|\{"method":"update","state":\{"desired":\{"color":"green"\}\},"version":1\}|调用成功时，返回的设备影子信息。
+
+ **说明：** 根据影子设备的不同状态，查询到的影子信息结构有所差别，详情请参考[设备影子开发](~~53930~~)。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=GetDeviceShadow
-&ProductKey=al*********
+&ProductKey=a1T27vz****
 &DeviceName=device1
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-          "RequestId":"BB71E443-4447-4024-A000-EDE09922891E",
-          "Success":true,
-          "ShadowMessage":{"method":"update","state":{"desired":{"color":"green"},"reported":"\"},"version":1}
-      }
-    ```
+```
+<GetDeviceShadowResponse>
+        <RequestId>BB71E443-4447-4024-A000-EDE09922891E</RequestId>
+        <Success>true</Success>
+        <ShadowMessage>{"method":"update","state":{"desired":{"color":"green"},"reported":"\"},"version":1}</ShadowMessage>
+  </GetDeviceShadowResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version='1.0' encoding='UTF-8'?>
-      <GetDeviceShadowResponse>
-          <RequestId>BB71E443-4447-4024-A000-EDE09922891E</RequestId>
-          <Success>true</Success>
-          <ShadowMessage>{"method":"update","state":{"desired":{"color":"green"},"reported":"\"},"version":1}</ShadowMessage>
-      </GetDeviceShadowResponse>
-    ```
-
+```
+{
+	"ShadowMessage": {"method":"update","state":{"desired":{"color":"green"}},"version":1},
+	"RequestId": "A56E345A-0978-4993-ACBA-3EF444ED187F",
+	"Success": true
+}
+```
 
