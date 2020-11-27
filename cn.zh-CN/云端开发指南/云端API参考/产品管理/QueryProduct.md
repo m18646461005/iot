@@ -1,116 +1,165 @@
-# QueryProduct {#reference_tts_44z_wdb .reference}
+# QueryProduct
 
 调用该接口查询指定产品的详细信息。
 
-## 限制说明 {#section_knr_nlf_xdb .section}
+## 限制说明
 
-该接口的调用有限流，不得超过50次/秒。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-## 请求参数 {#section_e54_rlf_xdb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：QueryProduct。|
-|ProductKey|String|是|要查询的产品的ProductKey。ProductKey是物联网平台为新建产品颁发的产品Key，作为其全局唯一标识符。您可以在创建产品的返回结果中查看该信息。|
-|公共请求参数|-|是|公共请求参数，请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#) 。|
+## 调试
 
-## 返回参数 {#section_jbf_mmf_xdb .section}
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=QueryProduct&type=RPC&version=2018-01-20)
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|Data|Data|调用成功时，返回的数据。详情见表格Data。|
+## 请求参数
 
-|名称|类型|描述|
-|:-|:-|:-|
-|GmtCreate|Long|产品创建时间。|
-|DataFormat|Integer| 高级版产品的数据类型，指设备与云端之间的数据通信协议类型。取值：
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|QueryProduct|系统规定参数。取值：QueryProduct。 |
+|ProductKey|String|是|a1BwAGV\*\*\*\*|要查询的产品的ProductKey。ProductKey是物联网平台为新建产品颁发的产品Key，作为其全局唯一标识符。您可以在物联网平台控制台查看或调用[QueryProductList](~~69271~~)查看当前账号下所有产品的信息。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
- 0：透传模式。使用自定义的串口数据格式。该模式下，设备可以上报原始数据（如二进制数据流）。阿里云IoT平台会运行您配置在云端的数据解析脚本，将原始数据转换成Alink JSON标准数据格式。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- 1：Alink JSON。阿里云IoT平台定义的设备与云端的数据交换协议，采用 JSON 格式。
+## 返回数据
 
- **说明：** 此参数为高级版产品特有参数。
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|Data|Struct| |调用成功时，返回的产品信息详情。 |
+|AliyunCommodityCode|String|iothub\_senior|产品版本，决定是否使用物模型功能。
 
- |
-|Description|String|产品的描述信息。|
-|DeviceCount|Integer|该产品下的设备数量。|
-|NodeType|Integer| 高级版产品的节点类型。取值：
+ 取值：
 
- 0：设备。设备不能挂载子设备，可以直连IoT Hub，也可以作为网关的子设备连接IoT Hub。
+ -   **iothub**：不使用物模型。
+-   **iothub\_senior**：使用物模型。 |
+|AuthType|String|secret|产品下的设备接入物联网平台的认证方式。
 
- 1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，并且可以将拓扑关系同步到云端。
+ -   **secret**：设备密钥。
+-   **id2**：ID²。
+-   **x509**：X.509证书。 |
+|CategoryKey|String|Lighting|产品所属品类的标识符。
 
- |
-|ProductKey|String|产品Key。新建产品时，IoT平台为该产品颁发的全局唯一标识。|
-|ProductName|String|产品名称。|
-|ProductSecret|String|产品秘钥。|
-|CategoryName|String|高级版产品的设备类型。取值为您在创建高级版产品时，所选择的设备类型。|
-|CategoryKey|String|高级版产品的设备类型的英文标识符。|
-|AliyunCommodityCode|String|取值：-   iothub：物联网平台基础版 。
--   iothub\_senior：物联网平台高级版。
+ 产品使用了物联网平台预定义的标准品类物模型会返回此参数。
 
-|
-|Id2|Boolean|是否为ID²产品（目前尚未开放）。|
+ 该参数为使用物模型的产品（AliyunCommodityCode=iothub\_senior）的特有参数。 |
+|CategoryName|String|路灯照明|产品所属品类的名称。
 
-## 示例 {#section_tvz_rnf_xdb .section}
+ 产品使用了物联网平台预定义的标准品类物模型会返回此参数。
 
-**请求示例**
+ 该参数为使用物模型的产品（AliyunCommodityCode=iothub\_senior）的特有参数。 |
+|DataFormat|Integer|1|设备与云端之间的数据通信协议类型。该参数为使用物模型的产品（AliyunCommodityCode=iothub\_senior）的特有参数。
+
+ 取值：
+
+ -   **0**：透传模式。使用自定义的串口数据格式。该模式下，设备可以上报原始数据（如二进制数据流）。阿里云物联网平台会运行您配置在云端的数据解析脚本，将原始数据转换成Alink JSON标准数据格式。
+-   **1**：Alink JSON。阿里云物联网平台定义的设备与云端的数据交换协议，采用 JSON 格式。 |
+|Description|String|智能路灯|产品描述。 |
+|DeviceCount|Integer|0|该产品下的设备数量。 |
+|GmtCreate|Long|1581595942000|该产品的创建时间。毫秒级时间戳。 |
+|Id2|Boolean|false|该产品是否使用ID²认证。取值：
+
+ -   **true**：使用ID²认证。
+-   **false**：不使用ID²认证。 |
+|NetType|Integer|3|产品下设备的联网方式。取值：
+
+ -   **3**：Wi-Fi
+-   **6**：Cellular（2G/3G/4G/5G）蜂窝网
+-   **7**：Ethernet以太网。
+-   **8**：其他 |
+|NodeType|Integer|0|产品的节点类型。该参数为使用物模型的产品（AliyunCommodityCode=iothub\_senior）的特有参数。取值：
+
+ -   **0**：设备。设备不能挂载子设备，可以直连IoT Hub，也可以作为网关的子设备连接IoT Hub。
+-   **1**：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，并且可以将拓扑关系同步到云端。 |
+|Owner|Boolean|true|调用者是否是产品的拥有者。
+
+ -   **true**：是。
+-   **false**：不是。 |
+|ProductKey|String|a1T27vz\*\*\*\*|产品的ProductKey。创建产品时，物联网平台为该产品颁发的全局唯一标识。 |
+|ProductName|String|路灯|产品名称。 |
+|ProductSecret|String|U5tW7i44uilc\*\*\*\*|产品密钥。 |
+|ProductStatus|String|DEVELOPMENT\_STATUS|产品的状态。
+
+ -   **DEVELOPMENT\_STATUS**：开发中。
+-   **RELEASE\_STATUS**：产品已发布。 |
+|ProtocolType|String|modbus|子设备接入网关的协议类型。
+
+ 此参数为使用物模型的产品（AliyunCommodityCode=iothub\_senior），且产品节点类型为要接入网关的设备的特有参数。取值：
+
+ -   **modbus**：Modbus协议
+-   **opc-ua**：OPC UA协议
+-   **customize**：自定义协议
+-   **ble**：BLE协议
+-   **zigbee**：ZigBee协议 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|E4F94B97-1D64-4080-BFD2-67461667AA43|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：表示调用成功。
+-   **false**：表示调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=QueryProduct
-&ProductKey=al*********
-&公共请求参数
+&ProductKey=a1BwAGV****
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-        "RequestId":"57b144cf-09fc-4916-a272-a62902d5b207",
-        "Success": true，
-        "Data": {
-            "DataFormat": 1,
-            "ProductKey": "a1*******",
-            "NodeType": 0,
-            "ProductName": "iot_test",
-    	"ProductSecret":"4alWjhgiTG****"
-    	"CategoryName": "",
-    	"CategoryKey": "",
-            "DeviceCount": 7221,
-            "GmtCreate": 1516534408000,
-    	"AliyunCommodityCode":"iothub_senior",
-            "Description": "Test"
-        }
-    }
-    ```
+```
+<QueryProductResponse>
+  <Data>
+        <Owner>true</Owner>
+        <CategoryName>路灯照明</CategoryName>
+        <DataFormat>1</DataFormat>
+        <ProductKey>a1BwAGV****</ProductKey>
+        <ProductStatus>DEVELOPMENT_STATUS</ProductStatus>
+        <GmtCreate>1581595942000</GmtCreate>
+        <ProductSecret>U5tW7i44uilc****</ProductSecret>
+        <NodeType>0</NodeType>
+        <ProductName>路灯</ProductName>
+        <DeviceCount>0</DeviceCount>
+        <NetType>3</NetType>
+        <AuthType>secret</AuthType>
+        <CategoryKey>Lighting</CategoryKey>
+        <Id2>false</Id2>
+        <AliyunCommodityCode>iothub_senior</AliyunCommodityCode>
+  </Data>
+  <RequestId>DA5A3C45-D457-48ED-9A20-AEDEA8503401</RequestId>
+  <Success>true</Success>
+</QueryProductResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version='1.0' encoding='UTF-8'?>
-    <QueryProductResponse>
-        <RequestId>57b144cf-09fc-4916-a272-a62902d5b207</RequestId>
-        <Success>true</Success>
-        <Data>
-            <DataFormat>1</DataFormat>
-            <ProductKey>a1*********</ProductKey>
-            <NodeType>0</NodeType>
-            <ProductName>iot_test</ProducName>
-    	<ProductSecret>4alWjhgiTGU*****</Productecret>
-    	<CategoryName></CategryName>
-    	<CategoryKey></CategoryKey>
-            <DeviceCount>7221</DeviceCount>
-            <GmtCreate>1516534408000</GmtCreate>
-            <AliyunCommodityCode>iothub_senior</AliyunCommodityCode>
-            <Description>Test</Description>
-        </Data>
-    </QueryProductResponse>
-    ```
-
+```
+{
+	"Data": {
+		"Owner": true,
+		"CategoryName": "路灯照明",
+		"DataFormat": 1,
+		"ProductKey": "a1BwAGV****",
+		"ProductStatus": "DEVELOPMENT_STATUS",
+		"GmtCreate": 1581595942000,
+		"ProductSecret": "U5tW7i44uilc****",
+		"NodeType": 0,
+		"ProductName": "路灯",
+		"DeviceCount": 0,
+		"NetType": 3,
+		"AuthType": "secret",
+		"CategoryKey": "Lighting",
+		"Id2": false,
+		"AliyunCommodityCode": "iothub_senior"
+	},
+	"RequestId": "DA5A3C45-D457-48ED-9A20-AEDEA8503401",
+	"Success": true
+}
+```
 
