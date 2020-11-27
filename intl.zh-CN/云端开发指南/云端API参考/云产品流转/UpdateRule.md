@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -17,8 +17,8 @@
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
 |Action|String|是|UpdateRule|系统规定参数。取值：UpdateRule。 |
-|RuleId|Long|是|100000|要修改的规则ID。可在物联网平台控制台**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|RuleId|Long|是|100000|要修改的规则ID。可在物联网平台控制台，**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |Select|String|否|deviceName\(\) as deviceName, items.Humidity.value as Humidity, items.Temperature.value as Temperature|要执行的SQL Select语句。具体内容参照[SQL表达式](~~30554~~)。
 
  **说明：** 此处传入的是**Select**下的内容。例如，如果**Select**语句为`Select a,b,c`，则此处传入`a,b,c`。 |
@@ -57,7 +57,7 @@ OTA升级批次状态通知Topic也属于基础通信Topic，ShortTopic格式为
 |Where|String|否|Temperature\>35|规则的触发条件。具体内容参照[SQL表达式](~~30554~~)。
 
  **说明：** 此处传入的是**Where**中的内容。例如，如果**Where**语句为`Where a>10`，则此处传入`a>10`。 |
-|ProductKey|String|否|aladaeW\*\*\*\*|应用该规则的产品ProductKey。 |
+|ProductKey|String|否|aladaeW\*\*\*\*|应用该规则的产品**ProductKey**。 |
 |Name|String|否|test\_2|规则名称。支持中文、英文字母、日文、数字、下划线（\_）和短划线（-），长度为1~30个字符，一个中文或日文占2个字符。 |
 |RuleDesc|String|否|test|规则的描述信息。长度限制为100个字符，一个中文字符计为1个字符。 |
 |TopicType|Integer|否|1|-   **0**：**ShortTopic**参数描述中的基础通信Topic或物模型通信Topic，包含OTA升级批次状态通知Topic。
@@ -70,10 +70,13 @@ OTA升级批次状态通知Topic也属于基础通信Topic，ShortTopic格式为
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|9A2F243E-17FE-4846-BAB5-D02A25155AC4|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
 ## 示例
 
