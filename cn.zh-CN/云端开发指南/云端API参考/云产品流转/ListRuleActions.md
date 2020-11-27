@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -18,7 +18,7 @@
 |--|--|----|---|--|
 |Action|String|是|ListRuleActions|系统规定参数。取值：ListRuleActions。 |
 |RuleId|Long|是|10000|要查询的规则ID。可在物联网平台控制台对应实例下，**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|共享实例不传此参数；仅您购买的实例需传入实例ID。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
@@ -26,7 +26,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|22254BDB-3DC1-4643-8D1B-EE0437EF09A9|阿里云为该请求生成的唯一标识符。 |
 |RuleActionList|Array of RuleActionInfo| |调用成功时，返回的规则动作信息列表。详情请参见以下**RuleActionInfo**所包含的参数。 |
@@ -38,7 +38,7 @@
 -   **false**：该规则动作不转发错误操作数据，而是正常转发操作。 |
 |Id|Long|139099|规则动作ID。 |
 |RuleId|Long|10000|该规则动作对应的规则ID。 |
-|Type|String|OTS|规则动作类型。取值：
+|Type|String|OTS|规则动作类型。返回值：
 
  -   **REPUBLISH**：转发到另一个topic。
 -   **OTS**：存储到表格存储。
@@ -49,7 +49,10 @@
 -   **DATAHUB**：发送数据到DataHub中。
 -   **RDS**：存储数据到云数据库中。
 -   **AMQP**：数据流转到AMQP消费组。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**表示调用成功。
+-   **false**表示调用失败。 |
 
 ## 示例
 
