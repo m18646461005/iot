@@ -29,7 +29,7 @@
 
  那么，**Items=\{"Switch":1,"Color":"blue"\}**。 |
 |ProductKey|String|是|a1BwAGV\*\*\*\*|要设置属性值的设备所隶属的产品**ProductKey**。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数；您购买的企业版实例需传入。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
