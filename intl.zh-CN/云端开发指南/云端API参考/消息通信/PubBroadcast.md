@@ -7,7 +7,7 @@
 -   指定Topic订阅广播，单阿里云账号调用该接口的每秒请求数（QPS）最大限制为1。
 -   全量在线设备广播，单阿里云账号调用该接口的每分钟内请求数（QPM）最大限制为1。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -22,7 +22,7 @@
 
  您需要将消息原文转换成二进制数据，并进行Base64编码，从而生成消息主体。 |
 |ProductKey|String|是|aldeji3\*\*\*\*\*|要发送广播消息的产品Key。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|公共实例不传此参数；您购买的实例需传入实例ID。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |TopicFullName|String|否|/broadcast/UPqSxj2vXXX/xxx|可选参数：
 
  -   不赋值，表示全量在线设备广播，推送消息到指定**ProductKey**的全量在线设备。设备端收到的广播Topic格式为`/sys/${productKey}/${deviceName}/broadcast/request/${MessageId}`，其中**MessageId**由物联网平台生成。
@@ -39,11 +39,14 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |MessageId|Long|1234291569964771840|成功发送消息后，云端生成的消息ID，用于标识该消息。 |
 |RequestId|String|BB71E443-4447-4024-A000-EDE09922891E|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
 ## 示例
 
