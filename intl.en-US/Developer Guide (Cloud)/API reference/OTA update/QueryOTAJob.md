@@ -70,8 +70,8 @@ This parameter is returned if a retry policy is set when you create the update b
 This parameter is returned if a retry policy is set when you create the update batch. |
 |SelectionType|String|STATIC|The update policy of the update batch. Valid values:
 
--   **DYNAMIC**: dynamic update. This value is returned if you call the[CreateOTADynamicUpgradeJob](~~147887~~)API operation to create the update batch.
--   **STATIC**: static update. This value is returned if you call the [CreateOTAStaticUpgradeJob](~~147496~~)API operation to create the update batch. |
+-   **DYNAMIC**: dynamic update. This value is returned if you call the[CreateOTADynamicUpgradeJob](~~147887~~) API operation to create the update batch.
+-   **STATIC**: static update. This value is returned if you call the [CreateOTAStaticUpgradeJob](~~147496~~) API operation to create the update batch. |
 |SrcVersions|List|\{"SrcVersion": \["1.0.0"\]\}|The list of firmware versions to be updated. |
 |Tags|Array of OtaTagDTO| |The tags of the update batch. |
 |OtaTagDTO| | | |
@@ -83,7 +83,7 @@ This parameter is returned if a retry policy is set when you create the update b
 -   **SPECIFIC**: specific update
 -   **GRAY**: canary update
 
-**Note:** The value ALL is returned if you call the [CreateOTADynamicUpgradeJob](~~147887~~)API operation to create the update batch. |
+**Note:** The value ALL is returned if you call the [CreateOTADynamicUpgradeJob](~~147887~~) API operation to create the update batch. |
 |TimeoutInMinutes|Integer|5|The timeout period for a device update. Unit: minutes.
 
 This parameter is returned if the timeout period is set when you create the update batch. |
