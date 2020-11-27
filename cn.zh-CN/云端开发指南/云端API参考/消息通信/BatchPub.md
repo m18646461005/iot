@@ -42,7 +42,7 @@
  -   在产品详情页的**Topic类列表**页签下，查看产品下的自定义Topic。
 -   在设备详情页的**Topic列表**页签下，查看设备已订阅的自定义Topic。
 -   调用[QueryProductTopic](~~69647~~)接口查询产品下的自定义Topic。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的企业实例需传入此参数。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |Qos|Integer|否|0|指定消息的发送方式。取值：
 
  -   **0**：最多发送一次。
