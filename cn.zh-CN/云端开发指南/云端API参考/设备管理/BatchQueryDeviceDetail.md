@@ -1,159 +1,161 @@
-# BatchQueryDeviceDetail {#reference_862489 .reference}
+# BatchQueryDeviceDetail
 
 调用该接口批量查询设备详情。
 
-## 限制说明 {#section_zzv_zrq_0f5 .section}
+## 限制说明
 
+-   单次调用最多能查询100个设备。
 -   只能批量查询当前阿里云账号下的设备详情。如果传入的设备信息中，有设备不属于当前账号，则直接返回失败结果。
 -   若传入的设备信息中，包含不存在的设备，则只返回存在的设备详情。
--   该接口单账号的QPS限制为5。
--   单次调用最多能查询100个设备。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-## 请求参数 {#section_qi2_0x6_ar9 .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：BatchQueryDeviceDetail。|
-|ProductKey|String|是| 要查询的设备所隶属的产品Key。
 
- |
-|DeviceName|List<String\>|是| 指定要查询的设备名称列表。最多可包含100个设备名称。
+## 调试
 
- |
-|公共请求参数|-|是|公共请求参数，请参见[公共参数](cn.zh-CN/云端开发指南/云端API参考/公共参数.md#) 。|
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=BatchQueryDeviceDetail&type=RPC&version=2018-01-20)
 
-## 返回参数 {#section_i1h_ti9_lm5 .section}
+## 请求参数
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](cn.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|Data|Data|调用成功时，返回设备的详细信息。详情请参见下表DeviceInfo。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|BatchQueryDeviceDetail|系统规定参数。取值：BatchQueryDeviceDetail。 |
+|DeviceName.N|RepeatList|是|light|要查询的设备名称列表。最多可包含100个设备名称。 |
+|ProductKey|String|是|a1BwAGV\*\*\*\*|设备所隶属的产品ProductKey。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
-|名称|类型|描述|
-|:-|:-|:-|
-|ProductKey|String|设备隶属的产品Key。|
-|ProductName|String|设备隶属的产品名称。|
-|DeviceName|String|设备名称。|
-|Nickname|String|设备的备注名称。|
-|DeviceSecret|String|设备密钥。|
-|IotId|String|物联网平台为该设备颁发的ID，设备的唯一标识符。|
-|UtcCreate|String|​设备的创建时间（UTC）。|
-|GmtCreate|String|设备的创建时间（GMT）。|
-|UtcActive|String|​​设备的激活时间（UTC）。|
-|GmtActive|String|设备的激活时间（GMT）。|
-|Status|String| 设备状态。取值：
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- ONLINE：设备在线。
+## 返回数据
 
- OFFLINE：设备离线。
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|Data|Array of Data| |调用成功时，返回设备的详细信息。 |
+|Data| | | |
+|DeviceName|String|light|设备名称。 |
+|DeviceSecret|String|mz2Canp4GB7qRVf1OYPNtRqB2anu\*\*\*\*|设备密钥。 |
+|FirmwareVersion|String|V1.0.0.0|设备的固件版本号。 |
+|GmtActive|String|2019-06-21 20:33:00|设备的激活时间，GMT格式。 |
+|GmtCreate|String|2019-06-21 20:31:42|设备的创建时间，GMT格式。 |
+|IotId|String|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|物联网平台为该设备颁发的ID，设备的唯一标识符。 |
+|Nickname|String|智能路灯|设备的备注名称。 |
+|NodeType|Integer|0|节点类型，取值：
 
- UNACTIVE：设备未激活。
+ -   **0**：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台。
+-   **1**：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台。 |
+|ProductKey|String|a1BwAGV\*\*\*\*|设备所隶属的产品ProductKey |
+|ProductName|String|路灯产品|设备所隶属的产品名称。 |
+|Region|String|cn-shanghai|设备所在地域（与控制台上物联网平台服务地域对应）。 |
+|Status|String|ONLINE|设备状态。取值：
 
- DISABLE：设备已禁用。
+ -   **ONLINE**：设备在线。
+-   **OFFLINE**：设备离线。
+-   **UNACTIVE**：设备未激活。
+-   **DISABLE**：设备已禁用。 |
+|UtcActive|String|2019-06-21T12:31:42.000Z|​设备的激活时间，UTC格式。 |
+|UtcCreate|String|2019-06-21T12:31:42.000Z|​设备的创建时间，UTC格式。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
 
- |
-|FirmwareVersion|String|设备的固件版本号。|
-|NodeType|Integer| 节点类型，取值：
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- 0：设备。设备不能挂载子设备，可以直接连接到物联网平台，也可以作为网关的子设备连接到物联网平台。
+## 示例
 
- 1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，并且可以将拓扑关系同步到云端。
+请求示例
 
- |
-|Region|String|设备所在地域（与控制台上物联网平台服务地域对应）。|
-
-## 示例 {#section_c9b_mhz_m6o .section}
-
-**请求示例**
-
-``` {#codeblock_vo4_07c_uaf}
+```
 https://iot.cn-shanghai.aliyuncs.com/?Action=BatchQueryDeviceDetail
 &ProductKey=a1fce6J****
 &DeviceName.1=firstDeviceName
 &DeviceName.2=secondDeviceName
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ``` {#codeblock_kna_r5a_t16}
-    {
-      "RequestId": "57b144cf-09fc-4916-a272-a62902d5b787", 
-      "Success": true, 
-      "Data":[
-        {
-          "DeviceName": "firstDeviceName",
-          "DeviceSecret": "m2gIah1iCkIHXqVJdBVM****",
-          "FirmwareVersion": "v1.0.0",
-          "GmtCreate": "2019-06-21 20:31:42",
-          "GmtActive": "2019-06-21 20:33:00",
-          "IotId": "M7aUr3JmdsJ1KQolwI3l00****",
-          "Nickname": "TestDevice1",
-          "NodeType": 0,
-          "ProductKey": "a1fce6J****",
-          "ProductName": "testProduct2b2ea8",
-          "Region": "cn-shanghai",
-          "Status": "ONLINE",
-          "UtcCreate": "2019-06-21T12:31:42.000Z",
-          "UtcActive": "2019-06-21T12:33:00.000Z",
-        },
-        {
-          "DeviceName": "secondDeviceName",
-          "DeviceSecret": "i7nIah1iCkIHXqVJdBVM****",
-          "GmtCreate": "2019-06-21 20:31:42",
-          "IotId": "ioUyd3JmdsJ1KQolwI3l00****",
-          "NodeType": 0,
-          "ProductKey": "a1fce6J****",
-          "ProductName": "testProduct2b2ea8",
-          "Region": "cn-shanghai",
-          "Status": "UNACTIVE",
-          "UtcCreate": "2019-06-21T12:31:42.000Z"
-        }
-      ]
-    }
-    ```
-
--   XML格式
-
-    ``` {#codeblock_iug_512_r8y}
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <BatchQueryDeviceDetailResponse>
-        <RequestId>57b144cf-09fc-4916-a272-a62902d5b787</RequestId>
-        <Success>true</Success>
+```
+<BatchQueryDeviceDetailResponse>
+  <Data>
         <Data>
-            <DeviceName>firstDeviceName</DeviceName>
-            <DeviceSecret>m2gIah1iCkIHXqVJdBVM****</DeviceSecret>
-            <FirmwareVersion>v1.0.0</FirmwareVersion>
-            <GmtCreate>2019-06-21 20:31:42</GmtCreate>
-            <GmtActive>2019-06-21 20:33:00</GmtActive>
-            <IotId>M7aUr3JmdsJ1KQolwI3l00****</IotId>
-            <Nickname>TestDevice1</Nickname>
-            <NodeType>0</NodeType>
-            <ProductKey>a1fce6J****</ProductKey>
-            <ProductName>testProduct2b2ea8</ProductName>
-            <Region>cn-shanghai</Region>
-            <Status>ONLINE</Status>
-            <UtcCreate>2019-06-21T12:31:42.000Z</UtcCreate>
-            <UtcActive>2019-06-21T12:33:00.000Z</UtcActive>
+              <DeviceName>Humidity</DeviceName>
+              <GmtActive>2020-01-16 13:33:37</GmtActive>
+              <ProductKey>a1ttsqu****</ProductKey>
+              <DeviceSecret>sLefbFmN9SYfnWLJTePG893XNuRV****</DeviceSecret>
+              <GmtCreate>2020-01-08 14:47:08</GmtCreate>
+              <UtcCreate>2020-01-08T06:47:08.000Z</UtcCreate>
+              <IotId>dwnS41bhNxjslDAIF****00100</IotId>
+              <Status>OFFLINE</Status>
+              <UtcActive>2020-01-08T06:47:08.000Z</UtcActive>
+              <Region>cn-shanghai</Region>
+              <Nickname>温湿度</Nickname>
+              <NodeType>0</NodeType>
+              <ProductName>光照温湿度传感器</ProductName>
         </Data>
         <Data>
-            <DeviceName>secondDeviceName</DeviceName>
-            <DeviceSecret>i7nIah1iCkIHXqVJdBVM****</DeviceSecret>
-            <GmtCreate>2019-06-21 20:31:42</GmtCreate>
-            <IotId>ioUyd3JmdsJ1KQolwI3l00****</IotId>
-            <NodeType>0</NodeType>
-            <ProductKey>a1fce6J****</ProductKey>
-            <ProductName>testProduct2b2ea8</ProductName>
-            <Region>cn-shanghai</Region>
-            <Status>UNACTIVE</Status>
-            <UtcCreate>2019-06-21T12:31:42.000Z</UtcCreate>
+              <Status>OFFLINE</Status>
+              <GmtActive>2020-01-17 16:23:15</GmtActive>
+              <DeviceName>TH_sensor</DeviceName>
+              <Region>cn-shanghai</Region>
+              <UtcActive>2020-01-17T03:39:14.000Z</UtcActive>
+              <ProductKey>a1ttsqu****</ProductKey>
+              <NodeType>0</NodeType>
+              <DeviceSecret>dCYdTU3gw5Z77bsHjPk6lPHPVnBT****</DeviceSecret>
+              <ProductName>光照温湿度传感器</ProductName>
+              <GmtCreate>2020-01-17 11:39:14</GmtCreate>
+              <UtcCreate>2020-01-17T03:39:14.000Z</UtcCreate>
+              <IotId>RKYkCRstfGBh5SZXL****00100</IotId>
         </Data>
-    </BatchQueryDeviceDetailResponse>
-    ```
+  </Data>
+  <RequestId>D4C12DD8-4390-4877-B1DC-4049CF4868BC</RequestId>
+  <Success>true</Success>
+</BatchQueryDeviceDetailResponse>
+```
 
+`JSON` 格式
+
+```
+{
+	"Data": {
+		"Data": [
+			{
+				"DeviceName": "Humidity",
+				"GmtActive": "2020-01-16 13:33:37",
+				"ProductKey": "a1ttsqu****",
+				"DeviceSecret": "sLefbFmN9SYfnWLJTePG893XNuRV****",
+				"GmtCreate": "2020-01-08 14:47:08",
+				"UtcCreate": "2020-01-08T06:47:08.000Z",
+				"IotId": "dwnS41bhNxjslDAIF****00100",
+				"Status": "OFFLINE",
+				"UtcActive": "2020-01-08T06:47:08.000Z",
+				"Region": "cn-shanghai",
+				"Nickname": "温湿度",
+				"NodeType": 0,
+				"ProductName": "光照温湿度传感器"
+			},
+			{
+				"Status": "OFFLINE",
+				"GmtActive": "2020-01-17 16:23:15",
+				"DeviceName": "TH_sensor",
+				"Region": "cn-shanghai",
+				"UtcActive": "2020-01-17T03:39:14.000Z",
+				"ProductKey": "a1ttsqu****",
+				"NodeType": 0,
+				"DeviceSecret": "dCYdTU3gw5Z77bsHjPk6lPHPVnBT****",
+				"ProductName": "光照温湿度传感器",
+				"GmtCreate": "2020-01-17 11:39:14",
+				"UtcCreate": "2020-01-17T03:39:14.000Z",
+				"IotId": "RKYkCRstfGBh5SZXL****00100"
+			}
+		]
+	},
+	"RequestId": "D4C12DD8-4390-4877-B1DC-4049CF4868BC",
+	"Success": true
+}
+```
 
