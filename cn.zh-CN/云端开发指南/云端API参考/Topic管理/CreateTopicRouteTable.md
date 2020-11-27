@@ -1,53 +1,82 @@
-# CreateTopicRouteTable {#reference_tp3_djd_xdb .reference}
+# CreateTopicRouteTable
 
 调用该接口新建Topic间的消息路由关系。
 
-## 限制说明 {#section_llf_xzn_t2b .section}
+## 限制说明
 
-一个源Topic最多可对应100个目标Topic。
+-   一个源Topic最多可对应100个目标Topic。
+-   源Topic所属的设备必须为已激活设备。
+-   源Topic和目标Topic均仅支持自定义Topic。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-## 请求参数 {#section_dwz_ph5_xdb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：CreateTopicRouteTable。|
-|SrcTopic|String|是|源Topic，即被订阅的Topic。如，`SrcTopic=/x7aWKW9****/testDataToDataHub/update`。**说明：** 不支持以 sys 开头的系统 Topic。
 
-|
-|DstTopic|List|是|目标Topic列表，即从SrcTopic订阅消息的Topic列表。即使只有一个Topic，也使用数组格式。如，`DstTopic.1=/x7aWKW9****/deviceNameTest1/add`，`DstTopic.2=/x7aWKW9****/deviceNameTest2/delete`。**说明：** 不支持以 sys 开头的系统 Topic。
+## 调试
 
-|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=CreateTopicRouteTable&type=RPC&version=2018-01-20)
 
-## 返回参数 {#section_lm4_335_xdb .section}
+## 请求参数
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|FailureTopics|List|未能成功创建路由关系的Topic列表。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|CreateTopicRouteTable|系统规定参数。取值：CreateTopicRouteTable。 |
+|DstTopic.N|RepeatList|是|/x7aWKW9\*\*\*\*/deviceNameTest1/user/add|目标Topic列表，即从**SrcTopic**订阅消息的Topic列表。即使只有一个Topic，也使用数组格式。如`DstTopic.1=/x7aWKW9****/deviceNameTest1/user/add`，`DstTopic.2=/x7aWKW9****/deviceNameTest2/user/delete`。 |
+|SrcTopic|String|是|/x7aWKW9\*\*\*\*/testDataToDataHub/user/update|源Topic，即被订阅的Topic。如`SrcTopic=/x7aWKW9****/testDataToDataHub/user/update`。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
-## 示例 {#section_gn2_435_xdb .section}
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
-**请求示例**
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|iot.system.SystemException|调用失败时，返回的出错信息。 |
+|FailureTopics|List|\["/2Fx7aWKW9\*\*\*\*/FdeviceNameTest2/user/delete"\]|未能成功创建路由关系的Topic列表。 |
+|IsAllSucceed|Boolean|true|指定的Topic间的消息路由关系是否全部新建成功。
+
+ -   **true**表示全部新建成功。
+-   **false**表示未全部新建成功。 |
+|RequestId|String|FCC27691-9151-4B93-9622-9C90F30542EC|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=CreateTopicRouteTable
-&SrcTopic=%2Fx7aWKW9****%2FtestDataToDataHub%2Fupdate
-&DstTopic.1=%2Fx7aWKW9****%2FdeviceNameTest1%2Fadd
-&DstTopic.2=%2Fx7aWKW9****%2FdeviceNameTest2%2Fdelete
-&公共请求参数
+&SrcTopic=%2Fx7aWKW9****%2FtestDataToDataHub%2Fuser%2Fupdate
+&DstTopic.1=%2Fx7aWKW9****%2FdeviceNameTest1%2Fuser%2Fadd
+&DstTopic.2=%2Fx7aWKW9****%2FdeviceNameTest2%2Fuser%2Fdelete
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
+
+`XML` 格式
+
+```
+<CreateTopicRouteTableResponse>
+  <RequestId>32B9828A-25DD-48E2-8E26-D1664B341940</RequestId>
+  <FailureTopics></FailureTopics>
+  <Success>true</Success>
+</CreateTopicRouteTableResponse>
+```
+
+`JSON` 格式
 
 ```
 {
-    "RequestId":"FCC27691-9151-4B93-9622-9C90F30542EC",
-    "Success":true,
-    "FailureTopics":[]
+	"RequestId": "32B9828A-25DD-48E2-8E26-D1664B341940",
+	"FailureTopics": {
+		"Topic": []
+	},
+	"Success": true
 }
 ```
 
