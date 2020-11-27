@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为20。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -19,7 +19,7 @@
 |Action|String|是|ListRule|系统规定参数。取值：ListRule。 |
 |CurrentPage|Integer|是|1|显示返回结果中的第几页。最大取值 1000，默认值 1。 |
 |PageSize|Integer|是|2|返回结果中每页显示的记录数量。最大取值100，默认值是10。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|公共实例不传此参数；您购买的实例需传入实例ID。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |ResourceGroupId|String|否|rg-acfmxazb4ph\*\*\*\*|规则所属资源组ID。 可在[资源管理控制台](https://resourcemanager.console.aliyun.com/resource-groups)查看资源组信息。
 
  若不传入此参数，则查询账号下所有资源组中的规则。 |
@@ -30,7 +30,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |Data|Array of RuleInfo| |调用成功时，返回的规则信息列表。详情参见下表RuleInfo。
 
  **说明：** 返回规则信息按照规则创建时间倒序排列。 |
@@ -61,7 +61,10 @@
 |Page|Integer|1|当前页码。 |
 |PageSize|Integer|2|每页显示的记录数。 |
 |RequestId|String|1564B626-DE97-452D-9E9B-305888AC6105|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 |Total|Integer|25|总页数。 |
 
 ## 示例
