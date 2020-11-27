@@ -24,7 +24,7 @@ Creates a static update batch.
 |Action|String|Yes|CreateOTAStaticUpgradeJob|The operation that you want to perform. Set the value to CreateOTAStaticUpgradeJob. |
 |FirmwareId|String|Yes|nx3xxVvFdwvn6dim50PY03\*\*\*\*|The ID of the update package. The ID is the unique identifier for the update package.
 
-An update package ID is returned when you call the[CreateOTAFirmware](~~147311~~) operation to create the update package.
+An update package ID is returned when you call the [CreateOTAFirmware](~~147311~~) operation to create the update package.
 
 You can call the [ListOTAFirmware](~~147450~~) API operation to view the update package ID in the response. |
 |ProductKey|String|Yes|a1Le6d0\*\*\*\*|The key of the product to which the update package belongs. |
@@ -47,7 +47,7 @@ You can call the [ListOTAFirmware](~~147450~~) API operation to view the update 
 -   If you set the TargetSelection parameter to `ALL` or set the TargetSelection parameter to `GRAY`, you can specify this parameter.
 -   When you use a differential update package to perform full update or canary update tasks, the value of this parameter must be the same as the value of the **SrcVersion** parameter.
 -   If you set the TargetSelection parameter to `SPECIFIC`, you cannot specify this parameter.
--   You can call the [QueryDeviceDetail](~~69594~~)API operation to view the **FirmwareVersion** parameter in the response.
+-   You can call the [QueryDeviceDetail](~~69594~~) API operation to view the **FirmwareVersion** parameter in the response.
 -   The list cannot contain duplicate versions.
 -   A maximum of 10 versions can be specified. |
 |ScheduleTime|Long|No|1577808000000|The time to start the OTA update.
@@ -125,7 +125,7 @@ In addition to the preceding operation-specific request parameters, you must spe
 
 |Parameter|Type|Example|Description|
 |---------|----|-------|-----------|
-|Code|String|MissingFirmwareId|The error code returned if the call fails. For more information about error codes, see[Error codes](~~87387~~). |
+|Code|String|MissingFirmwareId|The error code returned if the call fails. For more information about error codes, see [Error codes](~~87387~~). |
 |Data|Struct| |The update batch information is returned if the call succeeds. For more information, see the following table. |
 |JobId|String|wahVIzGkCMuAUE2gDERM02\*\*\*\*|The ID of the update batch. The ID is the unique identifier for the update batch. |
 |UtcCreate|String|2019-11-04T06:22:19.566Z|The time when the update batch was created. The time is in the UTC format. |
