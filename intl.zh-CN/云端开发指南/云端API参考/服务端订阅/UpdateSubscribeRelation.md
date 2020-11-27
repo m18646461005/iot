@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -17,12 +17,12 @@
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
 |Action|String|是|UpdateSubscribeRelation|系统规定参数。取值：UpdateSubscribeRelation。 |
-|ProductKey|String|是|a1fyXVF\*\*\*\*|该订阅中的产品的ProductKey。 |
+|ProductKey|String|是|a1fyXVF\*\*\*\*|该订阅中的产品的**ProductKey**。 |
 |Type|String|是|AMQP|订阅类型：
 
  -   **MNS**
 -   **AMQP** |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |DeviceDataFlag|Boolean|否|true|推送消息类型是否选择设备上报消息。可选值：
 
  -   **true**：是。
@@ -88,7 +88,7 @@
  具体要求和示例见下文请求参数补充说明。 |
 |ConsumerGroupIds.N|RepeatList|否|nJRaJPn5U1JITGfjBO9l00\*\*\*\*|创建的AMQP订阅中的消费组ID，**Type**为**AMQP**时必填。
 
- 调用[CreateConsumerGroup](~~170388~~)创建消费组成功后，会返回消费组ID。您可以调用[QueryConsumerGroupList](~~170419~~)按消费组名称查询消费组ID，也可以在物联网平台控制台选择**规则引擎**\>**服务端订阅**\>**消费组列表**，查看消费组ID。 |
+ 调用[CreateConsumerGroup](~~170388~~)创建消费组成功后，会返回消费组ID。您可以调用[QueryConsumerGroupList](~~170419~~)按消费组名称查询消费组ID，也可以在物联网平台控制台，选择**规则引擎**\>**服务端订阅**\>**消费组列表**，查看消费组ID。 |
 
 **说明：** 请求参数中的Flag不能全部为**false**或不传入，至少传入一个为**true**的Flag。
 
@@ -129,16 +129,16 @@
 
 ```
 
-调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见 [公共参数文档](~~30561~~)。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|21D327AF-A7DE-4E59-B5D1-ACAC8C024555|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功：
+|Success|Boolean|true|是否调用成功。
 
  -   **true**：调用成功。
 -   **false**：调用失败。 |
