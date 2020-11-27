@@ -40,7 +40,7 @@
  -   **ALL**：全量升级。
 -   **SPECIFIC**：定向升级。
 -   **GRAY**：灰度升级。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |SrcVersion.N|RepeatList|否|V1.0.1|待升级版本号列表。
 
  **说明：**
