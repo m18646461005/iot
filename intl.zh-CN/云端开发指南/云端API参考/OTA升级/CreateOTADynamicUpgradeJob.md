@@ -11,7 +11,7 @@
 -   创建动态升级批次后，系统将自动创建对应的动态升级策略。可以调用[CancelOTAStrategyByJob](~~147905~~)取消动态升级策略。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为20。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 
 ## 调试
@@ -28,14 +28,14 @@
  升级包ID是调用[CreateOTAFirmware](~~147311~~)创建升级包时，返回的参数之一。
 
  可以调用[ListOTAFirmware](~~147450~~)，从返回参数中查看。 |
-|ProductKey|String|是|a1Le6d0\*\*\*\*|升级包所属产品的ProductKey。 |
+|ProductKey|String|是|a1Le6d0\*\*\*\*|升级包所属产品的**ProductKey**。 |
 |Tag.N.Key|String|是|key1|批次标签key。仅支持英文字母、数字、点号（.）。长度限制1~30个字符。批次标签将在向设备推送升级通知时下发给设备。
 
  **说明：** 批次标签可以不传入。如果传入，**Tag.N.Value**与**Tag.N.Key**必须成对传入。 |
 |Tag.N.Value|String|是|value1|批次标签value。长度限制为1~128个字符。
 
  **说明：** 批次标签可以不传入。如果传入，**Tag.N.Value**与**Tag.N.Key**必须成对传入。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |SrcVersion.N|RepeatList|否|V1.0.1|待升级版本号列表。
 
  **说明：**
@@ -94,7 +94,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |Data|Struct| |调用成功时，返回的升级批次信息。详情见以下Data包含的参数。 |
 |JobId|String|XUbmsMHmkqv0PiAG\*\*\*\*010001|升级批次ID，升级批次的唯一标识符。 |
 |UtcCreate|String|2019-05-10T02:18:53.000Z|升级批次的创建时间，UTC格式。 |
