@@ -1,96 +1,122 @@
-# ListProductByTags {#reference_mqk_txk_3gb .reference}
+# ListProductByTags
 
 调用该接口根据标签分页查询产品列表。
 
-## 请求参数 {#section_uzk_rdl_3gb .section}
+## 限制说明
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作。取值ListProductByTags。|
-|ProductTags|List<String\>|是|产品标签。ProductTag包括TagKey和TagValue，分别对应标签的key和value。请参见下表[ProductTag](#)。-   支持按照TagKey和TagValue组合来搜索。
--   支持只按照TagKey来搜索。
--   传入多个ProductTag是或的关系。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为500。
 
-|
-|Page​Size|Integer​|否|指定返回结果中每页显示的记录数量。最大值是50。默认值是10。|
-|CurrentPage|Integer|否|指定显示返回结果中的第几页。默认值为1。|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|TagKey|String|是|产品标签键\(key\)。|
-|TagValue|String|否|产品标签值\(value\)。|
+## 调试
 
-## 返回参数 {#section_ibl_sfl_3gb .section}
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=ListProductByTags&type=RPC&version=2018-01-20)
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|ProductInfos|List<String\>|调用成功时，返回产品信息列表。详情见下表[ProductInfo](#)|
+## 请求参数
 
-|名称|类型|描述|
-|:-|:-|:-|
-|ProductKey|String|产品Key。|
-|ProductName|String|产品名称。|
-|NodeType|Integer|节点类型。|
-|CreateTime|Long|产品创建时间。|
-|Description|String|产品描述。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|ListProductByTags|系统规定参数。取值：ListProductByTags。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|CurrentPage|Integer|否|1|指定显示返回结果中的第几页。 |
+|PageSize|Integer|否|10|指定返回结果中每页显示的记录数量。最大值是50。 |
+|ProductTag.N.TagKey|String|否|room|产品标签键。 |
+|ProductTag.N.TagValue|String|否|102|产品标签值。 |
 
-## 示例 {#section_ufv_p3l_3gb .section}
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
-**请求示例**
+**说明：** 支持按照TagKey和TagValue组合来搜索。支持只按照TagKey来搜索。传入多个ProductTag是或的关系。
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|ProductInfos|Array of ProductInfo| |调用成功时，返回产品信息列表（**ProductInfo**）。
+
+ **说明：** 返回的产品信息按照产品创建时间倒序排列。 |
+|ProductInfo| | | |
+|CreateTime|Long|1545355537000|产品创建时间。 |
+|Description|String|This is a test product.|产品描述。 |
+|NodeType|Integer|0|产品的节点类型，取值：
+
+ -   **0**：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台。
+-   **1**：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台。 |
+|ProductKey|String|a1BwAGV\*\*\*\*|产品的ProductKey。ProductKey是物联网平台为新建产品颁发的产品Key，作为其全局唯一标识符。 |
+|ProductName|String|路灯|产品名称。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
-https://iot.cn-shanghai.aliyuncs.com/&Action=ListProductByTags
+https://iot.cn-shanghai.aliyuncs.com/?Action=ListProductByTags
 &CurrentPage=1
 &PageSize=10
 &ProductTag.1.TagKey=Reen
 &ProductTag.1.TagValue=reen
 &ProductTag.2.TagKey=Lock
 &ProductTag.2.TagValue=1234
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
-JSON格式
-
-```
-{
-  "ProductInfos": {
-    "ProductInfo": [
-      {
-        "Description": "Bulbs in the rooms",
-        "ProductKey": "a1h7knJdld1",
-        "NodeType": 0,
-        "CreateTime": 1545355537000,
-        "ProductB: "Bulbs"
-      }
-    ]
-  },
-  "RequestId": "2E410BE3-C688-487B-9BF1-F04B33632CCC",
-  "Success": true
-}
-```
-
-XML格式
+`XML` 格式
 
 ```
 <ListProductByTagsResponse>
-    <ProductInfos>
-		<ProductInfo>
-			<Description>Bulbs in the rooms</Description>
-			<ProductKey>a1h7knJdld1</ProductKey>
-			<NodeType>0</NodeType>
-			<CreateTime>1545355537000</CreateTime>
-			<ProductName>Bulbs</ProductName>
-		</ProductInfo>
-	</ProductInfos>
-	<RequestId>2E410BE3-C688-487B-9BF1-F04B33632CCC</RequestId>
-	<Success>true</Success>
+  <RequestId>09AA366E-81EC-4CF0-B49E-61BCD7C95338</RequestId>
+  <Success>true</Success>
+  <ProductInfos>
+        <ProductInfo>
+              <ProductKey>a1T27vzfrCj</ProductKey>
+              <NodeType>0</NodeType>
+              <CreateTime>1581595942000</CreateTime>
+              <ProductName>路灯</ProductName>
+        </ProductInfo>
+        <ProductInfo>
+              <ProductKey>a1POX0c3iug</ProductKey>
+              <NodeType>0</NodeType>
+              <CreateTime>1580898565000</CreateTime>
+              <ProductName>TSL测试</ProductName>
+        </ProductInfo>
+  </ProductInfos>
 </ListProductByTagsResponse>
 ```
+
+`JSON` 格式
+
+```
+{
+	"RequestId": "09AA366E-81EC-4CF0-B49E-61BCD7C95338",
+	"Success": true,
+	"ProductInfos": {
+		"ProductInfo": [
+			{
+				"ProductKey": "a1T27vzfrCj",
+				"NodeType": 0,
+				"CreateTime": 1581595942000,
+				"ProductName": "路灯"
+			},
+			{
+				"ProductKey": "a1POX0c3iug",
+				"NodeType": 0,
+				"CreateTime": 1580898565000,
+				"ProductName": "TSL测试"
+			}
+		]
+	}
+}
+```
+
+## 错误码
+
+访问[错误中心](https://error-center.alibabacloud.com/status/product/Iot)查看更多错误码。
 
