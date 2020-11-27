@@ -27,7 +27,7 @@
  **说明：** 最多能包含10个功能的定义信息。
 
  在**ThingModelJson**每个**property**结构中，可以使用**extendConfig**来描述扩展物模型的数据。更多信息，请参见[ThingModelJson数据说明](~~150457~~)。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的企业实例需传入此参数。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版企业实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
