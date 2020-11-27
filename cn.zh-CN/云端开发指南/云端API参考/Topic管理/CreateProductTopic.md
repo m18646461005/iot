@@ -1,62 +1,77 @@
-# CreateProductTopic {#reference_ilx_vrz_wdb .reference}
+# CreateProductTopic
 
-调用该接口为指定产品创建产品Topic类。
+调用该接口为指定产品创建自定义Topic类。
 
-## 限制说明 {#section_uy5_vyt_xdb .section}
+## 限制说明
 
-一个产品下最多允许创建50个Topic类。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为1。
 
-## 请求参数 {#section_tvj_zyt_xdb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：CreateProductTopic。|
-|ProductKey|String|是|要为其创建Topic类的产品Key。|
-|TopicShortName|String|是| 设置Topic类的自定义类目名称。Topic类默认包含productKey和deviceName两级类目，类目间以正斜线（/）分隔，其格式为：`productKey/deviceName/topicShortName`。
+## 调试
 
- **说明：** 每级类目的名称只能包含字母、数字和下划线（\_），且不能为空。
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=CreateProductTopic&type=RPC&version=2018-01-20)
 
- |
-|Operation|String|是| 设备对该Topic类的操作权限，取值：
+## 请求参数
 
- SUB：订阅。
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|CreateProductTopic|系统规定参数。取值：CreateProductTopic。 |
+|Operation|String|是|PUB|设备对该Topic类的操作权限，取值：
 
- PUB：发布。
+ -   **SUB**：订阅。
+-   **PUB**：发布。
+-   **ALL**：发布和订阅。 |
+|ProductKey|String|是|aldDEin\*\*\*\*|要为其创建Topic类的产品的ProductKey。 |
+|TopicShortName|String|是|submit|设置Topic类的自定义类目名称。Topic类默认包含\_productKey\_和\_deviceName\_两级类目，类目间以正斜线（/）分隔，其格式为：`productKey/deviceName/topicShortName`。
 
- ALL：发布和订阅。
+ **说明：** 每级类目的名称只能包含字母、数字和下划线（\_），且不能为空。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|Desc|String|否|submit a test topic|Topic类的描述信息。长度限制为100字符（一个汉字占一个字符）。 |
 
- |
-|Desc|String|否|Topic类的描述信息。长度限制为100字符（一个汉字占一个字符）。|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
-## 返回参数 {#section_hn2_nb5_xdb .section}
+## 返回数据
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|TopicId|Long| 调用成功时，IoT Hub为新建的Topic类生成的Topic ID。
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|FCC27691-9151-4B93-9622-9C90F30542EC|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|是否调用成功。
 
- **说明：** 请妥善保管该信息。在调用与该Topic类相关的接口时，您可能需要提供对应的Topic ID。
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+|TopicId|Long|10000|调用成功时，物联网平台为新建的Topic类生成的Topic ID。
 
- |
+ **说明：** 请妥善保管该信息。在调用与该Topic类相关的接口时，您可能需要提供对应的Topic ID。 |
 
-## 示例 {#section_uqv_wb5_xdb .section}
+## 示例
 
-**请求示例**
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=CreateProductTopic
-&ProductKey=al*********
+&ProductKey=aldDEin****
 &TopicShortName=submit
 &Operation=PUB
 &Desc=submit a test topic
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
+
+`XML` 格式
+
+```
+<CreateProductTopicResponse>
+      <RequestId>FCC27691-9151-4B93-9622-9C90F30542EC</RequestId>
+      <Success>true</Success>
+      <TopicId>10000</TopicId>
+</CreateProductTopicResponse>
+```
+
+`JSON` 格式
 
 ```
 {
