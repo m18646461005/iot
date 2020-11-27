@@ -1,140 +1,144 @@
-# QueryDeviceDetail {#reference_rrg_lpz_wdb .reference}
+# QueryDeviceDetail
 
 调用该接口查询指定设备的详细信息。
 
-## 请求参数 {#section_wj4_4wl_xdb .section}
+## 限制说明
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：QueryDeviceDetail。|
-|IotId|String|否| 要查询的设备ID。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
- **说明：** 如果传入该参数，则无需传入ProductKey和DeviceName。IotId作为设备唯一标识符，和ProductKey与DeviceName组合是一一对应的关系。如果您同时传入IotId和ProductKey与DeviceName组合，则以IotId为准。
+**说明：** RAM用户共享阿里云账号配额。
 
- |
-|ProductKey|String|否| 要查询的设备所隶属的产品Key。
+## 调试
 
- **说明：** 如果传入该参数，需同时传入DeviceName。
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=QueryDeviceDetail&type=RPC&version=2018-01-20)
 
- |
-|DeviceName|String|否| 指定要查询的设备的名称。
+## 请求参数
 
- **说明：** 如果传入该参数，需同时传入ProductKey。
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|QueryDeviceDetail|系统规定参数。取值：QueryDeviceDetail。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|ProductKey|String|否|a1BwAGV\*\*\*\*|要查询的设备所隶属的产品Key。
 
- |
-|公共请求参数|-|是|公共请求参数，请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#) 。|
+ **说明：** 如果传入该参数，需同时传入**DeviceName**。 |
+|DeviceName|String|否|light|指定要查询的设备的名称。
 
-## 返回参数 {#section_v2t_4xl_xdb .section}
+ **说明：** 如果传入该参数，需同时传入**ProductKey**。 |
+|IotId|String|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|要查询的设备ID。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|Data|Data|调用成功时，返回设备的详细信息。详情请参见下表Data。|
+ **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
 
-|名称|类型|描述|
-|:-|:-|:-|
-|ProductKey|String|设备隶属的产品Key。|
-|ProductName|String|设备隶属的产品名称。|
-|DeviceName|String|设备名称。|
-|DeviceSecret|String|设备密钥。|
-|IotId|String|IoT平台为该设备颁发的ID，作为该设备的唯一标识符。|
-|UtcCreate|String|​设备的创建时间（UTC）。|
-|GmtCreate|String|设备的创建时间（GMT）。|
-|UtcActive|String|​​设备的激活时间（UTC）。|
-|GmtActive|String|设备的激活时间（GMT）。|
-|UtcOnline|String|​​设备最近一次上线的时间（UTC）。|
-|GmtOnline|String|设备最近一次上线的时间（GMT）。|
-|Status|String| 设备状态。取值：
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- ONLINE：设备在线。
+## 返回数据
 
- OFFLINE：设备离线。
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|Data|Struct| |调用成功时，返回设备的详细信息。 |
+|DeviceName|String|light|设备名称。 |
+|DeviceSecret|String|mz2Canp4GB7qRVf1OYPNtRqB2anu\*\*\*\*|设备密钥。 |
+|FirmwareVersion|String|V1.0.0.0|设备的固件版本号。 |
+|GmtActive|String|2018-08-06 10:48:41|设备的激活时间，GMT格式。 |
+|GmtCreate|String|2018-08-06 10:47:50|设备的创建时间，GMT格式。 |
+|GmtOnline|String|2018-08-06 13:43:12|设备最近一次上线的时间，GMT格式。 |
+|IotId|String|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|物联网平台为该设备颁发的ID，作为该设备的唯一标识符。 |
+|IpAddress|String|10.0.0.1|设备的IP地址。 |
+|Nickname|String|detectors\_in\_beijing|设备的备注名称。 |
+|NodeType|Integer|0|节点类型，取值：
 
- UNACTIVE：设备未激活。
+ -   **0**：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台。
+-   **1**：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台。 |
+|Owner|Boolean|true|API调用者是否是该设备的拥有者。 |
+|ProductKey|String|a1rYuVF\*\*\*\*|设备所属产品的ProductKey。 |
+|ProductName|String|test|设备所属产品的名称。 |
+|Region|String|cn-shanghai|设备所在地区（与控制台上的物联网地平台服务地域对应）。 |
+|Status|String|ONLINE|设备状态。取值：
 
- DISABLE：设备已禁用。
+ -   **ONLINE**：设备在线。
+-   **OFFLINE**：设备离线。
+-   **UNACTIVE**：设备未激活。
+-   **DISABLE**：设备已禁用。 |
+|UtcActive|String|2018-08-06T02:48:41.000Z|设备的激活时间，UTC格式。 |
+|UtcCreate|String|2018-08-06T02:47:50.000Z|设备的创建时间，UTC格式。 |
+|UtcOnline|String|2018-08-06T05:43:12.000Z|设备最近一次上线的时间，UTC格式。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
 
- |
-|FirmwareVersion|String|设备的固件版本号。|
-|IpAddress|String|设备的IP地址。|
-|NodeType|Integer| 节点类型，取值：
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- 0：设备。设备不能挂载子设备，可以直连IoT Hub，也可以作为网关的子设备连接IoT Hub。
+## 示例
 
- 1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，并且可以将拓扑关系同步到云端。
-
- |
-|Region|String|设备所在地区（与控制台上的物联网地平台服务地域对应）。|
-
-## 示例 {#section_gm1_hyl_xdb .section}
-
-**请求示例**
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=QueryDeviceDetail
-&ProductKey=a1rYuV*****
-&DeviceName=SR8FiTu1R9tlUR2V1bmi
-&公共请求参数
+&ProductKey=a1rYuVF****
+&DeviceName=device1
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-      "RequestId":"57b144cf-09fc-4916-a272-a62902d5b207",
-      "Success": true，
-      "Data": {
-        "DeviceName": "SR8FiTu1R9tlUR2V1bmi",
-        "GmtActive": "2018-08-06 10:48:41",
-        "UtcActive": "2018-08-06T02:48:41.000Z",
-        "ProductKey": "a1rYuV*****",
-        "DeviceSecret": "CPwUjMUgzdvaZv56TMy6773V3v3****",
-        "GmtCreate": "2018-08-06 10:47:50",
-        "UtcCreate": "2018-08-06T02:47:50.000Z",
-        "IotId": "SR8FiTu1R9tlUR2V1bmi0010*****",
-        "Status": "ONLINE",
-        "Region": "cn-shanghai",
-        "NodeType": 0,
-        "GmtOnline": "2018-08-06 13:43:12",
-        "UtcOnline": "2018-08-06T05:43:12.000Z",
-        "ProductName": "test",
-        "IpAddress":"10.0.0.1",
-        "FirmwareVersion":"V1.0"
-      },
-    }
-    ```
+```
+<QueryDeviceDetailResponse>
+  <Data>
+        <Owner>true</Owner>
+        <GmtActive>2020-01-16 13:33:37</GmtActive>
+        <DeviceName>Humidity</DeviceName>
+        <ProductKey>a1ttsqu****</ProductKey>
+        <DeviceSecret>sLefbFmN9SYfnWLJTePG893XNuRV****</DeviceSecret>
+        <IpAddress>42.120.75.144</IpAddress>
+        <GmtCreate>2020-01-08 14:47:08</GmtCreate>
+        <UtcCreate>2020-01-08T06:47:08.000Z</UtcCreate>
+        <IotId>dwnS41bhNxjslDAIF****00100</IotId>
+        <Status>OFFLINE</Status>
+        <UtcOnline>2020-01-17T08:19:11.091Z</UtcOnline>
+        <Region>cn-shanghai</Region>
+        <UtcActive>2020-01-16T05:33:37.830Z</UtcActive>
+        <Nickname>温湿度</Nickname>
+        <NodeType>0</NodeType>
+        <GmtOnline>2020-01-17 16:19:11</GmtOnline>
+        <ProductName>光照温湿度传感器</ProductName>
+  </Data>
+  <RequestId>D2D2DE90-DD0F-44EA-9F56-63F07A59F65B</RequestId>
+  <Success>true</Success>
+</QueryDeviceDetailResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version='1.0' encoding='utf-8'?>
-    <QueryDeviceDetailResponse>
-        <RequestId>57b144cf-09fc-4916-a272-a62902d5b207</RequestId>
-        <Success>true</Success>
-        <Data>
-            <DeviceName>SR8FiTu1R9tlUR2V1bmi</DeviceName>
-            <GmtActive>2018-08-06 10:48:41</GmtActve>
-    	<UtcActive>2018-08-06T02:48:41.000Z</UtcActive>
-            <ProductKey>a1rYuVF****</ProductKey>
-            <DeviceSecret>CPwUjMUgzdvaZv56TMy6773V3v3W****</DeviceSecret>
-            <GmtCreate>2018-08-06 10:47:50</GmCreate>
-    	<UtcCreate>2018-08-06T02:47:50.000Z</UtcCreate>
-            <IotId>SR8FiTu1R9tlUR2V1bmi0010a5****</IotId>
-            <Status>ONLINE</Status>
-            <Region>cn-shanghai</Region>
-            <NodeType>0</NodeType>
-            <GmtOnline>2018-08-06 13:43:2</GmtOnline>
-    	<UtcOnline>2018-08-06T05:43:12.000Z</UtcOnline>
-            <ProductName>test</ProductName>
-            <IpAddress>10.0.0.1</IpAddress>        
-            <FirmwareVersion>V1.0</FirmwareVersion>
-        </Data>
-    </QueryDeviceDetailResponse>
-    ```
+```
+{
+	"Data": {
+		"Owner": true,
+		"GmtActive": "2020-01-16 13:33:37",
+		"DeviceName": "Humidity",
+		"ProductKey": "a1ttsqu****",
+		"DeviceSecret": "sLefbFmN9SYfnWLJTePG893XNuRV****",
+		"IpAddress": "42.120.75.144",
+		"GmtCreate": "2020-01-08 14:47:08",
+		"UtcCreate": "2020-01-08T06:47:08.000Z",
+		"IotId": "dwnS41bhNxjslDAIF****00100",
+		"Status": "OFFLINE",
+		"UtcOnline": "2020-01-17T08:19:11.091Z",
+		"Region": "cn-shanghai",
+		"UtcActive": "2020-01-16T05:33:37.830Z",
+		"Nickname": "温湿度",
+		"NodeType": 0,
+		"GmtOnline": "2020-01-17 16:19:11",
+		"ProductName": "光照温湿度传感器"
+	},
+	"RequestId": "D2D2DE90-DD0F-44EA-9F56-63F07A59F65B",
+	"Success": true
+}
+```
 
+## 错误码
+
+访问[错误中心](https://error-center.alibabacloud.com/status/product/Iot)查看更多错误码。
 
