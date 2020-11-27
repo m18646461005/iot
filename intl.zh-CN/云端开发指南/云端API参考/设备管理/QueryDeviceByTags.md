@@ -1,113 +1,116 @@
-# QueryDeviceByTags {#reference_pgk_qck_sfb .reference}
+# QueryDeviceByTags
 
 调用该接口通过标签查询设备。
 
-## 限制说明 {#section_plt_vdm_2gb .section}
+## 限制说明
 
-一次调用，最多可输入10个标签。
+-   一次调用，最多可输入10个标签。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-## 请求参数 {#section_sm5_5ck_sfb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值 QueryDeviceByTags。|
-|PageSize|Integer|否|指定返回结果中每页显示的记录数量，最大值是50。默认值是10。|
-|CurrentPage|Integer|否|指定从返回结果中的第几页开始显示。默认值是1。|
-|Tag|List<Tag\>|是|设备标签。数量限制：可输入最多10个标签。Tag 包括TagKey和TagValue，分别对应标签的key和value。
 
-支持只传入TagKey进行查询。
+## 调试
 
-详情请参见下表 Tag。
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=QueryDeviceByTags&type=RPC&version=2018-01-20)
 
-|
-|公共请求参数|-|是|公共请求参数，请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+## 请求参数
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|TagKey|String|是|设备标签的key。|
-|TagValue|String|否|设备标签的value。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|QueryDeviceByTags|系统规定参数。取值：QueryDeviceByTags。 |
+|Tag.N.TagKey|String|是|room|设备标签的Key。 |
+|Tag.N.TagValue|String|是|101|设备标签的值。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|CurrentPage|Integer|否|1|指定从返回结果中的第几页开始显示。默认值是1。 |
+|PageSize|Integer|否|10|指定返回结果中每页显示的设备记录数量，最大值是50。默认值是10。 |
 
-## 返回参数 {#section_urg_42k_sfb .section}
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|PageCount|Integer|总页数。|
-|PageSize|Integer|每页显示的记录数。|
-|Page|Integer|当前页面号。|
-|Total|Integer|总记录数。|
-|Data|Data|调用成功时，返回的设备信息列表。详情参见下表SimpleDeviceInfo。|
+## 返回数据
 
-|名称|类型|描述|
-|:-|:-|:-|
-|ProductName|String|产品名称。|
-|ProductKey|String|产品Key。|
-|DeviceName|String|设备名称。|
-|IotId|String|物联网平台为该设备颁发的ID，作为该设备的唯一标识符。|
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|Data|Array of SimpleDeviceInfo| |调用成功时，返回的设备信息列表（**SimpleDeviceInfo**）。 |
+|SimpleDeviceInfo| | | |
+|DeviceName|String|light1|设备名称。 |
+|IotId|String|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|物联网平台为该设备颁发的ID，作为该设备的唯一标识符。 |
+|ProductKey|String|a1BwAGV\*\*\*\*|设备所属产品的ProductKey。 |
+|ProductName|String|lamp|产品名称。 |
+|ErrorMessage|String|系统异常|调用失败时返回的出错信息。 |
+|Page|Integer|1|当前页面号。 |
+|PageCount|Integer|1|总页数。 |
+|PageSize|Integer|10|每页显示的记录数。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
 
-## 示例 {#section_qbk_fgk_sfb .section}
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+|Total|Integer|1|总记录数。 |
 
-**请求示例**
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=QueryDeviceByTags
 &CurrentPage=1
 &PageSize=10
-&Tag.1.TagKey=dfdfd
-&Tag.1.TagValue=dfdfdfdf
-&Tag.2.TagKey=ddfdfdf
-&Tag.2.TagValue=dfdfdfdfd
-&公共请求参数
+&Tag.1.TagKey=room
+&Tag.1.TagValue=101
+&Tag.2.TagKey=city
+&Tag.2.TagValue=hangzhou
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-        "PageCount": 1,
-        "Data": {
-            "SimpleDeviceInfo": [
-                {
-                    "DeviceName": "1102jichu02",
-                    "ProductKey": "a1SM5S1shy1",
-                    "IotId": "GookTiUcwqRbHosp9Ta10017d3a00",
-                    "ProductName": "TEST"
-                }
-            ]
-        },
-        "PageSize": 10,
-        "Page": 1,
-        "RequestId": "2B5091E4-32D5-4884-A5B2-2E8E713D84AF",
-        "Success": true,
-        "Total": 1
-    }
-    ```
+```
+<QueryDeviceByTags>
+  <PageCount>1</PageCount>
+  <Data>
+        <SimpleDeviceInfo>
+              <DeviceName>1102jichu02</DeviceName>
+              <ProductKey>a1SM5S1****</ProductKey>
+              <IotId>GookTiUcwqRbHosp9Ta10****3a00</IotId>
+              <ProductName>TEST</ProductName>
+        </SimpleDeviceInfo>
+  </Data>
+  <PageSize>10</PageSize>
+  <Page>1</Page>
+  <RequestId>2B5091E4-32D5-4884-A5B2-2E8E713D84AF</RequestId>
+  <Success>true</Success>
+  <Total>1</Total>
+</QueryDeviceByTags>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <QueryDeviceByTags>
-    	<PageCount>1</PageCount>
-    	<Data>
-    		<SimpleDeviceInfo>
-    			<DeviceName>1102jichu02</DeviceName>
-    			<ProductKey>a1SM5S1shy1</ProductKey>
-    			<IotId>GookTiUcwqRbHosp9Ta10017d3a00</IotId>
-    			<ProductName>TEST</ProductName>
-    		</SimpleDeviceInfo>
-    	</Data>
-    	<PageSize>10</PageSize>
-    	<Page>1</Page>
-    	<RequestId>2B5091E4-32D5-4884-A5B2-2E8E713D84AF</RequestId>
-    	<Success>true</Success>
-    	<Total>1</Total>
-    </QueryDeviceByTags>
-    ```
+```
+{
+    "PageCount": 1,
+    "Data": {
+        "SimpleDeviceInfo": [
+            {
+                "DeviceName": "1102jichu02",
+                "ProductKey": "a1SM5S1****",
+                "IotId": "GookTiUcwqRbHosp9Ta10****3a00",
+                "ProductName": "TEST"
+            }
+        ]
+    },
+    "PageSize": 10,
+    "Page": 1,
+    "RequestId": "2B5091E4-32D5-4884-A5B2-2E8E713D84AF",
+    "Success": true,
+    "Total": 1
+}
+```
 
+## 错误码
+
+访问[错误中心](https://error-center.alibabacloud.com/status/product/Iot)查看更多错误码。
 
