@@ -19,7 +19,7 @@ You can add a Thing Specification Language \(TSL\) feature for a product. A feat
 
 4.  On the Product Details page, click the **Define Feature** tab, and then click **Edit Draft**.
 
-5.  Optional. Select a historical version from the Version History drop-down list, and click **Restore to This Version**. Then, you can edit the TSL model based on the historical version.
+5.  Optional. Select a version from the Version History drop-down list, and click **Roll Back**. Then, you can edit the TSL model based on the historical version.
 
 6.  Add a self-defined feature.
 
@@ -27,7 +27,7 @@ You can add a Thing Specification Language \(TSL\) feature for a product. A feat
 
     -   Add a property: In the Add Self-defined Feature dialog box, select **Properties** in the Feature Type field. Set the required parameters, and click **OK**.
 
-        ![Properties](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6192039951/p107808.png)
+        ![TSL model](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0718929951/p10855.png)
 
         The following table describes the parameters.
 
@@ -36,42 +36,47 @@ You can add a Thing Specification Language \(TSL\) feature for a product. A feat
         |Feature Name|The name of the property, for example, power consumption. The name must be unique for a product.
 
 The name must be 1 to 30 characters in length, and can contain letters, digits, hyphens \(-\), underscores \(\_\), forward slashes \(/\), and periods \(.\). It must start with a letter or a digit. |
-        |Identifier|The ID of the property. The ID must be unique for a product. The ID is indicated by the value of the identifier parameter in the Alink JSON format. A device uses the ID as the key to report property data, and IoT Platform verifies the ID to determine whether to receive the data. The ID must be 1 to 50 characters in length, and can contain letters, digits, and underscores \(\_\). For example, you can set the ID to PowerComsumption. **Note:** You cannot set this parameter to one of the following reserved words: set, get, post, time, and value. |
+        |Identifier|The ID of the property. The ID must be unique for a product. The ID is indicated by the value of the identifier parameter in the Alink JSON format. A device uses the ID as a key to report property data. IoT Platform verifies the ID to determine whether to receive the data. The ID must be 1 to 50 characters in length, and can contain letters, digits, and underscores \(\_\). For example, you can set the ID to PowerConsumption. **Note:** You cannot set this parameter to one of the following reserved words: set, get, post, time, and value. |
         |Data Type|        -   int32: 32-bit integer. You must specify a value range, step size, and unit.
         -   float: single-precision floating-point number. You must specify a value range, step size, and unit.
         -   double: double-precision floating-point number. You must specify a value range, step size, and unit.
         -   enum: enumeration. You must specify a value and description for an ENUM item. Examples: 1-heating mode and 2-cooling mode.
-        -   bool: Boolean. You must use the numbers 0 and 1 to define Boolean values. Examples: 0-off and 1-on.
+        -   bool: Boolean. You must use 0 and 1 to define Boolean values. Examples: 0-off and 1-on.
         -   text: string. You must specify the length of the string. The string must be 1 to 10,240 bytes in length.
-        -   date: timestamp. A UTC timestamp. Data type: string. Unit: ms.
-        -   struct: JSON object. You must define a JSON struct and add JSON parameters to the struct. For example, you can define the color of a lamp as a struct that is composed of the following three parameters: Red, Green, and Blue. Nested structs are not supported.
-        -   array: array. You must specify the data type and number of the elements in an array. Valid values: int32, float, double, text, and struct. Make sure that the elements in an array are of the same data type. The number of elements ranges from 1 to 512.
-**Note:** If the gateway connection protocol of the product is set to Modbus, you do not need to specify this parameter. |
+        -   date: timestamp. A UTC timestamp. Data type: string. Unit: milliseconds.
+        -   struct: JSON object. You must define a JSON struct and add JSON parameters to the struct. For example, you can define the color of a lamp as a struct that consists of the following three parameters: Red, Green, and Blue. Nested structs are not supported.
+        -   array: array. You must specify the data type and number of elements in an array. Valid values of the element type: int32, float, double, text, and struct. The elements in an array must be of the same type. Valid values of the number of elements: 1 to 512.
+**Note:** This parameter is not required if the gateway connection protocol of the product is set to Modbus. |
         |Value Range|If the Data Type parameter is set to int32, float, or double, you must specify a value range for the property.|
         |Step|The minimum granularity by which property values change. If the Data Type parameter is set to int32, float, or double, you must specify a step size based on your business requirements. For example, assume that you add the temperature property to a thermometer product. You can set the Data Type parameter to int32, the Step parameter to 2, the Unit parameter to °C, and the Value Range parameter to 0 to 100. In this case, each time the temperature changes by 2°C, a device reports a temperature value, for example, 0°C, 2°C, 4°C, 6°C, or 8°C. |
         |Unit|You can select None or other values based on the actual conditions.|
         |Read/Write Type|        -   Read/Write: Both GET and SET requests are supported.
         -   Read-only: Only GET requests are supported.
-**Note:** If the gateway connection protocol of the product is set to Modbus, you do not need to specify this parameter. |
-        |Description|The description of the feature. The description must be 1 to 100 characters in length.|
-        |Extended Information|The mapping between the device connection protocol and the standard TSL model. After you configure the extended settings, you can view these settings on the TSL Extension Information tab of the TSL model in the IoT Platform console.
+**Note:** This parameter is not required if the gateway connection protocol of the product is set to Modbus. |
+        |Description|The description of the feature. It must be 1 to 100 characters in length.|
+        |Extended Information|The mapping between the connection protocol and the standard TSL model of a device. After you configure the extended settings, you can view these settings on the TSL Extension Information tab of the TSL model in the IoT Platform console.
 
-If the gateway connection protocol is set to Custom, OPC UA, or Modbus, you must specify this parameter.
+If the gateway connection protocol is set to Custom, OPC UA, or Modbus, you must specify the extended information.
 
         -   If the gateway connection protocol is set to Custom, enter a JSON-formatted description for custom configurations. The description must be 1 to 1,024 characters in length.
         -   If the gateway connection protocol is set to OPC UA, enter a node name. The node name must be unique in the properties of a product.
         -   If the gateway connection protocol is set to Modbus, set the following parameters:
-            -   Operation Type:
-                -   Coil Status \(read-only, 01\)
-                -   Coil Status \(read and write, 01-read, 05-write\)
-                -   Coil Status \(read and write, 01-read, 0F-write\)
-                -   Discrete Input \(read-only, 02\)
-                -   Holding Registers \(read-only, 03\)
-                -   Holding Registers \(read and write, 03-read, 06-write\)
-                -   Holding Registers \(read and write, 03-read, 10-write\)
-                -   Input Registers \(read-only, 04\)
+            -   Operation Type: You can set this parameter to one of the following values.
+                -   Discrete Input \(read-only, 0x02\)
+                -   Coil Status \(read-only, 0x01\)
+                -   Coil Status \(read and write, 0x01-read, 0x05-write\)
+                -   Coil Status \(read and write, 0x01-read, 0x0F-write\)
+                -   Coil Status \(write-only, 0x05\)
+                -   Coil Status \(write-only, 0x0F\)
+                -   Holding Registers \(read-only, 0x03\)
+                -   Holding Registers \(read and write, 0x03-read, 0x06-write\)
+                -   Holding Registers \(read and write, 0x03-read, 0x10-write\)
+                -   Holding Registers \(write only, 0x06\)
+                -   Holding Registers \(read-only, 0x10\)
+                -   Input Registers \(read-only, 0x04\)
             -   Register Address: You must specify a hexadecimal value that starts with `0x`. Valid values: `0x0 to 0xFFFF`, for example, `0xFE`.
-            -   Original Data Type: Multiple data types are supported. Valid values: int16, uint16, int32, uint32, int64, uint64, float, double, string, and bool.
+            -   Original Data Type: Multiple data types are supported. Valid values: int16, uint16, int32, uint32, int64, uint64, float, double, string, bool, and bits.
+            -   Bit Position: You must specify this parameter if the Original Data Type parameter is set to bits. Select the bit position where the data is stored.
             -   Value Range: The value range is retrieved after the original data is processed by using a specified scale factor. Data that exceeds the value range is discarded. IoT Platform sets the default value ranges for the following operation types:
                 -   Coil Status: 0 to 1
                 -   Discrete Input: 0 to 1
@@ -90,7 +95,7 @@ If the gateway connection protocol is set to Custom, OPC UA, or Modbus, you must
 
         **Note:** If the gateway connection protocol is set to Modbus, you cannot add services.
 
-        ![Services](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6192039951/p107812.png)
+        ![TSL model](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1718929951/p10856.png)
 
         The following table describes the parameters.
 
@@ -98,8 +103,8 @@ If the gateway connection protocol is set to Custom, OPC UA, or Modbus, you must
         |:--------|:----------|
         |Feature Name|The service name. The name must be 1 to 30 characters in length, and can contain letters, digits, hyphens \(-\), underscores \(\_\), forward slashes \(/\), and periods \(.\). It must start with a letter or a digit. |
         |Identifier|The ID of the service. The ID must be unique for a product. The ID is indicated by the value of the identifier parameter that is specified for the service in the Alink JSON format. The ID must be 1 to 50 characters in length, and can contain letters, digits, and underscores \(\_\). **Note:** You cannot set this parameter to one of the following reserved words: set, get, post, time, and value. |
-        |Invoke Method|        -   Asynchronous: IoT Platform returns the result after the call is executed. IoT Platform does not wait for a response from the device.
-        -   Synchronous: IoT Platform waits for a response from the device. If no response is returned, the call times out. |
+        |Invoke Method|        -   Asynchronous: IoT Platform returns the result after the service is invoked. IoT Platform does not wait for a response from the device.
+        -   Synchronous: IoT Platform waits for a response from the device. If no response is returned, the service invocation times out. |
         |Input Parameters|Optional. The input parameters of the service. Click **+Add Parameter**, and add an input parameter in the dialog box that appears.
 
 If the gateway connection protocol is set to OPC UA, you must set a parameter index to specify the order of the parameters.
@@ -107,8 +112,8 @@ If the gateway connection protocol is set to OPC UA, you must set a parameter in
 **Note:**
 
         -   You cannot set this parameter to one of the following reserved words: set, get, post, time, and value.
-        -   You can use a property as an input parameter or customize an input parameter. For example, when you specify the Automatic Sprinkling service, you can use the Sprinkling Interval and Sprinkling Amount properties as the input parameters. When IoT Platform calls the Automatic Sprinkling service, the sprinkler automatically starts sprinkling based on the specified sprinkling interval and amount.
-        -   You can add a maximum of 20 input parameters to a service. |
+        -   You can use a property as an input parameter or customize an input parameter. For example, when you specify the Automatic Sprinkling service, you can use the Sprinkling Interval and Sprinkling Amount properties as the input parameters. When IoT Platform invokes the Automatic Sprinkling service, the sprinkler starts sprinkling based on the specified sprinkling interval and amount.
+        -   You can add a maximum of 20 input parameters for each service. |
         |Output Parameters|Optional. The output parameters of the service. Click **+Add Parameter**, and add an output parameter in the dialog box that appears.
 
 If the gateway connection protocol is set to OPC UA, you must set a parameter index to specify the order of the parameters.
@@ -116,57 +121,57 @@ If the gateway connection protocol is set to OPC UA, you must set a parameter in
 **Note:**
 
         -   You cannot set this parameter to one of the following reserved words: set, get, post, time, and value.
-        -   You can use a property as an output parameter or customize an output parameter. For example, when you specify the Automatic Sprinkling service, you can use the Soil Humidity property as an output parameter. When IoT Platform calls the Automatic Sprinkling service, the data about soil humidity is returned.
-        -   You can add a maximum of 20 output parameters to a service. |
-        |Extended Information|The mapping between the device connection protocol and the standard TSL model. After you configure the extended settings, you can view these settings on the TSL Extension Information tab of the TSL model in the IoT Platform console.
+        -   You can use a property as an output parameter or customize an output parameter. For example, when you specify the Automatic Sprinkling service, you can use the Soil Humidity property as an output parameter. When IoT Platform invokes the Automatic Sprinkling service, the data about soil humidity is returned.
+        -   You can add a maximum of 20 output parameters for each service. |
+        |Extended Information|The mapping between the connection protocol and the standard TSL model of a device. After you configure the extended settings, you can view these settings on the TSL Extension Information tab of the TSL model in the IoT Platform console.
 
 If the gateway connection protocol is set to Custom or OPC UA, you must specify the extended information. If the gateway connection protocol is set to Custom, enter a JSON-formatted description for custom configurations. The description must be 1 to 1,024 characters in length.
 
 If the gateway connection protocol is set to OPC UA, enter a node name. The node name must be unique in the properties of a product. |
-        |Description|The description of the feature. The description must be 1 to 100 characters in length.|
+        |Description|The description of the feature. It must be 1 to 100 characters in length.|
 
     -   Add an event: In the Add Self-defined Feature dialog box, select **Events** in the Feature Type field. Set the required parameters and click **OK**.
 
         **Note:** If the gateway connection protocol is set to Modbus, you cannot add events.
 
-        ![Events](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6192039951/p107816.png)
+        ![TSL model](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1718929951/p10857.png)
 
         The following table describes the parameters.
 
         |Parameter|Description|
         |:--------|:----------|
         |Feature Name|The name of the event. The name must be 1 to 30 characters in length, and can contain letters, digits, hyphens \(-\), underscores \(\_\), forward slashes \(/\), and periods \(.\). It must start with a letter or a digit. |
-        |Identifier|The ID of the event. The ID must be unique for a product. The ID is indicated by the value of the identifier parameter in the Alink JSON format. A device uses the ID as the key to report property data, for example, ErrorCode. The ID must be 1 to 50 characters in length, and can contain letters, digits, and underscores \(\_\).**Note:** You cannot set this parameter to one of the following reserved words: set, get, post, time, and value. |
-        |Event Type|You can perform logic processing or analytics for events of different types.         -   Info: Devices report common notifications, such as the completion of a specific task.
-        -   Alert: Devices report emergencies or exceptions that occur during device running. Events of this type have a high priority.
-        -   Error: Devices report emergencies or exceptions that occur during device running. Events of this type have a high priority. |
-        |Output Parameters|The output parameters of an event. Click **+Add Parameter**, and add an output parameter in the dialog box that appears. You can use a property as an output parameter or customize an output parameter. For example, you can use the Voltage property as an output parameter. When a device reports an error, the voltage of the device is also reported for troubleshooting. If the gateway connection protocol is set to OPC UA, you must set a parameter index to specify the order of the parameters.
+        |Identifier|The ID of the event. The ID must be unique for a product. The ID is indicated by the value of the identifier parameter in the Alink JSON format. A device uses the ID as a key to report property data, for example, ErrorCode. The ID must be 1 to 50 characters in length, and can contain letters, digits, and underscores \(\_\).**Note:** You cannot set this parameter to one of the following reserved words: set, get, post, time, and value. |
+        |Event Type|You can perform logic processing or analytics for events of different types.         -   Info: Devices report common notifications, such as the notification of a completed task.
+        -   Alert: Devices report emergencies or exceptions that occur when a device is running. Events of this type have a high priority.
+        -   Error: Devices report emergencies or exceptions that occur when a device is running. Events of this type have a high priority. |
+        |Output Parameters|The output parameters of an event. Click **+Add Parameter**, and add an output parameter in the dialog box that appears. You can use a property as an output parameter or customize an output parameter. For example, you can use the Voltage property as an output parameter. If a device reports an error, the voltage of the device is also reported for troubleshooting. If the gateway connection protocol is set to OPC UA, you must set a parameter index to specify the order of the parameters.
 
 **Note:**
 
         -   You cannot set this parameter to one of the following reserved words: set, get, post, time, and value.
         -   You can add a maximum of 50 output parameters to a service. |
-        |Extended Information|The mapping between the device connection protocol and the standard TSL model. After you configure the extended settings, you can view these settings on the TSL Extension Information tab of the TSL model in the IoT Platform console.
+        |Extended Information|The mapping between the connection protocol and the standard TSL model of a device. After you configure the extended settings, you can view these settings on the TSL Extension Information tab of the TSL model in the IoT Platform console.
 
 If the gateway connection protocol is set to Custom or OPC UA, you must specify the extended information. If the gateway connection protocol is set to Custom, enter a JSON-formatted description for custom configurations. The description must be 1 to 1,024 characters in length.
 
 If the gateway connection protocol is set to OPC UA, enter a node name. The node name must be unique in the properties of a product. |
-        |Description|The description of the feature. The description must be 1 to 100 characters in length.|
+        |Description|The description of the feature. It must be 1 to 100 characters in length.|
 
 7.  Release the TSL model.
 
-    1.  On the Edit Draft page, click **Release Online**. The Release model online? dialog box appears.
+    1.  On the Edit Draft page, click **Release online**. The Release model online? dialog box appears.
 
     2.  Optional. Click **+Add post notes**, and enter a version number and note.
 
         |Parameter|Description|
         |---------|-----------|
         |Version Number|The version number of the TSL model. You can manage the TSL model based on the version number. The version number must be 1 to 16 characters in length, and can contain letters, digits, and periods \(.\). |
-        |Note|The description of the TSL model. The description must be 1 to 100 characters in length, and can contain letters, digits, and special characters.|
+        |Note|The description of the TSL model. The description can contain letters, digits, and special characters. It must be 1 to 100 characters in length.|
 
     3.  If an online version is available, you must check the differences between the current version and the online version.
 
-        Click **View differences**. In the View Differences dialog box, you can view the differences. If the current version is configured as normal, click **Confirm**. In the Release model online? dialog box, the checkbox is automatically selected.
+        Click **View differences**. In the View Differences dialog box, you can view the differences. After you confirm your settings, click **Confirm**. In the Release model online? dialog box, the checkbox is automatically selected.
 
     4.  Click **OK** to release the TSL model.
 
