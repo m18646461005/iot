@@ -1,98 +1,105 @@
-# QueryLoRaJoinPermissions {#reference_pjj_z12_zgb .reference}
+# QueryLoRaJoinPermissions
 
 调用该接口查询LoRaWAN入网凭证列表。
 
-## 请求参数 {#section_wrw_422_zgb .section}
+## 限制说明
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：QueryLoRaJoinPermissions。|
-|公共请求参数|-|是|公共请求参数，请参见[公共参数](cn.zh-CN/云端开发指南/云端API参考/公共参数.md#) 。|
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-## 返回参数 {#section_kbx_bf2_zgb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。|
-|JoinPermissions|List<JoinPermission\>|调用成功时，返回的入网凭证数据。详情见下表JoinPermission。|
+## 调试
 
-|名称|类型|描述|
-|:-|:-|:-|
-|JoinPermissionId|String|入网凭证ID，入网凭证的唯一标识。|
-|OwnerAliyunPk|String|入网凭证创建者的阿里云账号ID。|
-|JoinPermissionName|String|入网凭证名称。|
-|FreqBandPlanGroupId|String|入网凭证采用的频谱计划ID。取值： -   CN470：同频
--   CN470：异频
--   AS923：同频
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=QueryLoRaJoinPermissions&type=RPC&version=2018-01-20)
 
- |
-|ClassMode|String|入网凭证采用的通信模式。取值： -   A：终端设备允许双向通信。
--   B：终端设备会在预设时间中开放接收窗口。
--   C：终端设备持续开放接收窗口，只在传输时关闭。
+## 请求参数
 
- |
-|JoinPermissionType|String|入网凭证的类型。取值： -   LOCAL：专用凭证。
--   ROAMING：漫游凭证。
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|QueryLoRaJoinPermissions|系统规定参数。取值：QueryLoRaJoinPermissions。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
- |
-|Enabled|Boolean|入网凭证的启停用状态。取值： -   true：启用
--   false：停用
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- |
+## 返回数据
 
-## 示例 {#section_vcn_jh2_zgb .section}
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|JoinPermissions|Array of JoinPermission| |调用成功时，返回的入网凭证数据（**JoinPermission**）。 |
+|JoinPermission| | | |
+|ClassMode|String|A|入网凭证采用的通信模式。取值：
 
-**请求示例**
+ -   **A**：终端设备允许双向通信。
+-   **B**：终端设备会在预设时间中开放接收窗口。
+-   **C**：终端设备持续开放接收窗口，只在传输时关闭。 |
+|Enabled|Boolean|true|入网凭证的启停用状态。取值：
+
+ -   **true**：启用。
+-   **false**：停用。 |
+|JoinPermissionId|String|80\*\*\*|入网凭证ID，入网凭证的唯一标识。 |
+|JoinPermissionName|String|ForTest|入网凭证名称。 |
+|JoinPermissionType|String|LOCAL|入网凭证的类型。取值：
+
+ -   **LOCAL**：专用凭证。
+-   **ROAMING**：漫游凭证。 |
+|OwnerAliyunPk|String|1375364789\*\*\*\*|入网凭证创建者的阿里云账号ID。 |
+|ProductKey|String|a1BwAGV\*\*\*\*|使用该凭证的设备所属产品的ProductKey。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=QueryLoRaJoinPermissions
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-      "RequestId": "A6B85BE6-D199-4634-AC24-AD08CD289D9B",
-      "Success": true,
-      "JoinPermissions": {
-        "JoinPermission": [
-          {
-            "Enabled": true,
-            "JoinPermissionType": "LOCAL",
-            "JoinPermissionId": "8***",
-            "OwnerAliyunPk": "1375364789****",
-            "ClassMode": "B",
-            "JoinPermissionName": "ForTest"
-          }
-        ]
-      }
-    }
-    ```
+```
+<QueryLoRaJoinPermissions>
+  <RequestId>1C1BD4E7-2FD3-4535-9D97-DE51803192AD</RequestId>
+  <Success>true</Success>
+  <JoinPermissions>
+        <JoinPermission>
+              <Enabled>true</Enabled>
+              <JoinPermissionType>LOCAL</JoinPermissionType>
+              <JoinPermissionId>50***</JoinPermissionId>
+              <OwnerAliyunPk>198426864326****</OwnerAliyunPk>
+              <ClassMode>A</ClassMode>
+              <JoinPermissionName>给开发者B使用</JoinPermissionName>
+        </JoinPermission>
+  </JoinPermissions>
+</QueryLoRaJoinPermissions>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <QueryLoRaJoinPermissions>
-    	<RequestId>A6B85BE6-D199-4634-AC24-AD08CD289D9B</RequestId>
-    	<Success>true</Success>
-    	<JoinPermissions>
-    		<JoinPermission>
-    			<Enabled>true</Enabled>
-    			<JoinPermissionType>LOCAL</JoinPermissionType>
-    			<JoinPermissionId>8***</JoinPermissionId>
-    			<OwnerAliyunPk>1375364789****</OwnerAliyunPk>
-    			<ClassMode>B</ClassMode>
-    			<JoinPermissionName>ForTest</JoinPermissionName>
-    		</JoinPermission>
-    	</JoinPermissions>
-    </QueryLoRaJoinPermissions>
-    ```
-
+```
+{
+	"RequestId": "1C1BD4E7-2FD3-4535-9D97-DE51803192AD",
+	"Success": true,
+	"JoinPermissions": {
+		"JoinPermission": [
+			{
+				"Enabled": true,
+				"JoinPermissionType": "LOCAL",
+				"JoinPermissionId": "50***",
+				"OwnerAliyunPk": "198426864326****",
+				"ClassMode": "A",
+				"JoinPermissionName": "给开发者B使用"
+			}
+		]
+	}
+}
+```
 
