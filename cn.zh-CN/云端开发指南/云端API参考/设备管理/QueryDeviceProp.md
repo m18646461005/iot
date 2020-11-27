@@ -1,67 +1,78 @@
-# QueryDeviceProp {#reference_f5j_prz_wdb .reference}
+# QueryDeviceProp
 
 调用该接口查询指定设备的标签列表。
 
-## 请求参数 {#section_uw5_kgt_xdb .section}
+## 限制说明
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：QueryDeviceProp。|
-|IotId|String|否|物联网平台为该设备颁发的设备ID，作为该设备的唯一标识符。**说明：** 如果传入该参数，则无需传入ProductKey和DeviceName。IotId作为设备唯一标识符，与ProductKey和DeviceName组合是一一对应的关系。如果您同时传入IotId和ProductKey与DeviceName组合，则以IotId为准。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-|
-|ProductKey|String|否|要查询的设备所隶属的产品Key。**说明：** 如果传入该参数，需同时传入DeviceName。
+**说明：** RAM用户共享阿里云账号配额。
 
-|
-|DeviceName|String|否|要查询的设备的名称。**说明：** 如果传入该参数，需同时传入ProductKey。
+## 调试
 
-|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=QueryDeviceProp&type=RPC&version=2018-01-20)
 
-## 返回参数 {#section_v43_5gt_xdb .section}
+## 请求参数
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|Props|String|调用成功时，返回的设备标签信息列表。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|QueryDeviceProp|系统规定参数。取值：QueryDeviceProp。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|IotId|String|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|要查询的设备ID。物联网平台为该设备颁发的ID，设备的唯一标识符。
 
-## 示例 {#section_xrq_1ht_xdb .section}
+ **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
+|DeviceName|String|否|light|要查询的设备名称。
 
-**请求示例**
+ **说明：** 如果传入该参数，需同时传入**ProductKey**。 |
+|ProductKey|String|否|a1BwAGV\*\*\*\*|要查询的设备所隶属的产品ProductKey。
+
+ **说明：** 如果传入该参数，需同时传入**DeviceName**。 |
+
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
+
+## 返回数据
+
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|Props|String|\{"coordinate":"104.07086:30.549169"\}|调用成功时，返回的设备标签信息列表，JSON String格式。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=QueryDeviceProp
-&ProductKey=al*********
+&ProductKey=a1BwAGV****
 &DeviceName=device1
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON 格式
+`XML` 格式
 
-    ```
-    {
-    	"RequestId": "D8CEF5E7-1484-4164-A242-C06BA3A54E0F",
-    	"Props": "{\"coordinate\":\"104.07086:30.549169\"}",
-    	"Success": true
-    }
-    ```
+```
+<QueryDevicePropResponse>
+  <RequestId>D8CEF5E7-1484-4164-A242-C06BA3A54E0F</RequestId>
+  <Props>{"coordinate":"104.07086:30.549169"}</Props>
+  <Success>true</Success>
+</QueryDevicePropResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version="1.0" encoding="UTF-8" ?>
-    <QueryDevicePropResponse>
-        <RequestId>D8CEF5E7-1484-4164-A242-C06BA3A54E0F</RequestId>
-        <Props>
-            <coordinate>104.07086:30.549169</coordinate>
-        </Props>
-        <Success>true</Success>
-    </QueryDevicePropResponse>
-    ```
-
+```
+{
+    "RequestId": "D8CEF5E7-1484-4164-A242-C06BA3A54E0F",
+    "Props": "{\"coordinate\":\"104.07086:30.549169\"}",
+    "Success": true
+}
+```
 
