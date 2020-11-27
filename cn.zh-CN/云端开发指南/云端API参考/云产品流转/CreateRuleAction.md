@@ -6,10 +6,10 @@
 
 -   服务地域不同，所支持的目标云产品有所不同。规则引擎支持的地域及目标云产品，请参见[地域与可用区](~~85669~~)。
 -   一个规则下面最多可创建10个规则动作。
--   您可以通过调用该API创建规则动作，定义将数据转发至物联网平台其他Topic和其他阿里云产品，包括DataHub、消息服务、函数计算、表格存储和消息队列RocketMQ。但是，如果您想将数据转发至时序时空数据库（TSDB）和云数据库RDS版，请在[物联网平台控制台](https://iot.console.aliyun.com)进行操作。
+-   您可以通过调用该API创建规则动作，定义将数据转发至物联网平台其他Topic、AMQP消费组和其他阿里云产品（DataHub、消息队列RocketMQ、消息服务、函数计算和表格存储）。如果您想将数据转发至实例内的时序数据存储、时序数据库（TSDB）和云数据库RDS版，请在[物联网平台控制台](https://iot.console.aliyun.com)进行操作。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享该阿里云账号配额。
 
 
 ## 调试
@@ -25,19 +25,19 @@
 |RuleId|Long|是|100000|要为其创建动作的规则ID。可在物联网平台控制台对应实例下，**规则引擎**\>**云产品流转**页查看规则ID，或调用[ListRule](~~69486~~)从返回结果中查看。 |
 |Type|String|是|REPUBLISH|规则动作类型，取值：
 
- -   **DATAHUB**：将根据规则处理后的Topic数据转发至阿里云DataHub，进行流式数据处理。
+ -   **REPUBLISH**：将根据规则处理后的Topic数据转发至另一个物联网平台 Topic。
+-   **AMQP**：数据流转到AMQP消费组。
+-   **DATAHUB**：将根据规则处理后的Topic数据转发至阿里云DataHub，进行流式数据处理。
 -   **ONS**：将根据规则处理后的Topic数据转发至阿里云消息队列RocketMQ，进行消息分发。
 -   **MNS**：将根据规则处理后的Topic数据发送至阿里云消息服务中，进行消息传输。
 -   **FC**：将根据规则处理后的Topic数据发送至阿里云函数计算服务，进行事件计算。
--   **REPUBLISH**：将根据规则处理后的Topic数据转发至另一个物联网平台 Topic。
--   **AMQP**：数据流转到AMQP消费组。
--   **OTS**：将根据规则处理后的Topic数据发送至阿里云表格存储，进行NoSQL数据存储。
+-   **OTS**：将根据规则处理后的Topic数据发送至阿里云表格存储（Tablestore），进行NoSQL数据存储。
 
  **说明：**
 
 -   数据格式为二进制的规则（即规则的**DataType**参数是**BINARY**）不支持转发数据至OTS（表格存储）。
 -   服务地域不同，规则引擎所支持的数据转发目标云产品不同。具体请参见规则引擎相关[地域与可用区](~~85669~~)。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |ErrorActionFlag|Boolean|否|false|该规则动作是否为转发错误操作数据的转发动作，即转发流转到其他云产品失败且重试失败的数据。 可选值：
 
  -   **true**：该规则动作转发错误操作数据。
@@ -53,22 +53,16 @@
 |----|----|
 |topic
 
-|转发至的目标Topic（物模型通信Topic或自定义Topic）。支持将数据转发至数据下行的物模型通信Topic：
+|转发的目标Topic（物模型通信Topic或自定义Topic）。支持将数据转发至数据下行的物模型通信Topic：
 
- `/sys/${YourProductKey}/${YourDeviceName}/thing/service/property/set`
+ `/sys/${YourProductKey}/${YourDeviceName}/thing/service/property/set` `/sys/${YourProductKey}/${YourDeviceName}/thing/service/${tsl.service.identifier}` 变量**$\{tsl.service.identifier\}**的内容由该产品物模型中的服务决定。 |
+|topicTyp
 
- `/sys/${YourProductKey}/${YourDeviceName}/thing/service/${tsl.service.identifier}`，变量`${tsl.service.identifier}`的内容由该产品物模型中的服务决定。
-
-| |
-|topicType
-
-|Topic的类型，取值：
+|Topic的类型。
 
  0：表示数据下行的物模型通信Topic。
 
- 1：表示自定义Topic。
-
-| |
+ 1：表示自定义Topic。 |
 
 REPUBLISH 类型**Configuration**示例：
 
@@ -96,11 +90,9 @@ sys类型：{"topic":"/sys/a1TXXXXXWSN/xxx_cache001/thing/service/property/set",
 |目标DataHub所在的阿里云地域代码，例如cn-shanghai。 |
 |role
 
-|授权角色信息。通过授予IoT指定的系统服务角色，您可以授权物联网平台访问您的DataHub。授权角色信息格式如下：
+|授权角色信息。通过授予IoT指定的系统服务角色，您可以授权物联网平台访问您的DataHub。授权角色信息格式：
 
- `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingdatahubrole","roleName": "AliyunIOTAccessingDataHubRole"}`
-
- 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
+ `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingdatahubrole","roleName": "AliyunIOTAccessingDataHubRole"}` 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
 
  `AliyunIOTAccessingDataHubRole`是访问控制中定义的服务角色。用于授予物联网平台访问DataHub。关于角色的更多信息，请在访问控制RAM控制台的角色管理页面进行角色管理。 |
 |schemaVals
@@ -121,19 +113,19 @@ schemaVals
 |列值。 |
 |type
 
-|列类型，取值：
+|列类型。
 
- BIGINT：大整数型
+ BIGINT：大整数型。
 
- DOUBLE：双精度浮点型
+ DOUBLE：双精度浮点型。
 
- BOOLEAN：布尔型
+ BOOLEAN：布尔型。
 
- TIMESTAMP：时间戳型
+ TIMESTAMP：时间戳型。
 
- STRING：字符串型
+ STRING：字符串型。
 
- DECIMAL：小数型 |
+ DECIMAL：小数型。 |
 
 DATAHUB类型**Configuration**示例：
 
@@ -180,11 +172,9 @@ DATAHUB类型**Configuration**示例：
 |目标实例所在的阿里云地域代码，例如cn-shanghai。 |
 |role
 
-|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的表格存储。授权角色信息如下：
+|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的表格存储。授权角色信息：
 
- `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingotsrole","roleName": "AliyunIOTAccessingOTSRole"}`
-
- 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
+ `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingotsrole","roleName": "AliyunIOTAccessingOTSRole"}` 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
 
  `AliyunIOTAccessingOTSRole`是访问控制中定义的服务角色。用于授予物联网平台访问表格存储。关于角色的更多信息，请在访问控制RAM控制台的角色管理页面进行角色管理。 |
 |primaryKeys
@@ -199,13 +189,13 @@ PrimaryKeys
 |----|----|
 |columnType
 
-|主键类型，取值：
+|主键类型。
 
- INTEGER：整型
+ INTEGER：整型。
 
- STRING：字符串
+ STRING：字符串。
 
- BINARY：二进制 |
+ BINARY：二进制。 |
 |columnName
 
 |主键名称。 |
@@ -214,7 +204,7 @@ PrimaryKeys
 |主键值。 |
 |option
 
-|主键是否为自增列，取值：AUTO\_INCREMENT或为空。当主键类型为INTEGER，且该字段为AUTO\_INCREMENT时，主键为自增列。 |
+|主键是否为自增列，取值AUTO\_INCREMENT或为空。当主键类型为INTEGER，且该字段为AUTO\_INCREMENT时，主键为自增列。 |
 
 OTS类型**Configuration**示例：
 
@@ -260,11 +250,9 @@ OTS类型**Configuration**示例：
 |目标消息服务所在的阿里云地域代码，例如cn-shanghai。 |
 |role
 
-|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的消息服务。授权角色信息如下：
+|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的消息服务。授权角色信息：
 
- `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingmnsrole","roleName": "AliyunIOTAccessingMNSRole"}`
-
- 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
+ `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingmnsrole","roleName": "AliyunIOTAccessingMNSRole"}` 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
 
  `AliyunIOTAccessingMNSRole`是访问控制中定义的服务角色。用于授予物联网平台访问消息服务。关于角色的更多信息，请在访问控制RAM控制台的角色管理页面进行角色管理。 |
 
@@ -300,11 +288,9 @@ MNS类型**​Configuration**​​示例：
 |目标函数服务实例所在阿里云地域的代码，如cn-shanghai。 |
 |role
 
-|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的函数计算服务。授权角色信息如下：
+|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的函数计算服务。授权角色信息：
 
- `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingfcrole","roleName": "AliyunIOTAccessingFCRole"}`
-
- 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
+ `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingfcrole","roleName": "AliyunIOTAccessingFCRole"}` 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
 
  `AliyunIOTAccessingFCRole`是访问控制中定义的服务角色。用于授予物联网平台访问函数计算。关于角色的更多信息，请在访问控制RAM控制台的角色管理页面进行角色管理。 |
 
@@ -324,7 +310,7 @@ FC类型**Configuration**示例：
 
 ```
 
-`<props=china>`**ONS类型Configuration定义**
+**ONS类型Configuration定义**
 
 **说明：** 您需通过调用消息队列RocketMQ的SDK，或在消息队列RocketMQ控制台，授权物联网平台访问消息队列RocketMQ（至少要授予物联网平台发布权限），然后才能够成功创建将Topic数据转发至消息队列RocketMQ的规则动作。
 
@@ -348,11 +334,9 @@ FC类型**Configuration**示例：
 |（可选）设置标签。长度限制为128字节。 |
 |role
 
-|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的消息队列RocketMQ服务。授权角色信息如下：
+|授权角色信息。通过授予物联网平台指定的系统服务角色，您可以授权物联网平台访问您的消息队列RocketMQ服务。授权角色信息：
 
- `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingonsrole","roleName": "AliyunIOTAccessingONSRole"}`
-
- 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
+ `{"roleArn":"acs:ram::6541***:role/aliyuniotaccessingonsrole","roleName": "AliyunIOTAccessingONSRole"}` 请将`6541***`替换成您的阿里云账号ID。您可以登录控制台，在账号安全设置页面查看您的账号ID。
 
  `AliyunIOTAccessingONSRole`是访问控制中定义的服务角色。用于授予物联网平台访问消息队列RocketMQ。关于角色的更多信息，请在访问控制RAM控制台的角色管理页面进行角色管理。 |
 
@@ -401,10 +385,13 @@ AMQP类型**Configuration**示例：
 |ActionId|Long|10003|调用成功时，规则引擎为该规则动作生成的规则动作ID，作为其标识符。
 
  **说明：** 请妥善保管该信息。在调用与规则动作相关的接口时，您可能需要提供对应的规则动作ID。 |
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|21D327AF-A7DE-4E59-B5D1-ACAC8C024555|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
 ## 示例
 
