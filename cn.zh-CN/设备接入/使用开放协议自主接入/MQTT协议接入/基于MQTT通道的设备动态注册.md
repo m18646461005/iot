@@ -15,23 +15,23 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
 
 ## 动态注册流程
 
-![流程](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2645559951/p146802.png)
+![流程](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2645559951/p146802.png)
 
 1.  设备发送CONNECT报文，报文中包含动态注册参数，请求建立连接。
 
     **说明：** 目前，动态注册只支持使用TLS建立连接，不支持TCP直连；动态注册时，云端不会校验MQTT连接的Keep Alive（保活时间），因此可以不用设置Keep Alive时间。
 
     -   MQTT连接域名：
-        -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+        -   企业版实例的接入域名，请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例，进入实例详情页查看。
 
             具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
 
         -   公共实例的连接域名为`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com:1883`。 其中：
             -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例的设备详情页获取。
-            -   $\{YourRegionId\}：请参见[地域和可用区](https://help.aliyun.com/document_detail/40654.html)替换为您的Region ID。
+            -   $\{YourRegionId\}：请参见[地域和可用区]()替换为您的Region ID。
     -   CONNECT报文的动态注册参数：
 
-        -   当设备属于您购买的实例，且使用[一型一密](/cn.zh-CN/设备接入/设备安全认证/一型一密.md)免预注册认证方式时，动态注册参数如下：
+        -   当设备属于企业版实例，且使用[一型一密](/cn.zh-CN/设备接入/设备安全认证/一型一密.md)免预注册认证方式时，动态注册参数如下：
 
             ```
             mqttClientId: clientId+"|securemode=-2,authType=xxxx,random=xxxx,signmethod=xxxx,instanceId=xxxx|"
@@ -131,6 +131,6 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
 
     如果您使用Eclipse Paho MQTT客户端，设置`MqttConnectOptions.setAutomaticReconnect(false)`关闭自动重连。否则，注册成功并TCP断连后，重连逻辑会发起新的动态注册请求。
 
-5.  设备使用DeviceSecret，或使用ClientID和DeviceToken的组合，再次发起MQTT连接请求，建立设备与物联网平台的连接，进行消息通信。详情请参见[MQTT-TCP连接通信](/cn.zh-CN/设备接入/使用开放协议自主接入/MQTT协议接入/MQTT-TCP连接通信.md)。
+5.  设备使用DeviceSecret，或使用ClientID和DeviceToken的组合，再次发起MQTT连接请求，建立设备与物联网平台的连接，进行消息通信。具体操作，请参见[MQTT-TCP连接通信](/cn.zh-CN/设备接入/使用开放协议自主接入/MQTT协议接入/MQTT-TCP连接通信.md)。
 
 
