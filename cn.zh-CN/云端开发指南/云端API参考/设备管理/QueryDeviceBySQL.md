@@ -4,7 +4,7 @@
 
 ## 限制说明
 
--   仅支持搜索华东2（上海）、华北2（北京）、华南1（深圳）地域您购买的实例中的设备。
+-   仅支持搜索华东2（上海）、华北2（北京）、华南1（深圳）地域企业版实例中的设备。
 -   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
 **说明：** RAM用户共享阿里云账号配额。
@@ -19,7 +19,7 @@
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
 |Action|String|是|QueryDeviceBySQL|系统规定参数。取值：QueryDeviceBySQL。 |
-|IotInstanceId|String|是|iot-cn-0pp1n8t\*\*\*\*|您购买的实例ID。 |
+|IotInstanceId|String|是|iot-cn-0pp1n8t\*\*\*\*|企业版实例ID。 |
 |SQL|String|是|SELECT \* FROM device where product\_key = "a1\*\*\*\*\*\*\*\*\*" limit 100, 20|查询设备的类SQL语句。具体要求和示例见下文请求参数补充说明。 |
 
 使用QueryDeviceBySQL进行设备高级搜索时，类SQL语句由SELECT子句、WHERE子句、ORDER BY子句（可选）、LIMIT子句（可选）组成。长度限制400个字符。
