@@ -36,7 +36,7 @@
 |--|--|----|---|--|
 |Action|String|是|BatchCheckDeviceNames|系统规定参数。取值：BatchCheckDeviceNames。 |
 |ProductKey|String|是|a1BwAGV\*\*\*\*|要注册的设备所属的产品ProductKey。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |DeviceName.N|RepeatList|否|light|要注册的设备名称。设备名称在产品内具有唯一性。支持英文字母、数字、短划线（-）、下划线（\_）、at（@）、英文句点（.）和英文冒号（:），长度限制为4~32个字符。
 
  该参数与**DeviceNameList.N.DeviceName**必须传入一种。若您同时传入该参数与**DeviceNameList.N.DeviceName**，则以**DeviceNameList.N.DeviceName**为准。
@@ -51,7 +51,7 @@
 
  若传入该参数，则必须同时传入**DeviceNameList.N.DeviceName**。 |
 
-调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。更多信息，请参见 [公共参数文档](~~30561~~)。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
 ## 返回数据
 
