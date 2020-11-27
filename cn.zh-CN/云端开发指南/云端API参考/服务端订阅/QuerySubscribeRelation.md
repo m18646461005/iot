@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为5。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -22,41 +22,41 @@
 
  -   **MNS**
 -   **AMQP** |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
-调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见 [公共参数文档](~~30561~~)。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
 ## 返回数据
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
-|DeviceDataFlag|Boolean|true|推送消息类型是否选择设备上报消息：
+|DeviceDataFlag|Boolean|true|推送消息类型是否选择设备上报消息。
 
  -   **true**：是。
 -   **false**：否。 |
-|DeviceStatusChangeFlag|Boolean|true|推送消息类型是否选择设备状态变化通知：
+|DeviceStatusChangeFlag|Boolean|true|推送消息类型是否选择设备状态变化通知。
 
  -   **true**：是。
 -   **false**：否。 |
-|FoundDeviceListFlag|Boolean|true|推送消息类型是否选择网关子设备发现上报：
+|FoundDeviceListFlag|Boolean|true|推送消息类型是否选择网关子设备发现上报。
 
  -   **true**：是。仅网关产品会返回**true**。
 -   **false**：否。 |
-|DeviceTopoLifeCycleFlag|Boolean|true|推送消息类型是否选择设备拓扑关系变更：
+|DeviceTopoLifeCycleFlag|Boolean|true|推送消息类型是否选择设备拓扑关系变更。
 
  -   **true**：是。仅网关产品会返回**true**。
 -   **false**：否。 |
-|DeviceLifeCycleFlag|Boolean|true|推送消息类型是否选择设备生命周期变更：
+|DeviceLifeCycleFlag|Boolean|true|推送消息类型是否选择设备生命周期变更。
 
  -   **true**：是。
 -   **false**：否。 |
-|ThingHistoryFlag|Boolean|true|推送消息类型是否选择物模型历史数据上报：
+|ThingHistoryFlag|Boolean|true|推送消息类型是否选择物模型历史数据上报。
 
  -   **true**：是。
 -   **false**：否。 |
-|OtaEventFlag|Boolean|true|推送消息类型是否选择固件升级状态通知：
+|OtaEventFlag|Boolean|true|推送消息类型是否选择OTA升级状态通知。
 
  -   **true**：是。
 -   **false**：否。 |
@@ -79,12 +79,12 @@
 
  默认值为**false**。 |
 |ProductKey|String|a1fyXVF\*\*\*\*|该订阅中的产品的ProductKey。 |
-|Success|Boolean|true|是否调用成功：
+|Success|Boolean|true|是否调用成功。
 
  -   **true**：调用成功。
 -   **false**：调用失败。 |
 |ConsumerGroupIds|List|\[DEFAULT\_GROUP,br45A6A1amoRFGN7x1zP00\*\*\*\*\]|**Type**为**AMQP**时，返回AMQP订阅中的消费组ID。 |
-|Type|String|AMQP|订阅类型：
+|Type|String|AMQP|订阅类型。返回值：
 
  -   **MNS**
 -   **AMQP** |
