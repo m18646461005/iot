@@ -4,7 +4,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -16,9 +16,9 @@
 |--|--|----|---|--|
 |Action|String|是|UpdateOTAModule|系统规定参数。取值：UpdateOTAModule。 |
 |ModuleName|String|是|barcodeScanner|OTA模块名称。 |
-|ProductKey|String|是|a1Le6d0\*\*\*\*|OTA模块所属产品的ProductKey。 |
-|AliasName|String|否|条码扫描仪2|新的模块别名。支持英文字母、数字、点号（.）、短划线（-）和下划线（\_），长度限制为1~64个字符。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|ProductKey|String|是|a1Le6d0\*\*\*\*|OTA模块所属产品的**ProductKey**。 |
+|AliasName|String|否|条码扫描仪2|新的模块别名。支持中文、英文字母、数字、点号（.）、短划线（-）和下划线（\_），长度限制为1~64个字符。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |Desc|String|否|条码扫描仪的固件模块|新的模块描述信息，支持最多100个字符。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
@@ -27,7 +27,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|74C2BB8D-1D6F-41F5-AE68-6B2310883F63|阿里云为该请求生成的唯一标识符。 |
 |Success|Boolean|true|是否调用成功。
