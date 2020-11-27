@@ -1,96 +1,119 @@
-# BatchGetDeviceState {#reference_exs_brz_wdb .reference}
+# BatchGetDeviceState
 
 调用该接口批量查看同一产品下指定设备的运行状态。
 
-## 限制说明 {#section_nvz_1jm_xdb .section}
+## 限制说明
 
-该接口用于查看一个产品下多个设备的运行状态，单次最多可查询50个设备。
+-   该接口用于查看一个产品下多个设备的运行状态，单次最多可查询50个设备。
+-   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
-## 请求参数 {#section_l1s_wjm_xdb .section}
+**说明：** RAM用户共享阿里云账号配额。
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：BatchGetDeviceState。|
-|ProductKey|String|是|要查看运行状态的设备所隶属的产品Key。|
-|DeviceName|List<String\>|是| 要查看运行状态的设备的名称列表。
 
- **说明：** 支持单次查询最多50个设备。
+## 调试
 
- |
-|公共请求参数|-|是|公共请求参数，请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#) 。|
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=BatchGetDeviceState&type=RPC&version=2018-01-20)
 
-## 返回参数 {#section_sts_lsm_xdb .section}
+## 请求参数
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|DeviceStatusList|DeviceStatus|调用成功时，返回设备状态信息列表。详情参见下表[DeviceStatus](#table_thn_ssm_xdb)。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|BatchGetDeviceState|系统规定参数。取值：BatchGetDeviceState。 |
+|DeviceName.N|RepeatList|否|light|要查看运行状态的设备的名称列表。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|DeviceName|String|设备名称。|
-|Status|String| 设备状态。取值：
+ **说明：** 如果传入该参数，需同时传入**ProductKey**。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|ProductKey|String|否|a1BwAGV\*\*\*\*|要查看运行状态的设备所隶属的产品ProductKey。
 
- ONLINE：设备在线。
+ **说明：** 如果传入该参数，需同时传入**DeviceName**。 |
+|IotId.N|RepeatList|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|要查看运行状态的设备ID列表。
 
- OFFLINE：设备离线。
+ **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
 
- UNACTIVE：设备未激活。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- DISABLE：设备已禁用。
+## 返回数据
 
- |
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|DeviceStatusList|Array of DeviceStatus| |调用成功时，返回设备状态信息列表，请参见DeviceStatus包含的以下参数。 |
+|DeviceStatus| | | |
+|AsAddress|String|42.12\*.7\*.1\*\*|设备IP地址。 |
+|DeviceId|String|dwnS41bhNxjslDAI\*\*\*\*|设备ID（旧版参数）。
 
-## 示例 {#section_t5j_zsm_xdb .section}
+ **说明：** 该参数是旧版本遗留参数，已无实际作用，不能用来标识设备。目前，有效的设备标识符为**IotId**和**ProductKey**与**DeviceName**组合。 |
+|DeviceName|String|light|设备名称。 |
+|IotId|String|dwnS41bhNxjslDAI\*\*\*\*000100|设备ID，物联网平台为设备颁发的唯一标识。 |
+|LastOnlineTime|String|2020-01-17 16:19:11|设备最后一次上线的时间。 |
+|Status|String|OFFLINE|设备状态。取值：
 
-**请求示例**
+ -   **ONLINE**：设备在线。
+-   **OFFLINE**：设备离线。
+-   **UNACTIVE**：设备未激活。
+-   **DISABLE**：设备已禁用。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
+
+## 示例
+
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=BatchGetDeviceState
-&productKey=al*********
+&productKey=a1BwAGV****
 &DeviceName.1=device1
 &DeviceName.2=device2
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-          DeviceStatusList:{
-              DeviceStatus:[
-                  {Status:UNACTIVE, DeviceName:device1},
-                  {Status:UNACTIVE, DeviceName:device2}
-              ]
-          },
-          RequestId:"1A540BD7-176C-42D4-B3C0-A2C549DD00A3",
-          Success:true
-      }
-    ```
+```
+<BatchGetDeviceStateResponse>
+  <DeviceStatusList>
+        <DeviceStatus>
+              <Status>OFFLINE</Status>
+              <DeviceId>dwnS41bhNxjslDAI****</DeviceId>
+              <DeviceName>Humidity</DeviceName>
+              <AsAddress>42.1**.7*.1**</AsAddress>
+              <LastOnlineTime>2020-01-17 16:19:11</LastOnlineTime>
+              <IotId>dwnS41bhNxjslDAI****000100</IotId>
+        </DeviceStatus>
+  </DeviceStatusList>
+  <RequestId>3258D872-EDC5-4039-B564-C27ED7176741</RequestId>
+  <Success>true</Success>
+</BatchGetDeviceStateResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version="1.0" encoding="UTF-8"?> 
-      <BatchGetDeviceStateResponse>
-          <RequestId>1AB5E6B0-AFCB-47B1-B6D4-C2BD32D63E14</RequestId>
-          <Success>true</Success>
-          <DeviceStatusList>
-              <DeviceStatus>
-               <Status>UNACTIVE</Status>
-               <DeviceName>device1</DeviceName>
-              </DeviceStatus>
-              <DeviceStatus>
-               <Status>UNACTIVE</Status>
-               <DeviceName>device2</DeviceName>
-              </DeviceStatus>
-          </DeviceStatusList>
-      </BatchGetDeviceStateResponse>
-    ```
+```
+{
+	"DeviceStatusList": {
+		"DeviceStatus": [
+			{
+				"Status": "OFFLINE",
+				"DeviceId": "dwnS41bhNxjslDAI****",
+				"DeviceName": "Humidity",
+				"AsAddress": "42.1**.7*.1**",
+				"LastOnlineTime": "2020-01-17 16:19:11",
+				"IotId": "dwnS41bhNxjslDAI****000100"
+			}
+		]
+	},
+	"RequestId": "3258D872-EDC5-4039-B564-C27ED7176741",
+	"Success": true
+}
+```
 
+## 错误码
+
+访问[错误中心](https://error-center.alibabacloud.com/status/product/Iot)查看更多错误码。
 
