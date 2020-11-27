@@ -24,7 +24,7 @@
 |Action|String|是|QueryDeviceServiceData|系统规定参数。取值：QueryDeviceServiceData。 |
 |EndTime|Long|是|1579249499000|要查询的服务调用记录的结束时间。取值为毫秒值时间戳，例如1579249499000。 |
 |StartTime|Long|是|1579249499000|要查询的服务调用记录的开始时间。取值为毫秒值时间戳，例如1579249499000。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数；您购买的企业实例需传入此参数。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 |IotId|String|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|要查询的设备ID。物联网平台为该设备颁发的ID，设备的唯一标识符。
 
  **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
@@ -41,7 +41,7 @@
 -   **1**：正序。 |
 |PageSize|Integer|否|10|返回结果中每页显示的记录数。数量限制：每页最多可显示50条。 |
 
-调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。更多信息，请参见 [公共参数文档](~~30561~~)。
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
 ## 返回数据
 
