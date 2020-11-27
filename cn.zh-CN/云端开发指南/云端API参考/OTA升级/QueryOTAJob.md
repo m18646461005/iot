@@ -6,7 +6,7 @@
 
 单阿里云账号调用该接口的每秒请求数（QPS）最大限制为10。
 
-**说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
 ## 调试
 
@@ -20,7 +20,7 @@
 |JobId|String|是|wahVIzGkCMuAUE2gDERM02\*\*\*\*|升级批次ID。
 
  您调用[CreateOTAVerifyJob](~~147480~~)、[CreateOTAStaticUpgradeJob](~~147496~~)或[CreateOTADynamicUpgradeJob](~~147887~~)创建升级任务批次后，返回的**JobId**。您也可以在物联网平台控制台的**升级包详情**页查看。 |
-|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数；您购买的实例需传入。 |
+|IotInstanceId|String|否|iot-cn-0pp1n8t\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
@@ -28,7 +28,7 @@
 
 |名称|类型|示例值|描述|
 |--|--|---|--|
-|Code|String|iot.system.SystemException|调用失败时，返回的错误码。错误码详情，请参见[错误码](~~87387~~)。 |
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
 |Data|Struct| |调用成功时，返回的升级批次信息。详情见以下Data所包含的参数。 |
 |DestVersion|String|1.0.1|升级目标版本号。 |
 |DynamicMode|Integer|1|动态升级模式。取值范围：
@@ -97,7 +97,10 @@
 |UtcStartTime|String|2019-12-28T02:43:10.000Z|该批次任务开始执行时的时间，UTC格式。 |
 |ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
 |RequestId|String|30F1BB8D-EDBF-44FD-BBC0-BE97DEA73991|阿里云为该请求生成的唯一标识符。 |
-|Success|Boolean|true|是否调用成功。**true**表示调用成功，**false**表示调用失败。 |
+|Success|Boolean|true|是否调用成功。
+
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
 ## 示例
 
