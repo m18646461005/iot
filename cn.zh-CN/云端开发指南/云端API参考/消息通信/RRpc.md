@@ -1,92 +1,91 @@
-# RRpc {#reference_vgv_ckd_xdb .reference}
+# RRpc
 
 调用该接口向指定设备发送请求消息，并同步返回响应。
 
-## 限制说明 {#section_7x9_81c_kfx .section}
+## 限制说明
 
--   单阿里云账号调用该接口的每秒请求数（QPS）最大限制为1,000。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为1000。
 
-    **说明：** 子账号共享主账号配额。
+**说明：** RAM用户共享阿里云账号配额。
 
--   单客户端出口IP的最大QPS限制为100，即来自单个客户端出口IP，调用阿里云接口的每秒请求总数不能超过100。
+## 调试
 
-## 请求参数 {#section_wws_dhb_ydb .section}
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=RRpc&type=RPC&version=2018-01-20)
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：RRpc。|
-|ProductKey|String|是|要发送消息的产品Key。|
-|DeviceName|String|是|要接收消息的设备名称。|
-|RequestBase64Byte|String|是|要发送的请求消息内容经过Base64编码得到的字符串格式数据。|
-|Timeout|Integer|是|等待设备回复消息的时间，单位是毫秒，取值范围是1,000 ~8,000。|
-|Topic|String|否|使用自定义的RRPC相关Topic。需要设备端配合使用，请参见设备端开发[自定义Topic](../../../../intl.zh-CN/用户指南/RRPC/调用自定义Topic.md#)。 不传入此参数，则使用系统默认的RRPC Topic。
+## 请求参数
 
- |
-|IotInstanceId|String|否|共享实例用户不传此参数；仅独享实例用户需传入实例ID。|
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|RRpc|系统规定参数。取值：RRpc。 |
+|DeviceName|String|是|device1|要接收消息的设备名称。 |
+|ProductKey|String|是|aldfeSe\*\*\*\*|要发送消息的产品Key。 |
+|RequestBase64Byte|String|是|dGhpcyBpcyBhbiBleGFtcGxl|要发送的消息内容经过Base64编码得到的字符串格式数据，例如`dGhpcyBpcyBhbiBleGFtcGxl`。 |
+|Timeout|Integer|是|1000|等待设备回复消息的时间，单位是毫秒，取值范围是1,000 ~8,000。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|Topic|String|否|/a1uZfYb\*\*\*\*/A\_Vol\*\*\*\*/user/update|使用自定义的RRPC相关Topic。需要设备端配合使用，请参见设备端开发[自定义Topic](~~90570~~)。
 
-## 返回参数 {#section_wbr_qhb_ydb .section}
+ 不传入此参数，则使用系统默认的RRPC Topic。 |
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|MessageId|String|成功发送请求消息后，云端生成的消息ID，用于标识该消息。|
-|RrpcCode|String| 调用成功时，生成的调用返回码，标识请求状态。取值：
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- UNKNOWN：系统异常
+## 返回数据
 
- SUCCESS：成功
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|MessageId|Long|889455942124347392|成功发送请求消息后，云端生成的消息ID，用于标识该消息。 |
+|PayloadBase64Byte|String|d29ybGQgaGVsbG8=|设备返回结果Base64编码后的值。 |
+|RequestId|String|41C4265E-F05D-4E2E-AB09-E031F501AF7F|阿里云为该请求生成的唯一标识符。 |
+|RrpcCode|String|SUCCESS|调用成功时，生成的调用返回码，标识请求状态。取值：
 
- TIMEOUT：设备响应超时
+ -   **UNKNOWN**：系统异常
+-   **SUCCESS**：成功
+-   **TIMEOUT**：设备响应超时
+-   **OFFLINE**：设备离线
+-   **HALFCONN**：设备离线（设备连接断开，但是断开时间未超过一个心跳周期） |
+|Success|Boolean|true|是否调用成功。
 
- OFFLINE：设备离线
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- HALFCONN：设备离线（设备连接断开，但是断开时间未超过一个心跳周期）
-
- |
-|PayloadBase64Byte|String|设备返回结果Base64编码后的值。|
-
-## 示例 {#section_g4c_33b_ydb .section}
+## 示例
 
 请求示例
 
-``` {#codeblock_8i5_vvc_ufh}
+```
 https://iot.cn-shanghai.aliyuncs.com/?Action=RRpc
-&ProductKey=al*******
+&ProductKey=aldfeSe****
 &DeviceName=device1
-&RequestBase64Byte=aGVsbG8gd29ybGQ%3D
+&RequestBase64Byte=dGhpcyBpcyBhbiBleGFtcGxl
 &TimeOut=1000
-&公共请求参数
+&<公共请求参数>
 ```
 
-返回示例
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ``` {#codeblock_b3a_ahw_x1o}
-    {
-          "RequestId":"41C4265E-F05D-4E2E-AB09-E031F501AF7F",
-          "Success":true,
-          "RrpcCode":"SUCCESS",
-          "PayloadBase64Byte":"d29ybGQgaGVsbG8="
-          "MessageId":889455942124347392
-      }
-    ```
+```
+<?xml version='1.0' encoding='UTF-8'?>
+  <RRpcResponse>
+      <RequestId>41C4265E-F05D-4E2E-AB09-E031F501AF7F<RequestId/>
+      <Success>true</Success>
+      <RrpcCode>SUCCESS</RrpcCode>
+      <PayloadBase64Byte>d29ybGQgaGVsbG8=</PayloadBase64Byte>
+      <MessageId>889455942124347392</MessageId>
+  </RRpcResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ``` {#codeblock_noc_hyk_932}
-    <?xml version='1.0' encoding='UTF-8'?>
-      <RRpcResponse>
-          <RequestId>41C4265E-F05D-4E2E-AB09-E031F501AF7F<RequestId/>
-          <Success>true</Success>
-          <RrpcCode>SUCCESS</RrpcCode>
-          <PayloadBase64Byte>d29ybGQgaGVsbG8=</PayloadBase64Byte>
-          <MessageId>889455942124347392</MessageId>
-      </RRpcResponse>
-    ```
-
+```
+{
+      "RrpcCode":"SUCCESS",
+      "PayloadBase64Byte":"d29ybGQgaGVsbG8=",
+      "MessageId":889455942124347392,
+      "RequestId":"41C4265E-F05D-4E2E-AB09-E031F501AF7F",
+      "Success":true
+}
+```
 
