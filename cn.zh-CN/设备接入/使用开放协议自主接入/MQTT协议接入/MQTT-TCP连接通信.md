@@ -27,7 +27,10 @@ keyword: [MQTT, 物联网, IoT, 物联网平台, TCP, 设备连接, 通信]
 
     建议您使用设备端SDK接入物联网平台。如果您自行开发接入，连接参数如下。
 
-    |接入域名|    -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+    |接入域名|    -   企业版实例的接入域名，请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例，进入实例详情页查看。
+
+具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
+
     -   公共实例的接入域名：`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com:1883`。 其中：
         -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例的设备详情页获取。
         -   $\{YourRegionId\}：请参见[地域和可用区](https://help.aliyun.com/document_detail/40654.html) |
