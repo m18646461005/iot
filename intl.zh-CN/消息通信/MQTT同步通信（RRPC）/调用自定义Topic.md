@@ -4,14 +4,7 @@ keyword: [物联网, 物联网平台, IoT, 同步调用, RRPC, 同步获取响�
 
 # 调用自定义Topic
 
-RRPC支持调用自定义Topic与云端通信，且相关Topic中包含了您自定义的完整的Topic。
-
-支持使用以下Link SDK开发的设备通过自定义Topic与云端通信：
-
--   [C SDK](https://help.aliyun.com/document_detail/96623.html)
--   [Android SDK](https://help.aliyun.com/document_detail/96607.html)
--   [Node.js SDK](https://help.aliyun.com/document_detail/96618.html)
--   [Python SDK](https://help.aliyun.com/document_detail/98292.html)
+RRPC支持调用自定义Topic与云端通信，且相关Topic中包含了完整的您自定义的Topic。
 
 ## 自定义Topic
 
@@ -27,11 +20,21 @@ RRPC调用自定义Topic的格式如下：
 
 1.  云端发送RRPC消息。
 
-    服务端调用云端API的RRpc接口向设备发送消息。更多信息，请参见[RRpc](/intl.zh-CN/云端开发指南/云端API参考/消息通信/RRpc.md)。
+    服务端调用云端API RRpc接口向设备发送消息。接口调用方法，请参见[RRpc](/intl.zh-CN/云端开发指南/云端API参考/消息通信/RRpc.md)。
 
-    以使用Java SDK为例。
+    以使用Java SDK为例，调用方式：
 
-    使用自定义Topic格式时，您需要确保您的云端Java SDK（aliyun-java-sdk-iot）为6.0.0及以上版本。
+    ```
+    RRpcRequest request = new RRpcRequest();ph
+    request.setProductKey("testProductKey");
+    request.setDeviceName("testDeviceName");
+    request.setRequestBase64Byte(Base64.getEncoder().encodeToString("hello world"));
+    request.setTopic("/testProductKey/testDeviceName/user/get");//如果是自定义Topic调用方式，在这里传递自定义Topic
+    request.setTimeout(3000);
+    RRpcResponse response = client.getAcsResponse(request);
+    ```
+
+    使用自定义Topic格式时，您需要确保您的云端Java SDK（aliyun-java-sdk-iot）版本为6.0.0及以上版本。
 
     ```
     <dependency>
@@ -41,43 +44,30 @@ RRPC调用自定义Topic的格式如下：
     </dependency>
     ```
 
-    调用RRpc接口的示例：
-
-    ```
-    RRpcRequest request = new RRpcRequest();
-    request.setProductKey("testProductKey");
-    request.setDeviceName("testDeviceName");
-    request.setRequestBase64Byte(Base64.getEncoder().encodeToString("hello world"));
-    request.setTopic("/testProductKey/testDeviceName/user/get");//如果是自定义Topic调用方式，在这里传递自定义Topic。
-    request.setTimeout(3000);
-    RRpcResponse response = client.getAcsResponse(request);
-    ```
-
-    **说明：** 请登录 [OpenAPI Explorer](https://api.aliyun.com/)，在线调用RRpc接口，便可查看多种语言云端SDK调用示例。
-
 2.  设备端接入。
 
-    -   对于使用Node.js SDK的设备，需要在开发设备前，将SDK下载到本地，修改src文件夹中的model.js文件，在genConnectPrarms函数中的clientId中添加`ext=1`，再使用该SDK进行设备开发。
+    从云端下发自定义格式Topic的RRPC调用命令到设备端时，设备端必须在进行MQTT CONNECT协议设置时，在clientId中增加`ext=1`参数。设备端通过MQTT协议接入物联网平台操作指导，请参见[MQTT-TCP连接通信](/intl.zh-CN/设备接入/使用开放协议自主接入/MQTT协议接入/MQTT-TCP连接通信.md)。
 
-        原clientId为：
+    例如，原来传递的clientId为：
 
-        ```
-        clientId:`${this.clientId}|securemode=${this.securemode },signmethod=hmac${this.signAlgorithm},timestamp=${this.timestamp},${extra}`,
-        ```
+    ```
+    mqttClientId: clientId+"|securemode=3,signmethod=hmacsha1,timestamp=132323232|"
+    ```
 
-        添加`ext=1`后，clientId为：
+    则添加`ext=1`参数后，传递的clientId为：
 
-        ```
-        clientId:`${this.clientId}|securemode=${this.securemode },signmethod=hmac${this.signAlgorithm},timestamp=${this.timestamp},${extra},ext=1`,
-        ```
+    ```
+    mqttClientId: clientId+"|securemode=3,signmethod=hmacsha1,timestamp=132323232,ext=1|"
+    ```
 
-    -   对于使用C SDK、Android SDk、Python SDK的设备，无需做任何特殊操作。
+    **说明：** 云端和设备端之间使用自定义Topic进行RRPC通信的条件：
+
+    -   云端传递的Topic字段不为空。
+    -   设备端在建立连接（connect）时传递了`ext=1`参数。
 3.  设备端返回RRPC响应的Topic。
 
     RRPC请求Topic和响应Topic格式一样，直接将请求Topic作为响应Topic即可。
 
     **说明：** 目前，仅支持设备端返回QoS=0的RRPC响应消息。
-
-    关于如何通过Python语言设备端SDK响应RRPC调用，请参见[RRPC能力](https://help.aliyun.com/document_detail/108172.html)。
 
 
