@@ -8,7 +8,7 @@
 
 -   企业版实例的接入域名，请在物联网平台控制台**实例概览**页面，单击实例，进入实例详情页查看。
 -   公共实例的接入域名：`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com`。 其中：
-    -   $\{YourProductKey\}：请替换为设备所属产品的的ProductKey。可从物联网平台控制台设备详情页获取。
+    -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可从物联网平台控制台设备详情页获取。
     -   $\{YourRegionId\}：请参见[地域和可用区]()，替换为您的Region ID。
 
 端口号：1883。
