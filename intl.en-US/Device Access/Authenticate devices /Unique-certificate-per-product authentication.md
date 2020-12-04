@@ -68,7 +68,7 @@ You can use unique-certificate-per-product authentication in the following two m
 
 5.  Connect the device to IoT Platform.
 
-    Power on the device and connect it to IoT Platform. Then, the device carries the ProductKey, ProductSecret, and DeviceName to initiate an authentication request. For more information, see [HTTP-based dynamic device registration](/intl.en-US/Device Management/Develop devices based on Alink Protocol/Device identity registration.md).
+    Power on the device and connect it to IoT Platform. Then, the device carries the ProductKey, ProductSecret, and DeviceName to initiate an authentication request. For more information, see [MQTT-based dynamic registration](/intl.en-US/Device Access/Protocols for connecting devices/Use MQTT protocol/MQTT-based dynamic registration.md) and[HTTP-based dynamic device registration](/intl.en-US/Device Management/Develop devices based on Alink Protocol/Device identity registration.md).
 
 6.  Activate the device in IoT Platform.
 
