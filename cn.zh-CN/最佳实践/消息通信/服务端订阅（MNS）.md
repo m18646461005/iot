@@ -41,14 +41,14 @@ keyword: [物联网, IoT, 物联网平台, 服务端订阅, 消息服务（MNS�
 
     在订阅列表中，单击MNS右侧的图标，可查看MNS队列名称。
 
-    ![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/6634749951/p48775.png)
+    ![设备消息订阅](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9254707061/p48775.png)
 
 
 ## 配置服务端MNS SDK接收消息
 
 本示例使用MNS Java SDK Demo。
 
-1.  访问[MNS Java SDK下载](https://help.aliyun.com/document_detail/27508.html)，下载sample包aliyun-sdk-mns-samples1.1.8，并解压缩。
+1.  访问[MNS Java SDK下载]()，下载sample包aliyun-sdk-mns-samples1.1.8，并解压缩。
 
 2.  打开Eclipse，选择导入工程，导入aliyun-sdk-mns-samples文件夹。
 
