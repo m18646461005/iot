@@ -58,11 +58,9 @@ You can use unique-certificate-per-product authentication in the following two m
 
     1.  Download the device SDK. For more information, see [Link SDK](https://www.alibabacloud.com/help/doc-detail/96627.htm).
 
-        **Note:** If you use preregistration-free unique-certificate-per-product authentication, you must use [Link SDK for C 4.X](). This SDK integrates the device authentication service \(DAS\), which allows you to control the security risks of devices. IoT Platform is not responsible for any security issues that occur on devices if the devices do not use this SDK.
-
     2.  Initialize the device SDK and enable dynamic registration. In the device SDK, specify the ProductKey and ProductSecret.
 
-        Enable dynamic registration by using the device SDK. For information about how to use the Link SDK for C to enable dynamic registration, see [MQTT-based dynamic registration \(Link SDK for C\)]() and [HTTPS-based dynamic registration \(Link SDK for C\)](). For more information about how to use Link SDKs for other programming languages to enable dynamic registration, see[Authentication and connection](https://www.alibabacloud.com/help/doc-detail/96627.htm).
+        For more information about how to configure device-side SDKs to use the unique-certificate-per-product method, see the documentations about authentication and connection in [Authentication and connection](https://www.alibabacloud.com/help/doc-detail/96627.htm).
 
     3.  Develop the device SDK based on your business needs. For example, you can develop the following features: over-the-air \(OTA\) update, sub-device connection, Thing Specification Language \(TSL\), and device shadows.
 
@@ -70,7 +68,7 @@ You can use unique-certificate-per-product authentication in the following two m
 
 5.  Connect the device to IoT Platform.
 
-    Power on the device and connect it to IoT Platform. Then, the device carries the ProductKey, ProductSecret, and DeviceName to initiate an authentication request. For more information, see [MQTT-based dynamic registration]() and [HTTP-based dynamic device registration](/intl.en-US/Device Management/Develop devices based on Alink Protocol/Device identity registration.md).
+    Power on the device and connect it to IoT Platform. Then, the device carries the ProductKey, ProductSecret, and DeviceName to initiate an authentication request. For more information, see [HTTP-based dynamic device registration](/intl.en-US/Device Management/Develop devices based on Alink Protocol/Device identity registration.md).
 
 6.  Activate the device in IoT Platform.
 
