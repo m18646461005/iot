@@ -2,8 +2,6 @@
 
 IoT Platform allows you to distribute devices across regions, instances, or accounts. IoT Platform sends a notification to devices after you configure a device distribution in the IoT Platform console.
 
-For more information about the procedure of device distribution, see [Distribute devices](/intl.en-US/Device Management/Resource allocation/Distribute devices.md).
-
 ## Device distribution notifications
 
 The following topics are used when IoT Platform sends downstream notifications and devices send upstream responses:
