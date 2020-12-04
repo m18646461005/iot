@@ -9,7 +9,6 @@ IoT Platform provides the over-the-air \(OTA\) update and management feature. To
 Before you use the OTA update feature, make sure that your devices support the OTA service.
 
 -   For more information about how to configure OTA updates by using device SDKs, see [Update devices by using OTA](/intl.en-US/Maintenance/OAT update/Update devices by using OTA.md).
--   If you use the [Link SDK for Android](https://help.aliyun.com/document_detail/96607.html) on devices and need to perform differential updates, you must integrate the algorithms to authenticate the devices and generate full update packages. For more information, see [Implement a differential firmware update on an Android device]().
 -   For more information about how to configure OTA updates if your devices are installed with AliOS Things chips, see [OTA tutorial for AliOS Things](https://github.com/alibaba/AliOS-Things/wiki/OTA-Tutorial).
 
 Take note of the following limits of OTA updates:
