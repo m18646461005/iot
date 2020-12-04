@@ -17,7 +17,7 @@ keyword: [MQTT, WebSocket, 物联网, IoT, 物联网平台, 设备, 连接, 通�
 
 2.  客户端选择。
 
-    直接使用[官方客户端](http://aliyun-iot.oss-cn-hangzhou.aliyuncs.com/iotx-sdk-java/iotx-sdk-mqtt-java-20170526.zip?spm=5176.doc42648.2.18.7iyFfe&file=iotx-sdk-mqtt-java-20170526.zip)，只需要替换连接URL即可。其他语言版本客户端或者是自主接入，请参考[开源MQTT客户端](https://github.com/mqtt/mqtt.github.io/wiki/libraries?spm=5176.doc30539.2.5.aalCo6)参考，使用前请阅读相关客户端的说明，是否支持WebSocket方式。
+    直接使用[官方客户端](http://aliyun-iot.oss-cn-hangzhou.aliyuncs.com/iotx-sdk-java/iotx-sdk-mqtt-java-20170526.zip?spm=5176.doc42648.2.18.7iyFfe&file=iotx-sdk-mqtt-java-20170526.zip)，只需要替换连接URL即可。其他语言版本客户端或者是自主接入，请参见[开源MQTT客户端](https://github.com/mqtt/mqtt.github.io/wiki/libraries?spm=5176.doc30539.2.5.aalCo6)。使用前请阅读相关客户端的说明，是否支持WebSocket方式。
 
 3.  连接说明。
 
@@ -49,7 +49,7 @@ keyword: [MQTT, WebSocket, 物联网, IoT, 物联网平台, 设备, 连接, 通�
         content=提交给服务器的参数（productKey,deviceName,timestamp,clientId）, 按照字母顺序排序, 然后将参数值依次拼接
         ```
 
-        其中，
+        其中：
 
         -   clientId：表示客户端ID，建议mac或sn，64字符内。
         -   timestamp：表示当前时间毫秒值，可选。
