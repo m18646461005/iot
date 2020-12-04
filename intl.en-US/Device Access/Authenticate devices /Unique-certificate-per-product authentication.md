@@ -20,7 +20,7 @@ You can use unique-certificate-per-product authentication in the following two m
 
     After IoT Platform authenticates the device, the device uses the ProductKey, DeviceName, and DeviceSecret to establish a connection with IoT Platform.
 
-    Pre-registration unique-certificate-per-product authentication supports MQTT and HTTP-based connections.
+    Pre-registration unique-certificate-per-product authentication supports MQTT-based connections.
 
 -   Preregistration-free unique-certificate-per-product authentication
 
