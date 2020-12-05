@@ -16,7 +16,7 @@ IoT Platform uses Datagram Transport Layer Security \(DTLS\) Version 1.2 to ensu
 
 ## Open-source clients
 
-For more information, see [https://coap.technology/impls.html](https://coap.technology/impls.html).
+For more information, see [Here](https://coap.technology/impls.html).
 
 **Note:** Alibaba Cloud does not provide technical support for third-party code.
 
