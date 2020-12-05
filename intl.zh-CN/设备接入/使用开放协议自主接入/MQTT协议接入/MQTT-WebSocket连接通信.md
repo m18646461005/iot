@@ -24,8 +24,6 @@ keyword: [MQTT, WebSocket, 物联网, IoT, 物联网平台, 设备, 连接, 通�
     使用WebSocket方式进行连接，区别主要在MQTT连接URL的协议和端口号，MQTT连接参数和TCP直接连接方式完全相同，其中要注意securemode参数，使用wss方式连接时securemode=2，使用ws方式连接时securemode=3。
 
     -   接入域名：
-        -   具体操作，请参见[查看实例终端节点](/intl.zh-CN/.md)。
-
         -   公共实例的接入域名：`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com`。 其中：
             -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可从物联网平台控制台设备详情页获取。
             -   $\{YourRegionId\}：请参见[地域和可用区](https://www.alibabacloud.com/help/doc-detail/40654.htm)替换为您的Region ID。
