@@ -10,7 +10,7 @@ The unique-certificate-per-device authentication method is recommended because o
 
 Procedure:
 
-![Device authentication](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4477929951/p32767.png)
+![Device authentication](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4477929951/p32767.png)
 
 1.  Create a product.
 
@@ -26,7 +26,7 @@ Procedure:
 
     2.  Initialize the Link SDK. Specify the device certificate information in the Link SDK.
 
-        Initialize the Link SDK in which the unique-certificate-per-device authentication method is specified. For more information, see the device authentication, and authentication and connection articles of language-specific Link SDKs in the [Link SDK](https://help.aliyun.com/document_detail/96596.html) documentation.
+        Initialize the Link SDK in which the unique-certificate-per-device authentication method is specified. For more information, see the device authentication, and authentication and connection articles of language-specific Link SDKs in the [Link SDK](https://www.alibabacloud.com/help/doc-detail/96627.htm) documentation.
 
     3.  Develop the device SDK based on your business needs. For example, you can develop the following features: over-the-air \(OTA\) update, sub-device connection, Thing Specification Language \(TSL\), and device shadows.
 
