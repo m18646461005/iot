@@ -10,7 +10,7 @@ keyword: [CoAP, NB-IoT 设备, 物联网, IoT, 物联网平台, DTLS, 对称加�
 
 基于CoAP协议将NB-IoT设备接入物联网平台的流程如下图所示。
 
-![coap](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4645559951/p110116.png)
+![coap](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4645559951/p110116.png)
 
 基础流程说明如下：
 
@@ -26,7 +26,10 @@ keyword: [CoAP, NB-IoT 设备, 物联网, IoT, 物联网平台, DTLS, 对称加�
 
     Endpoint地址：
 
-    -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+    -   企业版实例的接入域名，请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例，进入实例详情页查看。
+
+        具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
+
     -   华东2（上海）地域，公共实例的Endpoint地址为`${YourProductKey}.coap.cn-shanghai.link.aliyuncs.com:${port}`。
         -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例的设备详情页获取。
         -   `${port}`：端口。使用对称加密时端口为5682。
@@ -76,7 +79,7 @@ keyword: [CoAP, NB-IoT 设备, 物联网, IoT, 物联网平台, DTLS, 对称加�
 hmac_md5(mRPVdzSMu2nVBxzK77ERPIMxSYIv****, clientIda1NUjcV****&ff1a11e7c08d4b3db2b1500d8e0e55deviceNameff1a11e7c08d4b3db2b1500d8e0e55productKeya1NUjcV****seq10timestamp1524448722000)
     ``` |
     |signmethod|否|算法类型，支持hmacmd5和hmacsha1。默认是hmacmd5。|
-    |clientId|是|客户端ID，长度需在64字符内。建议使用设备的的MAC地址或SN码作为clientId的值。|
+    |clientId|是|客户端ID，长度需在64字符内。建议使用设备的MAC地址或SN码作为clientId的值。|
     |timestamp|否|时间戳。目前，时间戳不做时间窗口校验。|
 
     返回结果示例：
@@ -160,7 +163,10 @@ token和seq除了写在options中，还可以写在URI中，例如`/topic/${topi
 
     Endpoint地址：
 
-    -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+    -   企业版实例的接入域名，请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例，进入实例详情页查看。
+
+        具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
+
     -   华东2（上海）地域，公共实例的Endpoint地址为`${YourProductKey}.coap.cn-shanghai.link.aliyuncs.com:${port}`。
         -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例的设备详情页获取。
         -   $\{port\}：端口。使用DTLS时，端口为5684。
