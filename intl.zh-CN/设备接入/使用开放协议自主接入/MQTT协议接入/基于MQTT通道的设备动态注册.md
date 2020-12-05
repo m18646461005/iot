@@ -22,16 +22,17 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
     **说明：** 目前，动态注册只支持使用TLS建立连接，不支持TCP直连；动态注册时，云端不会校验MQTT连接的Keep Alive（保活时间），因此可以不用设置Keep Alive时间。
 
     -   MQTT连接域名：
-        -   您购买的实例的连接域名请在物联网平台控制台实例管理页面，单击实例对应的**查看**，进入实例详情页查看。
+        -   具体操作，请参见[查看实例终端节点](/intl.zh-CN/.md)。
+
         -   公共实例的连接域名为`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com:1883`。 其中：
-            -   $\{YourProductKey\}：请替换为设备所属产品的的ProductKey。可从物联网平台控制台设备详情页获取。
-            -   $\{YourRegionId\}：请参见[地域和可用区](https://www.alibabacloud.com/help/doc-detail/40654.htm)替换为您的Region ID。
+            -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可从物联网平台控制台设备详情页获取。
+            -   $\{YourRegionId\}：请参见[地域和可用区]()替换为您的Region ID。
     -   CONNECT报文的动态注册参数：
 
-        -   当设备属于您购买的实例，且使用[一型一密](/intl.zh-CN/设备接入/设备安全认证/一型一密.md)免预注册认证方式时，动态注册参数如下：
+        -   当设备属于企业版实例，且使用[一型一密](/intl.zh-CN/设备接入/设备安全认证/一型一密.md)免预注册认证方式时，动态注册参数如下：
 
             ```
-            mqttClientId: clientId+"|securemode=2,authType=xxxx,random=xxxx,signmethod=xxxx,instanceId=xxxx|"
+            mqttClientId: clientId+"|securemode=-2,authType=xxxx,random=xxxx,signmethod=xxxx,instanceId=xxxx|"
             mqttUserName: deviceName+"&"+productKey
             mqttPassword: sign_hmac(productSecret,content) 
             ```
@@ -53,12 +54,13 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
             |参数|说明|
             |--|--|
             |clientId|客户端ID。建议使用设备的MAC地址或SN码，长度在64个字符内。|
-            |securemode|安全模式。动态注册功能仅支持使用TLS通道连接，不支持TCP直连，因此必须设置为2 。|
+            |securemode|安全模式。            -   [一型一密](/intl.zh-CN/设备接入/设备安全认证/一型一密.md)预注册认证方式：固定取值为2。
+            -   [一型一密](/intl.zh-CN/设备接入/设备安全认证/一型一密.md)免预注册认证方式：固定取值为-2。 |
             |authType|一型一密认证方式，不同类型将返回不同的认证参数：            -   register：[一型一密](/intl.zh-CN/设备接入/设备安全认证/一型一密.md)预注册认证方式，返回DeviceSecret。
             -   regnwl：[一型一密](/intl.zh-CN/设备接入/设备安全认证/一型一密.md)免预注册认证方式，返回DeviceToken、ClientID。 |
             |random|随机数。您自定义随机数。|
             |signMethod|签名算法。目前支持hmacmd5、hmacsha1、hmacsha256。|
-            |instanceId|实例ID。请在物联网平台控制台实例管理页面查看。|
+            |instanceId|实例ID。请登录[物联网平台控制台](http://iot.console.aliyun.com/)，在实例概览页面查看。|
 
         -   mqttUserName
 
@@ -127,6 +129,6 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
 
     如果您使用Eclipse Paho MQTT客户端，设置`MqttConnectOptions.setAutomaticReconnect(false)`关闭自动重连。否则，注册成功并TCP断连后，重连逻辑会发起新的动态注册请求。
 
-5.  设备使用DeviceSecret，或使用ClientID和DeviceToken的组合，再次发起MQTT连接请求，建立设备与物联网平台的连接，进行消息通信。详情请参见[MQTT-TCP连接通信](/intl.zh-CN/设备接入/使用开放协议自主接入/MQTT协议接入/MQTT-TCP连接通信.md)。
+5.  设备使用DeviceSecret，或使用ClientID和DeviceToken的组合，再次发起MQTT连接请求，建立设备与物联网平台的连接，进行消息通信。具体操作，请参见[MQTT-TCP连接通信](/intl.zh-CN/设备接入/使用开放协议自主接入/MQTT协议接入/MQTT-TCP连接通信.md)。
 
 
