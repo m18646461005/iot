@@ -230,7 +230,7 @@ Visit the [Android Studio official website](https://developer.android.com/studio
 
 Use the Demo code to access the IoT Platform.
 
-1.  Click [here](https://code.aliyun.com/edward.yangx/public-docs/wikis/user-guide/linkkit/Paho_MQTT_Guide/aiot-android-demo.zip) to download the Demo package and decompress it.
+1.  Click [iot android demo](https://code.aliyun.com/edward.yangx/public-docs/wikis/user-guide/linkkit/Paho_MQTT_Guide/aiot-android-demo.zip) to download the Demo package and decompress it.
 
 2.  Import the aiot-csharp-demo file to Android Studio.
 
