@@ -31,9 +31,7 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
         |Profile Name|输入您的自定义名称。|
         |Profile Type|选择为**MQTT Broker**。|
         |MQTT Broker Profile Settings|
-        |Broker Address|接入域名。         -   具体操作，请参见[查看实例终端节点](/intl.zh-CN/.md)。
-
-        -   公共实例的接入域名：`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com`。其中：
+        |Broker Address|接入域名。         -   公共实例的接入域名：`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com`。其中：
             -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可从物联网平台控制台设备详情页获取。
             -   $\{YourRegionId\}：请参见[地域和可用区]()，替换为您的Region ID。 |
         |Broker Port|设置为1883。|
