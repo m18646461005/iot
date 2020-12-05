@@ -22,8 +22,6 @@ keyword: [物联网, IoT, 物联网平台, MQTT, 一型一密, 动态注册, Cli
     **说明：** 目前，动态注册只支持使用TLS建立连接，不支持TCP直连；动态注册时，云端不会校验MQTT连接的Keep Alive（保活时间），因此可以不用设置Keep Alive时间。
 
     -   MQTT连接域名：
-        -   具体操作，请参见[查看实例终端节点](/intl.zh-CN/.md)。
-
         -   公共实例的连接域名为`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com:1883`。 其中：
             -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可从物联网平台控制台设备详情页获取。
             -   $\{YourRegionId\}：请参见[地域和可用区]()替换为您的Region ID。
