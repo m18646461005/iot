@@ -16,7 +16,7 @@ keyword: [CoAP, RFC 7252, 物联网, DTLS v1.2, UDP协议, IoT, 物联网平台,
 
 ## 开源客户端
 
-[https://coap.technology/impls.html](https://coap.technology/impls.html)。
+[coap technology](https://coap.technology/impls.html)。
 
 **说明：** 若使用第三方代码，阿里云不提供技术支持。
 
