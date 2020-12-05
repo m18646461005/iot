@@ -14,7 +14,7 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
 2.  打开MQTT.fx软件，单击设置图标。
 
-    ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7694.png)
+    ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7694.png)
 
 3.  设置连接参数。物联网平台目前支持两种连接模式，不同模式设置参数不同：
 
@@ -24,17 +24,20 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
     1.  设置基本信息。
 
-        ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7698.png)
+        ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7698.png)
 
         |参数|说明|
         |:-|:-|
         |Profile Name|输入您的自定义名称。|
         |Profile Type|选择为**MQTT Broker**。|
         |MQTT Broker Profile Settings|
-        |Broker Address|接入域名。         -   对于您购买的实例，接入域名请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例进入实例详情查看。
+        |Broker Address|接入域名。         -   企业版实例的接入域名，请在[物联网平台控制台](https://iot.console.aliyun.com)，找到对应的实例，单击实例，进入实例详情页查看。
+
+具体操作，请参见[查看实例终端节点](/cn.zh-CN/.md)。
+
         -   公共实例的接入域名：`${YourProductKey}.iot-as-mqtt.${YourRegionId}.aliyuncs.com`。其中：
             -   $\{YourProductKey\}：请替换为设备所属产品的ProductKey。可登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例的设备详情页获取。
-            -   $\{YourRegionId\}：请参见[地域和可用区](/cn.zh-CN/产品简介/地域和可用区.md)，替换为您的Region ID。 |
+            -   $\{YourRegionId\}：请参见[地域和可用区]()，替换为您的Region ID。 |
         |Broker Port|设置为1883。|
         |Client ID|填写mqttClientId，用于MQTT的底层协议报文。 格式固定：`${clientId}|securemode=3,signmethod=hmacsha1|`。
 
@@ -50,7 +53,7 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
     2.  单击**User Credentials**，设置User Name和Password。
 
-        ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7699.png)
+        ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7699.png)
 
         |参数|说明|
         |:-|:-|
@@ -88,13 +91,13 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
         **说明：** TCP直连模式（即`securemode=3`）下，无需设置SSL/TLS信息，直接进入下一步。
 
-        ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7734.png)
+        ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7734.png)
 
 4.  设置完成后，单击右下角的**OK**。
 
 5.  单击**Connect**进行连接。
 
-    ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7735.png)
+    ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7735.png)
 
 
 ## 下行通信测试
@@ -105,21 +108,21 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
 2.  输入一个设备具有订阅权限的自定义Topic，单击**Subscribe**，订阅这个自定义Topic。
 
-    ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7736.png)
+    ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7736.png)
 
     订阅成功后，该Topic将显示在列表中。
 
-    ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7737.png)
+    ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7737.png)
 
 3.  登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例下，找到该设备的设备详情页，在**Topic列表**页签下，单击已订阅的Topic对应的**发布消息**。
 
 4.  输入消息内容，单击**确认**。
 
-    ![发布消息](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p127634.png)
+    ![发布消息](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p127634.png)
 
 5.  回到MQTT.fx上，查看是否接收到消息。
 
-    ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7739.png)
+    ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7739.png)
 
 
 ## 上行通信测试
@@ -130,7 +133,7 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
 2.  输入一个设备具有发布权限的Topic，和要发送的消息内容，单击**Publish**，向这个Topic推送一条消息。
 
-    ![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p37281.png)
+    ![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p37281.png)
 
 3.  登录[物联网平台控制台](https://iot.console.aliyun.com)，在对应实例下，选择**监控运维** \> **日志服务** \> **云端运行日志**，查看该设备的设备到云消息。
 
@@ -139,5 +142,5 @@ MQTT.fx是一款基于Eclipse Paho，使用Java语言编写的MQTT客户端工�
 
 在MQTT.fx上，单击**Log**查看操作日志和错误提示日志。
 
-![MQTT.fx](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0694559951/p7740.png)
+![MQTT.fx](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0694559951/p7740.png)
 
