@@ -38,7 +38,7 @@ You must create a product and a device, and define features for the product.
 
 In the following example, the SDK demo contains the server SDK and the device SDK.
 
-1.  Click [here](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/44229/intl_en/1565952427116/iotx-api-demo.zip) to download iotx-api-demo, and decompress the package.
+1.  Click [iot api demo](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/44229/intl_en/1565952427116/iotx-api-demo.zip) to download iotx-api-demo, and decompress the package.
 
 2.  Open the Java development tool and import the decompressed iotx-api-demo folder.
 
