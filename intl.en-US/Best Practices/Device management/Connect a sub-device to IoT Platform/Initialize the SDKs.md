@@ -8,7 +8,7 @@ This topic describes the Java SDK demos used on your servers and on the devices.
 
 [Create a gateway and a sub-device](/intl.en-US/Best Practices/Device management/Connect a sub-device to IoT Platform/Create a gateway and a sub-device.md)
 
-1.  Click [here](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/44229/intl_en/1565952427116/iotx-api-demo.zip) to download iotx-api-demo, and decompress the package.
+1.  Click [iot api demo](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/44229/intl_en/1565952427116/iotx-api-demo.zip) to download iotx-api-demo, and decompress the package.
 
     This package contains the server SDK demo and the device SDK demo.
 
