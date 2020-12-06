@@ -16,7 +16,7 @@ This example only describes how to connect a sub-device to IoT platform through 
 
 ## References
 
-To download the SDK demo used in this example, click [here](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/44229/intl_en/1565952427116/iotx-api-demo.zip).
+To download the SDK demo used in this example, click [iot api demo](https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/44229/intl_en/1565952427116/iotx-api-demo.zip).
 
 To connect the sub-device to IoT Platform through the gateway, follow these steps:
 
