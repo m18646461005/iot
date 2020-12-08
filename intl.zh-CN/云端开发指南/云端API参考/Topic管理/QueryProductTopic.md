@@ -17,7 +17,7 @@
 |名称|类型|是否必选|示例值|描述|
 |--|--|----|---|--|
 |Action|String|是|QueryProductTopic|系统规定参数。取值：QueryProductTopic。 |
-|ProductKey|String|是|HMyB\*\*\*\*\*\*\*|要查询Topic类的产品Key。 |
+|ProductKey|String|是|HMyB\*\*\*\*\*\*\*|要查询Topic类的产品**ProductKey**。 |
 |IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
@@ -27,7 +27,7 @@
 |名称|类型|示例值|描述|
 |--|--|---|--|
 |Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
-|Data|Array of ProductTopicInfo| |调用成功时，返回的Topic类信息列表。详情参见以下ProductTopicInfo。 |
+|Data|Array of ProductTopicInfo| |调用成功时，返回的Topic类信息列表。详情参见以下**ProductTopicInfo**。 |
 |ProductTopicInfo| | | |
 |Desc|String|topicDesc|Topic类的描述信息。 |
 |Id|String|821\*\*\*\*|Topic类的ID。 |
@@ -61,26 +61,28 @@ https://iot.cn-shanghai.aliyuncs.com/?Action=QueryProductTopic
 
 ```
 <QueryProductTopicResponse>
-      <Data>
-            <Id>10000</Id>
-            <Operation>0</Operation>
-            <ProductKey>HMyB***</ProductKey>
-            <TopicShortName>/HMyB***/${deviceName}/user/update</TopicShortName>
-      </Data>
-      <Data>
-            <Id>10001</Id>
-            <Operation>2</Operation>
-            <ProductKey>HMyB***</ProductKey>
-            <TopicShortName>/HMyB***/${deviceName}/user/update/error</TopicShortName>
-      </Data>
-      <Data>
-            <Id>10002</Id>
-            <Operation>1</Operation>
-            <ProductKey>HMyB***</ProductKey>
-            <TopicShortName>/HMyB***/${deviceName}/user/get</TopicShortName>
-      </Data>
-      <RequestId>B953EAFF-CFF6-4FF8-BC94-8B89F018E4DD</RequestId>
-      <Success>true</Success>
+  <RequestId>22C22D81-11EA-419F-81F1-08207DD9D0E5</RequestId>
+  <Data>
+        <ProductTopicInfo>
+              <TopicShortName>/g18***/${deviceName}/user/update</TopicShortName>
+              <Operation>0</Operation>
+              <Id>12362218</Id>
+              <ProductKey>g18***</ProductKey>
+        </ProductTopicInfo>
+        <ProductTopicInfo>
+              <TopicShortName>/g18***/${deviceName}/user/update/error</TopicShortName>
+              <Operation>0</Operation>
+              <Id>12362219</Id>
+              <ProductKey>g18***</ProductKey>
+        </ProductTopicInfo>
+        <ProductTopicInfo>
+              <TopicShortName>/g18***/${deviceName}/user/get</TopicShortName>
+              <Operation>1</Operation>
+              <Id>12362220</Id>
+              <ProductKey>g18***</ProductKey>
+        </ProductTopicInfo>
+  </Data>
+  <Success>true</Success>
 </QueryProductTopicResponse>
 ```
 
@@ -88,26 +90,30 @@ https://iot.cn-shanghai.aliyuncs.com/?Action=QueryProductTopic
 
 ```
 {
-    "Data": [{
-        "Id": "10000",
-        "Operation": "0",
-        "ProductKey": "HMyB***",
-        "TopicShortName": "/HMyB***/${deviceName}/user/update"
-    },
-    {
-        "Id": "10001",
-        "Operation": "2",
-        "ProductKey": "HMyB***",
-        "TopicShortName": "/HMyB***/${deviceName}/user/update/error"
-    },
-    {
-        "Id": "10002",
-        "Operation": "1",
-        "ProductKey": "HMyB***",
-        "TopicShortName": "/HMyB***/${deviceName}/user/get"
-    }],
-    "RequestId": "B953EAFF-CFF6-4FF8-BC94-8B89F018E4DD",
-    "Success": true
+	"RequestId": "22C22D81-11EA-419F-81F1-08207DD9D0E5",
+	"Data": {
+		"ProductTopicInfo": [
+			{
+				"TopicShortName": "/g18***/${deviceName}/user/update",
+				"Operation": "0",
+				"Id": "12362218",
+				"ProductKey": "g18***"
+			},
+			{
+				"TopicShortName": "/g18***/${deviceName}/user/update/error",
+				"Operation": "0",
+				"Id": "12362219",
+				"ProductKey": "g18***"
+			},
+			{
+				"TopicShortName": "/g18***/${deviceName}/user/get",
+				"Operation": "1",
+				"Id": "12362220",
+				"ProductKey": "g18***"
+			}
+		]
+	},
+	"Success": true
 }
 ```
 
