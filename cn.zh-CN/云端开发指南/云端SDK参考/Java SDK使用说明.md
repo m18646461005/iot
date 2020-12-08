@@ -60,8 +60,13 @@ accessKey即您的账号的AccessKeyId，accessSecret即AccessKeyId对应的Acce
 
 以调用Pub接口发布消息到Topic为例。
 
+**说明：** 以下代码中iotInstanceId为实例ID，企业版实例填写实例ID，公共实例要删除代码`request.setIotInstanceId("iotInstanceId");`。
+
+关于如何购买企业版实例，请参见[实例管理](/cn.zh-CN/.md)。
+
 ```
 PubRequest request = new PubRequest(); 
+request.setIotInstanceId("iotInstanceId"); 
 request.setProductKey("productKey"); 
 request.setMessageContent(Base64.encodeBase64String("hello world".getBytes())); 
 request.setTopicFullName("/productKey/deviceName/get"); 
