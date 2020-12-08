@@ -30,17 +30,7 @@
 -   **Value**取值为要设置的期望属性值。取值需符合您为该属性定义的数据类型和取值范围。
 
 **说明：** 若属性值设置为null，则表示清空期望属性值。 |
-|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
-|IotId|String|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|要设置期望属性值的设备ID。物联网平台为该设备颁发的ID，设备的唯一标识符。
-
- **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
-|DeviceName|String|否|light|要设置期望属性值的设备名称。
-
- **说明：** 如果传入该参数，需同时传入**ProductKey**。 |
-|ProductKey|String|否|a1BwAGV\*\*\*\*|要设置期望属性值的设备所隶属的产品ProductKey。
-
- **说明：** 如果传入该参数，需同时传入**DeviceName**。 |
-|Versions|String|否|\{"Temperature":2\}|当前期望属性值版本，组成为Key:Value，数据格式为 JSON String，例如\{"Temperature":2\}。
+|Versions|String|是|\{"Temperature":2\}|当前期望属性值版本，组成为Key:Value，数据格式为 JSON String，例如\{"Temperature":2\}。
 
  -   **Key**取值为属性的标识符（identifier）。可在控制台中，设备所属产品的功能定义中查看属性的identifier。
 
@@ -51,6 +41,16 @@
 首次设置期望属性值时，指定该参数值为0。首次设置期望属性值后，期望值版本号为1。以后每次设置期望值后，物联网平台自动将期望值版本加1（即第二次设置期望属性值时，指定该参数值为1。设置成功后，版本号自动变为2；第三次设置时，指定该参数值为2。设置成功后，版本号自动变为3；以此类推）。
 
 **说明：** 如果传入的版本号与当前版本不符，服务器将拒绝此次请求。若您不确定当前期望值的版本号，可以不传入版本号，但仍需传入有效的JSON，即传入\{\}。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|IotId|String|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|要设置期望属性值的设备ID。物联网平台为该设备颁发的ID，设备的唯一标识符。
+
+ **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
+|DeviceName|String|否|light|要设置期望属性值的设备名称。
+
+ **说明：** 如果传入该参数，需同时传入**ProductKey**。 |
+|ProductKey|String|否|a1BwAGV\*\*\*\*|要设置期望属性值的设备所隶属的产品ProductKey。
+
+ **说明：** 如果传入该参数，需同时传入**DeviceName**。 |
 
 调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
