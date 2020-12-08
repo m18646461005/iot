@@ -1,135 +1,129 @@
-# GetGatewayBySubDevice {#reference_vkn_rpj_s2b .reference}
+# GetGatewayBySubDevice
 
 调用该接口，根据挂载的子设备信息，查询对应的网关设备信息。
 
-## 请求参数 {#section_dcg_ttj_s2b .section}
+## 限制说明
 
-|名称|类型|是否必需|描述|
-|:-|:-|:---|:-|
-|Action|String|是|要执行的操作，取值：GetGatewayBySubDevice。|
-|IotId|String|否| 子设备ID。
+单阿里云账号调用该接口的每秒请求数（QPS）最大限制为50。
 
- **说明：** 如果传入该参数，则无需传入ProductKey和DeviceName。IotId作为设备唯一标识符，与ProductKey与DeviceName组合是一一对应的关系。如果您同时传入IotId和ProductKey与DeviceName组合，则以IotId为准。
+**说明：** RAM用户共享该阿里云账号配额。
 
- |
-|ProductKey|String|否| 子设备所隶属的产品Key。
+## 调试
 
- **说明：** 如果传入该参数，需同时传入DeviceName。
+[您可以在OpenAPI Explorer中直接运行该接口，免去您计算签名的困扰。运行成功后，OpenAPI Explorer可以自动生成SDK代码示例。](https://api.aliyun.com/#product=Iot&api=GetGatewayBySubDevice&type=RPC&version=2018-01-20)
 
- |
-|DeviceName|String|否| 子设备的名称。
+## 请求参数
 
- **说明：** 如果传入该参数，需同时传入ProductKey。
+|名称|类型|是否必选|示例值|描述|
+|--|--|----|---|--|
+|Action|String|是|GetGatewayBySubDevice|系统规定参数。取值：GetGatewayBySubDevice。 |
+|IotInstanceId|String|否|iot\_instc\_pu\*\*\*\*\_c\*-v64\*\*\*\*\*\*\*\*|实例ID。公共实例不传此参数，企业版实例需传入。 |
+|ProductKey|String|否|a1BwAGV\*\*\*\*|子设备所隶属的产品ProductKey。
 
- |
-|公共请求参数|-|是|请参见[公共参数](intl.zh-CN/云端开发指南/云端API参考/公共参数.md#)。|
+ **说明：** 如果传入该参数，需同时传入**DeviceName**。 |
+|DeviceName|String|否|light|子设备名称。
 
-## 返回参数 {#section_xh5_r5j_s2b .section}
+ **说明：** 如果传入该参数，需同时传入**ProductKey**。 |
+|IotId|String|否|Q7uOhVRdZRRlDnTLv\*\*\*\*00100|子设备ID。物联网平台为该子设备颁发的ID，设备的唯一标识符。
 
-|名称|类型|描述|
-|:-|:-|:-|
-|RequestId|String|阿里云为该请求生成的唯一标识符。|
-|Success|Boolean|表示是否调用成功。true表示调用成功，false表示调用失败。|
-|ErrorMessage|String|调用失败时，返回的出错信息。|
-|Code|String|调用失败时，返回的错误码。错误码详情，请参见[错误码](intl.zh-CN/云端开发指南/云端API参考/错误码.md#)。|
-|Data|Data|调用成功时，返回的网关设备的详细信息。详情请参见下表[DeviceDetailInfo](#table_mxw_wvj_s2b)。|
+ **说明：** 如果传入该参数，则无需传入**ProductKey**和**DeviceName**。**IotId**作为设备唯一标识符，和**ProductKey**与**DeviceName**组合是一一对应的关系。如果您同时传入**IotId**和**ProductKey**与**DeviceName**组合，则以**IotId**为准。 |
 
-|名称|类型|描述|
-|:-|:-|:-|
-|ProductKey|String|网关设备隶属的产品Key。|
-|ProductName|String|网关设备隶属的产品名称。|
-|DeviceName|String|网关设备名称。|
-|DeviceSecret|String|网关设备密钥。|
-|IotId|String|IoT平台为该网关设备颁发的ID，作为该设备的唯一标识符。|
-|GmtCreate|String|网关设备的创建时间，GMT时间。|
-|GmtActive|String|网关设备的激活时间，GMT时间。|
-|GmtOnline|String|网关设备最近一次上线的时间，GMT时间。|
-|UtcCreate|String|网关设备的创建时间，UTC时间。|
-|UtcActive|String|网关设备的激活时间，UTC时间。|
-|UtcOnline|String|网关设备最近一次上线的时间，UTC时间。|
-|Status|String| 网关设备状态。取值：
+调用API时，除了本文介绍的该API的特有请求参数，还需传入公共请求参数。公共请求参数说明，请参见[公共参数文档](~~30561~~)。
 
- ONLINE：设备在线。
+## 返回数据
 
- OFFLINE：设备离线。
+|名称|类型|示例值|描述|
+|--|--|---|--|
+|Code|String|iot.system.SystemException|调用失败时，返回的错误码。更多信息，请参见[错误码](~~87387~~)。 |
+|Data|Struct| |调用成功时，返回的网关设备的详细信息。 |
+|DeviceName|String|gateway|网关设备名称。 |
+|DeviceSecret|String|dCYdTU3gw5Z77bsHjPk6lPHPVnBT\*\*\*\*|网关设备密钥。 |
+|FirmwareVersion|String|V1.0.1|网关设备的固件版本号。 |
+|GmtActive|String|2019-12-18 23:25:30|网关设备的激活时间，GMT格式，是用户所在地的当地时间。 |
+|GmtCreate|String|2019-12-18 16:58:33|网关设备的创建时间，GMT格式，是用户所在地的当地时间。 |
+|GmtOnline|String|2020-01-20 17:41:04|网关设备最近一次上线的时间，GMT格式，是用户所在地的当地时间。 |
+|IpAddress|String|106.\*\*.1\*\*.\*\*|网关设备的IP地址。 |
+|NodeType|String|1|节点类型，取值为1，表示该设备为网关设备。 |
+|ProductKey|String|a1BwAGV\*\*\*\*|网关设备隶属的产品**ProductKey**。 |
+|ProductName|String|LinkIoT|网关设备隶属的产品名称。 |
+|Status|String|online|网关设备状态。取值：
 
- UNACTIVE：设备未激活。
+ -   **online**：设备在线。
+-   **offline**：设备离线。
+-   **unactive**：设备未激活。
+-   **disable**：设备已禁用 |
+|UtcActive|String|2019-12-18T15:25:30.176Z|网关设备的激活时间，UTC格式，世界标准时间。用户所在地实际时间，可根据当地时差计算。 |
+|UtcCreate|String|2019-12-18T08:58:33.000Z|网关设备的创建时间，UTC格式，世界标准时间。用户所在地实际时间，可根据当地时差计算。 |
+|UtcOnline|String|2020-01-20T09:41:04.879Z|网关设备最近一次上线的时间，UTC格式，世界标准时间。用户所在地实际时间，可根据当地时差计算。 |
+|iotId|String|WuyjPSDQE1L22z1d\*\*\*\*000100|物联网平台为该网关设备颁发的ID，作为该设备的唯一标识符。 |
+|region|String|cn-shanghai|网关设备所在地域（与控制台上的地域对应）。 |
+|ErrorMessage|String|系统异常|调用失败时，返回的出错信息。 |
+|RequestId|String|E55E50B7-40EE-4B6B-8BBE-D3ED55CCF565|阿里云为该请求生成的唯一标识符。 |
+|Success|Boolean|true|表示是否调用成功。
 
- DISABLE：设备已禁用。
+ -   **true**：调用成功。
+-   **false**：调用失败。 |
 
- |
-|FirmwareVersion|String|网关设备的固件版本号。|
-|IpAddress|String|网关设备的IP地址。|
-|NodeType|Integer|节点类型，取值为1，表示该设备为网关设备。|
-|Region|String|网关设备所在地域（与控制台上的地域对应）。|
+## 示例
 
-## 示例 {#section_qkh_hxj_s2b .section}
-
-**请求示例**
+请求示例
 
 ```
 https://iot.cn-shanghai.aliyuncs.com/?Action=GetGatewayBySubDevice
-&ProductKey=al*********S
+&ProductKey=a1BwAGV****
 &DeviceName=XTzosqEOgxFXKPRgd8zl
-&公共请求参数
+&<公共请求参数>
 ```
 
-**返回示例**
+正常返回示例
 
--   JSON格式
+`XML` 格式
 
-    ```
-    {
-    "RequestId": "F227A41E-8A0F-4829-A1B1-727619DB58A3",
-        "Data": 
-        {
-            "Status": "UNACTIVE",
-            "ProductName": "TEST",
-            "DeviceSecret": "nICOJkFJnG***********TWnvXHydEjX",
-            "UtcOnline": "",
-            "IotId": "9a1MTdk9brqQ2bhdG4OY001094fd00",
-            "GmtCreate": "2018-08-07 15:54:15",
-            "UtcCreate": "2018-08-07T07:54:15.000Z",
-            "UtcActive": "",
-            "GmtActive": "",
-            "NodeType": 1,
-            "Region": "cn-shanghai",
-            "GmtOnline": "",
-            "ProductKey": "a15tzTmkWZ2",
-            "DeviceName": "d896e0ff000105bb"
-            "IpAddress": "10.0.0.1"
-            "FirmwareVersion": "1.2.3"
-        },
-    "Success": true
-    }
-    ```
+```
+<GetGatewayBySubDeviceResponse>
+  <Data>
+        <region>cn-shanghai</region>
+        <DeviceName>gateway_04</DeviceName>
+        <GmtActive>2019-12-18 23:25:30</GmtActive>
+        <ProductKey>a1vL7cp****</ProductKey>
+        <IpAddress>106.**.1**.**</IpAddress>
+        <GmtCreate>2019-12-18 16:58:33</GmtCreate>
+        <UtcCreate>2019-12-18T08:58:33.000Z</UtcCreate>
+        <UtcOnline>2020-01-20T09:41:04.879Z</UtcOnline>
+        <UtcActive>2019-12-18T15:25:30.176Z</UtcActive>
+        <Status>online</Status>
+        <NodeType>1</NodeType>
+        <GmtOnline>2020-01-20 17:41:04</GmtOnline>
+        <ProductName>LinkIoTEdge_Gateway</ProductName>
+        <iotId>WuyjPSDQE1L22z1****000100</iotId>
+  </Data>
+  <RequestId>0377D5A9-BDE1-48C2-96C9-BDC048899186</RequestId>
+  <Success>true</Success>
+</GetGatewayBySubDeviceResponse>
+```
 
--   XML格式
+`JSON` 格式
 
-    ```
-    <?xml version='1.0' encoding='utf-8'?>
-    <GetGatewayBySubDeviceResponse>
-        <RequestId>57b144cf-09fc-4916-a272-a62902d5b207</RequestId>
-        <Success>true</Success>
-        <Data>
-            <Status>UNACTIVE</Status>
-            <ProductName>TEST</ProductName>
-            <DeviceSecret>nICOJkFJnG***********TWnvXHydEjX</DeviceSecret>
-            <UtcOnline></UtcOnline>
-            <IotId>SR8FiTu1R9tlUR2V1bmi0010******</IotId>
-            <GmtCreate>2018-08-07 15:54:15</GmtCreate>
-            <UtcCreate>2018-08-07T07:54:15.000Z</GmtOnline>
-            <UtcActive></UtcActive>
-            <GmtActive></GmtActive>
-            <NodeType>1</NodeType>
-            <Region>cn-shanghai</Region>
-            <GmtOnline></GmtOnline>
-            <ProductKey>a15tzTmkWZ2</ProductKey>
-            <DeviceName>TEST</DeviceName>
-            <IpAddress>10.0.0.1</IpAddress>
-            <FirmwareVersion>1.2.3</FirmwareVersion>
-        </Data>
-    </GetGatewayBySubDeviceResponse>
-    ```
-
+```
+{
+	"Data": {
+		"region": "cn-shanghai",
+		"DeviceName": "gateway_04",
+		"GmtActive": "2019-12-18 23:25:30",
+		"ProductKey": "a1vL7cp****",
+		"IpAddress": "106.**.1**.**",
+		"GmtCreate": "2019-12-18 16:58:33",
+		"UtcCreate": "2019-12-18T08:58:33.000Z",
+		"UtcOnline": "2020-01-20T09:41:04.879Z",
+		"UtcActive": "2019-12-18T15:25:30.176Z",
+        "Status": "online",
+		"NodeType": 1,
+		"GmtOnline": "2020-01-20 17:41:04",
+		"ProductName": "LinkIoTEdge_Gateway",
+		"iotId": "WuyjPSDQE1L22z1****000100"
+	},
+	"RequestId": "0377D5A9-BDE1-48C2-96C9-BDC048899186",
+	"Success": true
+}
+```
 
